@@ -1,0 +1,29 @@
+[
+    {
+        "label": "first_name",
+        "kind": 5,
+        "importPath": "5_reverce_by_word",
+        "description": "5_reverce_by_word",
+        "peekOfCode": "first_name = input(\"Enter First name: \")\nlast_name = input(\"Enter Last name: \")\nprint(first_name + \" \"+ last_name)\nprint(last_name + \" \" +first_name)",
+        "detail": "5_reverce_by_word",
+        "documentation": {}
+    },
+    {
+        "label": "last_name",
+        "kind": 5,
+        "importPath": "5_reverce_by_word",
+        "description": "5_reverce_by_word",
+        "peekOfCode": "last_name = input(\"Enter Last name: \")\nprint(first_name + \" \"+ last_name)\nprint(last_name + \" \" +first_name)",
+        "detail": "5_reverce_by_word",
+        "documentation": {}
+    },
+    {
+        "label": "inputs",
+        "kind": 5,
+        "importPath": "6_create_List_Tuple_from_user_input",
+        "description": "6_create_List_Tuple_from_user_input",
+        "peekOfCode": "inputs = input(\"Enter input with coma seprate: \")\nlist =inputs.split(\",\")\ntuple=tuple(list)\nprint(list)\nprint(tuple)",
+        "detail": "6_create_List_Tuple_from_user_input",
+        "documentation": {}
+    }
+]
