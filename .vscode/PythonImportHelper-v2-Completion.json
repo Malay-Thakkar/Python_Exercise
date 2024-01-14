@@ -1,0 +1,108 @@
+[
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "pi",
+        "importPath": "math",
+        "description": "math",
+        "isExtraImport": true,
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "current_data",
+        "kind": 5,
+        "importPath": "3_datetime",
+        "description": "3_datetime",
+        "peekOfCode": "current_data = datetime.datetime.now() \nprint(\"Current Date and time: \" + current_data.strftime(\"%Y-%m-%d %H:%M:%S\"))\nfrom datetime import datetime\nprint(\"Current Date and Time:\", datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\"))",
+        "detail": "3_datetime",
+        "documentation": {}
+    },
+    {
+        "label": "radius",
+        "kind": 5,
+        "importPath": "4_circle radius",
+        "description": "4_circle radius",
+        "peekOfCode": "radius = float(input(\"Enter The Radius: \"))\nprint(\"area of circle: \", pi*(radius**2))",
+        "detail": "4_circle radius",
+        "documentation": {}
+    },
+    {
+        "label": "first_name",
+        "kind": 5,
+        "importPath": "5_reverce_by_word",
+        "description": "5_reverce_by_word",
+        "peekOfCode": "first_name = input(\"Enter First name: \")\nlast_name = input(\"Enter Last name: \")\nprint(first_name + \" \"+ last_name)\nprint(last_name + \" \" +first_name)",
+        "detail": "5_reverce_by_word",
+        "documentation": {}
+    },
+    {
+        "label": "last_name",
+        "kind": 5,
+        "importPath": "5_reverce_by_word",
+        "description": "5_reverce_by_word",
+        "peekOfCode": "last_name = input(\"Enter Last name: \")\nprint(first_name + \" \"+ last_name)\nprint(last_name + \" \" +first_name)",
+        "detail": "5_reverce_by_word",
+        "documentation": {}
+    },
+    {
+        "label": "inputs",
+        "kind": 5,
+        "importPath": "6_create_List_Tuple_from_user_input",
+        "description": "6_create_List_Tuple_from_user_input",
+        "peekOfCode": "inputs = input(\"Enter input with coma seprate: \")\nlist =inputs.split(\",\")\ntuple=tuple(list)\nprint(list)\nprint(tuple)",
+        "detail": "6_create_List_Tuple_from_user_input",
+        "documentation": {}
+    },
+    {
+        "label": "input_string",
+        "kind": 5,
+        "importPath": "6_word_count_in_list",
+        "description": "6_word_count_in_list",
+        "peekOfCode": "input_string = input(\"Enter string: \")\nword_list = input_string.split()\nword_freq = [word_list.count(n) for n in word_list]\nprint(\"List:\\n{}\\n\".format(str(word_list)))\nprint(\"Pairs (Words and Frequencies: \\n {}\".format(str(list(zip(word_list, word_freq)))))",
+        "detail": "6_word_count_in_list",
+        "documentation": {}
+    },
+    {
+        "label": "word_list",
+        "kind": 5,
+        "importPath": "6_word_count_in_list",
+        "description": "6_word_count_in_list",
+        "peekOfCode": "word_list = input_string.split()\nword_freq = [word_list.count(n) for n in word_list]\nprint(\"List:\\n{}\\n\".format(str(word_list)))\nprint(\"Pairs (Words and Frequencies: \\n {}\".format(str(list(zip(word_list, word_freq)))))",
+        "detail": "6_word_count_in_list",
+        "documentation": {}
+    },
+    {
+        "label": "word_freq",
+        "kind": 5,
+        "importPath": "6_word_count_in_list",
+        "description": "6_word_count_in_list",
+        "peekOfCode": "word_freq = [word_list.count(n) for n in word_list]\nprint(\"List:\\n{}\\n\".format(str(word_list)))\nprint(\"Pairs (Words and Frequencies: \\n {}\".format(str(list(zip(word_list, word_freq)))))",
+        "detail": "6_word_count_in_list",
+        "documentation": {}
+    }
+]
