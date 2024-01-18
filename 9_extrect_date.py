@@ -1,0 +1,5 @@
+date = input("Enter date with coma separated: ")
+datelist = date.split(",")
+datetuple = tuple(datelist)
+int_date_tuple= tuple(map(int,datetuple))
+print("your date is %i / %i / `%i"%int_date_tuple)
