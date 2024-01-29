@@ -2,6 +2,7 @@ import re
 
 text = """8320135247 its.malaythakkar@gmail.com 31/10/2002 malaythakkar.me 157.32.102.241
           <main><h1>(999)-111-6666</h1></main> https://malaythakkar.me 123-45-6789
+          1234-5678-9012-3456
        """
 
 phone_pattern = r'\(\d{3}\)-\d{3}\-\d{4}|\d{10}'

@@ -1,3 +1,5 @@
+import csv
+
 class Product:
     discount = 0.8
     productlist = []
@@ -30,22 +32,45 @@ class Product:
         self.price = self.price * self.discount # product.discount => best practice is use instace level it can not over write class level  
         print(f"{self.name} price is {self.price}")
         
+    @classmethod   
+    def initantiate_from_csv(cls):
+        with open('product.csv','r') as f:
+            reader = csv.DictReader(f)
+            products = list(reader)
+        for product in products:
+            #print(product)
+            Product(
+                name = product.get('name'),
+                price = float(product.get('price')),
+                quntity= int(product.get('quntity')),
+            )
+    
+    @staticmethod
+    def is_integer(num):
+        if isinstance(num,float):
+            return num.is_integer()
+        elif isinstance(num,int):
+            return True
+        else:
+            return False
+
 #Access class attribute 
 #print(Product.discount)
 #print(Product.__dict__)  # print all atrribute of class and object
 
 
 #create a object
-phone = Product("Phone",1000,5)
-laptop = Product("Laptop",10000,3)
-tablate = Product("Tablate",5000)      # it will take quntity as predefin
+#phone = Product("Phone",1000,5)
+#laptop = Product("Laptop",10000,3)
+#tablate = Product("Tablate",5000)      # it will take quntity as predefin
+
+#create a object with making fail to assert condition
+#demo = Product("demophone", 1235,-2)
+
 #print(phone.__dict__)#print all phone object attributes
 # for instace in Product.productlist:
 #    print(instace.name)               #added item in product list
 #print(Product.productlist)     #after adding reper method it will display otwer wise it display object id
-
-#create a object with making fail to assert condition
-#demo = Product("demophone", 1235,-2)
 
 
 #using class level attribute apply discount
@@ -56,3 +81,13 @@ tablate = Product("Tablate",5000)      # it will take quntity as predefin
 
 #print(phone.calculate_total_price(phone.price,phone.quntity))
 #print(laptop.calculate_total_price())
+
+
+#call class method
+# Product.initantiate_from_csv() # create object from csv file
+# print(Product.productlist)
+
+#call staticmethod
+phone = Product("ph",1000,12)
+phone.is_integer(5)
+print(Product.is_integer(5.03))
