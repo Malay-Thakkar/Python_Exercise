@@ -29,7 +29,8 @@
 ##__4__ string comprehension
 my_string = "ThisIsCamelCaseExample"
 print(id(my_string) ,  my_string)
-my_string = "".join([i if i.islower() else " " + i for i in my_string])[1:]#ther is space at index 0 we can remove using slice
+my_string = "".join([i if i.islower() else " " + i for i in my_string])
 print(id(my_string) , my_string)
-new_srtring = "".join([i if i.islower() else " " + "@" if i == "C" else " " + i for i in my_string])[1:]
-print(new_srtring) 
+
+#new_srtring = "".join([i if i.islower() else " " + "@" if i == "C" else " " + i for i in my_string])[1:]
+#print(new_srtring) 
