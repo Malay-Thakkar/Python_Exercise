@@ -1,5 +1,0 @@
-10.30  # Total time (HH.MM)
-09.00  # In time (HH.MM)
-12.30  # Out time (HH.MM)
-13.30  # In time (HH.MM)
-17.00  # Out time (HH.MM)
