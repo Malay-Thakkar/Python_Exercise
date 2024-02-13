@@ -30,6 +30,11 @@
 my_string = "ThisIsCamelCaseExample"
 print(id(my_string) ,  my_string)
 my_string = "".join([i if i.islower() else " " + i for i in my_string])
+# for i in my_string:
+#     if i.islower():
+#         my_string+=i
+#     else:
+#         my_string+=" "
 print(id(my_string) , my_string)
 
 #new_srtring = "".join([i if i.islower() else " " + "@" if i == "C" else " " + i for i in my_string])[1:]
