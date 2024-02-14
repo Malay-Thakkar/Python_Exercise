@@ -18,3 +18,4 @@ import pandas
 #         dup_items.add(x)
 # print(dup_items) 
 
+d = pandas.DataFrame()
