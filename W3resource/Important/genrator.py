@@ -9,6 +9,8 @@ def factorial(num):
 for value in factorial(5):
     print(value)
     
+#===========================================
+    
 def fibonacci_generator(limit=10):
     a, b = 0, 1
     count = 0
