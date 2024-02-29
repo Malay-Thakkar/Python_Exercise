@@ -2,11 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, logout
-from ecm.models import signup as SignupModel,contact as ContactModel,product as productModel
+from crud.models import signup as SignupModel,contact as ContactModel,product as productModel,stock as stockModel
 from datetime import datetime  
 from .serializer import ProductSerializer
 from rest_framework.renderers import JSONRenderer
-from django.http import JsonResponse
+from .forms import stockForm,productForm
 def signup(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -60,10 +60,7 @@ def aboutus(request):
     return render(request, "about.html", dict)
 
 def index(request):
-    if request.user.is_authenticated:
-        return redirect("/about-us")
-    else:
-        return render(request, 'index.html')
+    return render(request,"index.html")
 
 def logoutuser(request):
     logout(request)
@@ -77,7 +74,25 @@ def product(request):
         'products': serializer.data
     }
     return render(request,'product.html',context_data)
-    # return JsonResponse(serializer.data, safe=False)
+
+
+def crudproduct(request):
+    form = productForm()
+    context = {'form': form}  # Initialize context
+    
+    if request.method == "POST":
+        form = productForm(request.POST)
+        if form.is_valid():
+            form.save()
+            stu = product.objects.all()
+            serializer = ProductSerializer(stu, many=True)
+            context['data'] = serializer.data  # Add data to context
+            context['msg'] = 'Data created successfully'  # Add success message to context
+        else:
+            context['msg'] = 'Form validation failed'  # Add validation error message to context
+    
+    return render(request, 'crudproduct.html', context)
+
 
 
 def productdetail(request,productid):
@@ -100,3 +115,18 @@ def productdetail(request,productid):
 
 
     
+def stock(request):
+    if request.method=='POST':
+        form = stockForm(request.POST)
+        if form.is_valid():
+            product_name = form.cleaned_data['product_name']
+            product_id = form.cleaned_data['product_id']
+            product_price = form.cleaned_data['product_price']
+
+            new_stock = stockModel(product_name=product_name, product_id=product_id, product_price=product_price)
+            new_stock.save()
+            
+            return HttpResponse('success')
+    else:
+        form = stockForm()
+    return render(request, 'stock.html', {'form': form})

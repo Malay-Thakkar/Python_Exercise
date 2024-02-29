@@ -21,7 +21,11 @@ class contact(models.Model):
     
 class product(models.Model):
     product_name=models.CharField(max_length=120)
-    product_id=models.CharField(max_length=120,primary_key=True)
+    product_id=models.CharField(max_length=120)
     product_dict=models.CharField(max_length=120)
     product_price=models.CharField(max_length=120)
-    product_img=models.FileField(max_length=120)
+    
+class stock(models.Model):
+    product_name=models.CharField(max_length=120)
+    product_id=models.CharField(max_length=120)
+    product_price=models.CharField(max_length=120)
