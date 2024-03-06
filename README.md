@@ -1,1 +1,1 @@
-# Python_Exercise_W3resource and Django Learning
+# Python_Learning and Django Learning
