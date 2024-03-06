@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block body %}
+<style>
+  table td {
+    border: 1px solid black;
+    padding: 0.5rem;
+  }
+</style>
+{% if messages %}
+<div class="alert alert-primary" role="alert">
+  {% for message in messages %}
+  {{ message }}
+  {% endfor %}
+</div>
+{% endif %}
+{% if user.is_authenticated %}
+<div style="margin: 3%;">
+  <h3 class="pb-5">hello {{user}}, Welcome to FileManager!</h3>
+  <div class="row no-gutters">
+    <div class="col-6 col-md-3 border">
+
+      <form method="post" class="m-4" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group pb-4">
+          <h3 class="pb-4"><label for="exampleInputEmail1">Upload your files </label></h3>
+          {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </form>
+
+    </div>
+    <div class="col-12 col-sm-6 col-md-9 border p-4">
+      <h3> All Filles</h3>
+      <table style="width:100%;">
+        <tr>
+          <th>File Ownwer</th>
+          <th>Files</th>
+        </tr>
+        {% for file in files%}
+        <tr>
+          <td>{{file.fileOwner}} == {{file.id}}</td>
+          <td><a href="media/{{file.files}}">media/{{file.files}}</a></td>
+          <td>
+            <form action="{% url 'delete_object' file.id %}" method="post">
+              {% csrf_token %}
+              <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor%}
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  document.getElementById('files').setAttribute('multiple', true);
+</script>
+
+
+
+{% comment %} ==else == {% endcomment %}
+{% else %}
+<h3>First login then you can use</h3>
+{% endif %}
+
+
+{% endblock body %}
