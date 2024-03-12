@@ -35,8 +35,7 @@ def home(request):
     return render(request, 'index.html', {'form': form,User:User,'files': all_files })
 
 @login_required(login_url="/signin")
-def delete_object(request, obj_id):
-    
+def delete_object(request, obj_id):  
     try:
         obj = filesModel.objects.get(pk=obj_id)
         temp=str(request.user.username)
@@ -78,9 +77,8 @@ def signup(request):
 		username = request.POST.get('username')
 		email = request.POST.get('email')
 		password = request.POST.get('password')
-  
 		user = User.objects.filter(username=username)
-		
+  
 		if user.exists():
 			messages.info(request, "Username already taken!")
 			return redirect('/signup/')
