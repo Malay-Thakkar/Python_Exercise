@@ -1,0 +1,67 @@
+.logoimg{
+    width: 15rem;
+}
+
+.body{
+    background-color: #FDFFFC;
+}
+
+.icons{
+    background-color: #FDFFFC;
+    border: 0;
+    width: 3rem;
+    height: 2rem;
+    border-radius: 15%;
+    padding: 0;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+}
+/* External CSS file or within a <style> tag */
+.navbar {
+    background-color: #161925;
+
+}
+.nav-link{
+    color: #ffffff;
+    
+}
+/* External CSS file or within a <style> tag */
+/* External CSS file or within a <style> tag */
+.navbar a {
+    color: rgb(255, 245, 201); 
+    background-color: #161925;
+}
+
+.navbar a:hover {
+    color: #f1d302;
+    background-color: #161925;
+}
+
+
+.dropdown-menu{
+    background-color: #161925;
+}
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .navbar-nav {
+        margin-right: 0;
+    }
+
+    .d-flex {
+        margin-left: 0;
+    }
+    .logoimg{
+        width: 10rem;
+    }
+}
+
+footer {
+    bottom: 0;
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    background-color: #161925;
+    color: white;
+    text-align: center;
+}
