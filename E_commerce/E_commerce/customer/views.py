@@ -65,5 +65,30 @@ def signout(request):
 
 def resetpasswd(request):
     pass
+
+@login_required(login_url='/signin')
 def home(request):
     return render(request,"index.html")
+
+
+def tandc(request):
+    return render(request,"tandc.html")
+
+def product(request):
+    pass
+
+def productdetail(request):
+    pass
+
+def profile(request):
+    pass
+
+def notfound(request):
+    return render(request,"404.html")
+
+def aboutus(request):
+    return render(request,"aboutus.html")
+
+
+def contactus(request):
+    return render(request,"contactus.html")

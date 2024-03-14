@@ -63,69 +63,69 @@
 
 
 <script>document.getElementById('files').setAttribute('multiple', true);
-  function uploadFile() {
-       const fileInput = document.getElementById('files');
-       const files = fileInput.files;
+  // function uploadFile() {
+  //      const fileInput = document.getElementById('files');
+  //      const files = fileInput.files;
    
-       if (files.length > 0) {
-           const formData = new FormData();
+  //      if (files.length > 0) {
+  //          const formData = new FormData();
   
-           const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-           formData.append('csrfmiddlewaretoken', csrftoken);
+  //          const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  //          formData.append('csrfmiddlewaretoken', csrftoken);
    
-           for (let i = 0; i < files.length; i++) {
-               formData.append('files', files[i]);
-           }
+  //          for (let i = 0; i < files.length; i++) {
+  //              formData.append('files', files[i]);
+  //          }
    
-           const xhr = new XMLHttpRequest();
-           const progressBarContainer = document.getElementById('progress-box');
-           const progressBar = document.querySelector('.progress-bar');
-           const progressText = document.getElementById('progress-text');
+  //          const xhr = new XMLHttpRequest();
+  //          const progressBarContainer = document.getElementById('progress-box');
+  //          const progressBar = document.querySelector('.progress-bar');
+  //          const progressText = document.getElementById('progress-text');
    
-           xhr.open('POST','', true);
+  //          xhr.open('POST','', true);
    
-           xhr.upload.onprogress = function (e) {
-               if (e.lengthComputable) {
-                   const percentage = (e.loaded / e.total) * 100;
-                   progressBar.style.width = percentage + '%';
-                   progressText.innerHTML = percentage.toFixed(0) + '%';
-               }
-           };
+  //          xhr.upload.onprogress = function (e) {
+  //              if (e.lengthComputable) {
+  //                  const percentage = (e.loaded / e.total) * 100;
+  //                  progressBar.style.width = percentage + '%';
+  //                  progressText.innerHTML = percentage.toFixed(0) + '%';
+  //              }
+  //          };
    
-           xhr.onreadystatechange = function () {
-               if (xhr.readyState === 4) {
-                   progressBarContainer.style.display = 'none';
-                   if (xhr.status === 200) {
-                       location.reload();
-                       window.location.replace("/");
-                   } else {
-                       alert('Error uploading file: ' + xhr.status);
-                   }
-               }
-           };
+  //          xhr.onreadystatechange = function () {
+  //              if (xhr.readyState === 4) {
+  //                  progressBarContainer.style.display = 'none';
+  //                  if (xhr.status === 200) {
+  //                      location.reload();
+  //                      window.location.replace("/");
+  //                  } else {
+  //                      alert('Error uploading file: ' + xhr.status);
+  //                  }
+  //              }
+  //          };
    
-           progressBarContainer.style.display = 'block';
-           xhr.send(formData);
+  //          progressBarContainer.style.display = 'block';
+  //          xhr.send(formData);
 
-       } else {
-           alert('Please select one or more files to upload.');
-       }
-   }
+  //      } else {
+  //          alert('Please select one or more files to upload.');
+  //      }
+  //  }
    
   
-  // Attach event listener to the form submission
-  document.addEventListener('DOMContentLoaded', function() {
-       const form = document.getElementById('upload-form');
-       if (form) {
-           form.addEventListener('submit', function(event) {
-               event.preventDefault(); // Prevent the default form submission
-               console.log('Form submitted'); // Check if event listener is attached
-               uploadFile(); // Call the uploadFile function when the form is submitted
-           });
-       } else {
-           console.error('Form element with ID "upload-form" not found.');
-       }
-   });
+  // // Attach event listener to the form submission
+  // document.addEventListener('DOMContentLoaded', function() {
+  //      const form = document.getElementById('upload-form');
+  //      if (form) {
+  //          form.addEventListener('submit', function(event) {
+  //              event.preventDefault(); // Prevent the default form submission
+  //              console.log('Form submitted'); // Check if event listener is attached
+  //              uploadFile(); // Call the uploadFile function when the form is submitted
+  //          });
+  //      } else {
+  //          console.error('Form element with ID "upload-form" not found.');
+  //      }
+  //  });
   
 </script>
 

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-a#(&$+n%z1$b(=n8r8p7=2%vq(7!&j&zmvflax$_@19&e_f+5z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # PROGRESSBARUPLOAD_INCLUDE_JQUERY = False
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

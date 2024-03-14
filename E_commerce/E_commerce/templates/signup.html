@@ -31,12 +31,23 @@
     <section class="vh-100 gradient-custom">
         <form method="post" {% if messages.tags != "successfuly" %}action="" {% else %} action="/signin" {% endif %} enctype="multipart/form-data">
             {% if messages %}
-            <div class="alert alert-primary" role="alert">
+            <div class="alert alert-primary" role="alert" id="message-container">
                 {% for message in messages %}
-                {{ message }}
+                    {{ message }}
                 {% endfor %}
             </div>
-            {% endif %}
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    var messageContainer = document.getElementById('message-container');
+                    setTimeout(function() {
+                        messageContainer.style.opacity = 0; 
+                        setTimeout(function() {
+                            messageContainer.style.display = 'none';
+                        }, 500);
+                    }, 3000);
+                });
+            </script>
+        {% endif %}
             {% csrf_token %}
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -83,7 +94,11 @@
                                         <label class="form-label" for="typeEmailX">Email</label>
                                         <input type="email" id="typeEmailX" placeholder="xyz@email.com" name="email" required class="form-control form-control-lg" />
                                     </div>
-
+                                    <div class="form-outline form-white m-4 align-self-start d-flex">
+                                        <input type="checkbox" class="mx-4" id="vehicle1" required name="tandc" value="Agree">
+                                        <a href="/terms-and-Conditions" class="form-label">Terms and Conditions</a>
+                                    </div>
+    
                                     <button class="btn btn-outline-light btn-lg px-5" name="signup" type="submit">Signup</button>
                                 </div>
                             </div>

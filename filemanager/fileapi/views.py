@@ -17,7 +17,7 @@ def home(request):
         if form.is_valid():
             files = request.FILES.getlist('files')
             for file in files:
-                if not file.name.endswith(('.pdf', '.doc', '.docx')):
+                if not file.name.endswith(('.pdf', '.doc', '.docx', '.mp4')):
                     messages.error(request,f'Unsupported file format: {file.name}. Allowed formats: PDF, DOC, DOCX')
                     return render(request, 'index.html', {'form': form,User:User,'files': all_files })
     
