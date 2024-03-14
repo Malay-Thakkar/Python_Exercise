@@ -1,12 +1,12 @@
-.logoimg{
+.logoimg {
     width: 15rem;
 }
 
-.body{
+.body {
     background-color: #FDFFFC;
 }
 
-.icons{
+.icons {
     background-color: #FDFFFC;
     border: 0;
     width: 3rem;
@@ -17,19 +17,26 @@
     align-items: center;
     justify-content: center;
 }
+
+
 /* External CSS file or within a <style> tag */
+
 .navbar {
     background-color: #161925;
+}
 
-}
-.nav-link{
+.nav-link {
     color: #ffffff;
-    
 }
+
+
 /* External CSS file or within a <style> tag */
+
+
 /* External CSS file or within a <style> tag */
+
 .navbar a {
-    color: rgb(255, 245, 201); 
+    color: rgb(255, 245, 201);
     background-color: #161925;
 }
 
@@ -38,20 +45,38 @@
     background-color: #161925;
 }
 
-
-.dropdown-menu{
+.dropdown-menu {
     background-color: #161925;
 }
+
+
+/* Add this CSS to your stylesheet */
+
+#carouselExampleIndicators {
+    height: 30rem;
+    /* Set the desired height */
+    margin: 0;
+    /* Remove any margin */
+}
+
+.carousel-inner img {
+    height: 100%;
+    /* Ensure the images fill the carousel height */
+    object-fit: cover;
+    /* Ensure images cover the entire carousel */
+}
+
+
 /* Media query for smaller screens */
+
 @media (max-width: 768px) {
     .navbar-nav {
         margin-right: 0;
     }
-
     .d-flex {
         margin-left: 0;
     }
-    .logoimg{
+    .logoimg {
         width: 10rem;
     }
 }
@@ -60,7 +85,7 @@ footer {
     bottom: 0;
     padding: 10px;
     width: 100%;
-    position: fixed;
+    position: relative;
     background-color: #161925;
     color: white;
     text-align: center;
