@@ -9,6 +9,7 @@ class CategoryModel(models.Model):
     
     def __str__(self):
         return self.category
+    
 #model of product
 class ProductModel(models.Model):
     product_id=models.AutoField(primary_key=True)

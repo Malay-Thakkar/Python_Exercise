@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+
+<body>
+    <div class="pdr1">
+        <a href="/"><button class="btn btn-info">Go back to home Page</button></a>
+    </div>
+    <div class="pdr2">
+        <div class="pdr2c1">
+            <img id="product-img" src="" alt="Product Image">
+        </div>
+        <div class="pdr2c2">
+            <h1 id="product-name"></h1>
+            <p>Category: <span id="product-category"></span></p>
+            <p>Description: <span id="product-description"></span></p>
+            <p>Price: <span id="product-price"></span></p>
+            <a href=""><button class="btn btn-danger">Add to WishList <i class="bi bi-heart-fill"></i></button></a>
+            <a href=""><button class="btn btn-success">Add to Cart <i class="bi bi-cart-check-fill"></i></button></a>
+        </div>
+    </div>
+    <div id="product-detail">
+        <h1 id="product-name"></h1>
+        <p id="product-description"></p>
+        <p id="product-price"></p>
+        <!-- Add more placeholders for other product details if needed -->
+    </div>
+    <container class="productcontainer">
+        <main class="main bd-grid" id="product-container">
+        </main>
+    </container>
+    <script>
+        async function getCat(data) {
+            try {
+                const response = await fetch(data);
+                const value = await response.json();
+                return value.category;
+            } catch (err) {
+                console.log('category fetch:', err);
+                return null;
+            }
+        }
+
+        fetch('/api/product/{{productid}}')
+            .then(response => response.json())
+            .then(async data => {
+                const category = await getCat(data.category);
+                document.getElementById('product-name').innerText = data.name;
+                document.getElementById('product-description').innerText = data.disc;
+                document.getElementById('product-price').innerText = '₹' + data.price;
+                document.getElementById('product-category').innerText = category;
+                document.getElementById('product-img').src = data.img;
+            })
+            .catch(error => console.error('Error fetching product details:', error));
+
+    </script>
+
+    <script>
+        fetch('/api/product/')
+            .then(response => response.json())
+            .then(data => {
+                const productContainer = document.getElementById('product-container');
+                data.forEach(product => {
+                    const card = document.createElement('article');
+                    card.className = 'card';
+                    card.innerHTML = `
+                <a href="/product/${product.product_id}">
+                    <div class="card__img">
+                        <img src="${product.img}" alt="${product.name}">
+                    </div>
+                    <div class="card__precis">
+                        <h3>${product.name}</h3>
+                    </div>
+                    <div class="card__name">
+                        <p>${product.name}</p>
+                    </div>
+                    <div class="card__precis">
+                        <a href="" class="card__icon"> <i class="bi bi-heart-fill"></i></a>
+                        <div>
+                            <span class="card__preci card__preci--now">${product.price}</span>
+                        </div>
+                        <a href="" class="card__icon"><i class="bi bi-cart-check-fill"></i></a>
+                    </div></a>
+                `;
+                    productContainer.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Error fetching products:', error));
+    </script>
+    {% endblock body %}

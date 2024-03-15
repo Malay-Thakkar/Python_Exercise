@@ -147,3 +147,4 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+CONTACT_US_EMAIL = 'its.malaythakkar@gmail.com'

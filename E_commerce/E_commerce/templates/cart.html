@@ -1,0 +1,16 @@
+<div class="container mt-5">
+    <div class="quantity-selector">
+        <button class="btn btn-secondary quantity-btn" id="decrement-btn">-</button>
+        <input type="number" class="form-control" id="quantity-input" value="1" min="1">
+        <button class="btn btn-secondary quantity-btn" id="increment-btn">+</button>
+    </div>
+</div>
+<script>
+    document.getElementById('increment-btn').addEventListener('click', function() {
+        document.getElementById('quantity-input').stepUp();
+    });
+
+    document.getElementById('decrement-btn').addEventListener('click', function() {
+        document.getElementById('quantity-input').stepDown();
+    });
+</script>

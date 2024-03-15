@@ -3,6 +3,9 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login,logout,get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 User = get_user_model()
@@ -66,7 +69,6 @@ def signout(request):
 def resetpasswd(request):
     pass
 
-@login_required(login_url='/signin')
 def home(request):
     return render(request,"index.html")
 
@@ -75,13 +77,11 @@ def tandc(request):
     return render(request,"tandc.html")
 
 def product(request):
-    pass
+    return render(request,"products.html")
 
-def productdetail(request):
-    pass
+def productdetail(request,productid):
+    return render(request,"productdetail.html",{"productid":productid})
 
-def profile(request):
-    pass
 
 def notfound(request):
     return render(request,"404.html")
@@ -91,4 +91,20 @@ def aboutus(request):
 
 
 def contactus(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        email = request.POST.get('email')
+        query = request.POST.get('query')
+        subject= "Website query"
+        message=[name,phone,address,email,query]
+        sender_email = "malay.thakkar@drcsystems.com"
+        recipient_list = [settings.CONTACT_US_EMAIL] 
+        send_mail(subject, message, sender_email, recipient_list)
+        return HttpResponseRedirect('/thank-you/')
     return render(request,"contactus.html")
+
+@login_required(login_url='/signin')
+def profile(request):
+    pass

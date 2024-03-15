@@ -13,24 +13,32 @@
 <div class="me-5">
   <h1 class="text-center p-3
     ">contact US</h1>
-  <form class="row g-3 m-5" method="post" action="">
+  <form class="row g-3 m-5" method="post">
     {% csrf_token %}
     <div class="col-md-6 my-2">
       <label for="inputname4" class="form-label fs-4 fw-bold">Name</label>
-      <input type="text" class="form-control border border-secondary" id="inputname4" name="name" />
+      <input type="text" class="form-control border border-secondary" id="inputname4" name="name" 
+      placeholder="First & last name "/>
     </div>
     <div class="col-md-6 my-2">
       <label for="inputcontact4" class="form-label fs-4 fw-bold">contact no</label>
-      <input type="text" class="form-control border border-secondary" id="contact" name="contact" />
+      <input type="text" class="form-control border border-secondary" id="contact" name="phone" 
+      placeholder="+91 . . . . . "/>
+    </div>
+    <div class="col-md-6 my-2">
+      <label for="inputEmail4" class="form-label fs-4 fw-bold">Email</label>
+      <input type="email" class="form-control border border-secondary" name="email" id="inputEmail4" 
+      placeholder="yourname@gmail.com"/>
     </div>
     <div class="col-md-6 my-2">
       <label for="inputAddress" class="form-label fs-4 fw-bold">Address</label>
       <input type="text" class="form-control border border-secondary" id="inputAddress" name="address"
         placeholder="1234 Main St" />
     </div>
-    <div class="col-md-6 my-2">
-      <label for="inputEmail4" class="form-label fs-4 fw-bold">Email</label>
-      <input type="email" class="form-control border border-secondary" name="email" id="inputEmail4" />
+    <div class="col-12 my-2">
+      <label for="inputquestio" class="form-label fs-4 fw-bold">Query</label>
+      <textarea type="text" class="form-control border border-secondary" id="inputquery" name="query"
+        placeholder="Write if you have any query!"></textarea>
     </div>
     <div class="col-md-12 my-3">
       <button type="submit" name="submit_btn" class="btn btn-primary">Submit</button>
