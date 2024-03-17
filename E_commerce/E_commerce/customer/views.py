@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.conf import settings
+from E_commerce.settings import EMAIL_BACKEND, EMAIL_HOST_USER
+from customer.models import CustomUser
 
 # Create your views here.
 User = get_user_model()
@@ -82,6 +84,8 @@ def product(request):
 def productdetail(request,productid):
     return render(request,"productdetail.html",{"productid":productid})
 
+def productfilter(request,categoryid):
+    return render(request,'productfilter.html',{'categoryid':categoryid})
 
 def notfound(request):
     return render(request,"404.html")
@@ -99,12 +103,26 @@ def contactus(request):
         query = request.POST.get('query')
         subject= "Website query"
         message=[name,phone,address,email,query]
-        sender_email = "malay.thakkar@drcsystems.com"
-        recipient_list = [settings.CONTACT_US_EMAIL] 
-        send_mail(subject, message, sender_email, recipient_list)
-        return HttpResponseRedirect('/thank-you/')
+        message_string = '\n'.join(message)
+        sender_email = settings.EMAIL_HOST_USER
+        recipient_list = ["malay.thakkar@drcsystems.com",email] 
+        send_mail(subject, message_string, sender_email, recipient_list)
+        return render(request,'thankyou.html')
     return render(request,"contactus.html")
+
+def thankyou(request):
+    return render(request,'thankyou.html')
 
 @login_required(login_url='/signin')
 def profile(request):
-    pass
+    logged_in_user = request.user
+    context = {
+        'firstname': logged_in_user.first_name,
+        'lastname': logged_in_user.last_name,
+        'email': logged_in_user.email,
+        'phone': logged_in_user.phone,
+        'address': logged_in_user.Address,
+    }
+    print(context)
+    return render(request, 'profile.html', context)
+

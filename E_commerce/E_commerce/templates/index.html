@@ -58,11 +58,11 @@
                         <p>${product.name}</p>
                     </div>
                     <div class="card__precis">
-                        <a href="" class="card__icon"> <i class="bi bi-heart-fill"></i></a>
+                        <a href="/wishlist/${product.product_id}" class="card__icon btn btn-danger"> <i class="bi bi-heart"></i></a>
                         <div>
-                            <span class="card__preci card__preci--now">${product.price}</span>
+                            <span class="card__preci card__preci--now">₹${product.price}</span>
                         </div>
-                        <a href="" class="card__icon"><i class="bi bi-cart-check-fill"></i></a>
+                        <a href="" class="card__icon  btn btn-success"><i class="bi bi-cart-check"></i></a>
                     </div></a>
                 `;
                 productContainer.appendChild(card);

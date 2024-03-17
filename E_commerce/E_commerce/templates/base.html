@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PS-Thakkar</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo_e.png'%}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'bootstrap-5/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static '/fontawesome/css/fontawesome.min.css' %}">
@@ -17,7 +18,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <!-- Logo -->
-            <a class="navbar-brand" href="/"><img src="{% static 'img/logo1.png'%}" class="logoimg" alt=""></a>
+            <a class="navbar-brand" href="/"><img src="{% static 'img/logo_e.png'%}" class="logoimg" alt=""></a>
 
             <!-- Toggle button for mobile view -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -36,11 +37,8 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Product
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="productDropdown">
-                            <li><a class="dropdown-item" href="/product">All</a></li>
-                            <li><a class="dropdown-item" href="#">Cadbury</a></li>
-                            <li><a class="dropdown-item" href="#">Nestle</a></li>
-                            <!-- Add more categories as needed -->
+                        <ul class="dropdown-menu" id="category-list" aria-labelledby="productDropdown">
+                            <li><a class="dropdown-item" id="product-category" href="/product">All</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -58,7 +56,7 @@
 
                 <!-- Search bar -->
                 <form class="d-flex pt-3 mx-4">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2 bg-light" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
 
@@ -72,9 +70,13 @@
                             </button>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                            <li><a class="dropdown-item" href="/signout">Sign out</a></li>
+                            {% else %}
                             <li><a class="dropdown-item" href="/signin">Sign In</a></li>
                             <li><a class="dropdown-item" href="/signup">Sign Up</a></li>
-                            <li><a class="dropdown-item" href="/signout">Sign out</a></li>
+                            {% endif %}
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -102,6 +104,9 @@
         integrity="sha384-GLhlTQ8iN1lYiVm3BOFkkfNdu1+KODLw/JTl/S5OMETJ65ILrZyD+L3kM6d5uMz"
         crossorigin="anonymous"></script>
     <script src="{% static 'bootstrap-5/js/bootstrap.bundle.min.js' %}"></script>
+        <!-- for category -->
+    <script src="{% static 'js/categories.js' %}"></script>
+
 </body>
 
 </html>

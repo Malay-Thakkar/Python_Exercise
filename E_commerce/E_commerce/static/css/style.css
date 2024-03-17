@@ -1,27 +1,56 @@
-.logoimg {
-    width: 15rem;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+
+/*-- VARIABLES CSS--*/
+
+:root {
+    --first-color: white;
+    --accent-color: #FF5151;
+    --dark-color: #161616;
 }
 
+:root {
+    --body-font: 'Open Sans';
+    --h1-font-size: 1.5rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: 0.938rem;
+    --smaller-font-size: 0.75rem;
+    --bs-body-bg: rgba(225, 248, 251, 0.61);
+}
+
+@media screen and (min-width: 768px) {
+     :root {
+        --h1-font-size: 2rem;
+        --normal-font-size: 1rem;
+        --smaller-font-size: 0.813rem;
+    }
+}
+
+
+/* ==================Genral======================= */
+
 .body {
-    background-color: #FDFFFC;
+    background-color: rgba(225, 248, 251, 0.61);
     color: var(--dark-color);
     font-family: var(--body-font);
 }
 
-.icons {
-    background-color: #FDFFFC;
-    border: 0;
-    width: 3rem;
-    height: 2rem;
-    border-radius: 15%;
-    padding: 0;
-    margin: auto;
-    align-items: center;
-    justify-content: center;
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
 }
 
 
-/* External CSS file or within a <style> tag */
+/* =================navigation bar======================= */
 
 .navbar {
     background-color: #161925;
@@ -31,11 +60,10 @@
     color: #ffffff;
 }
 
-
-/* External CSS file or within a <style> tag */
-
-
-/* External CSS file or within a <style> tag */
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+    color: #f1d102d4;
+}
 
 .navbar a {
     color: rgb(255, 245, 201);
@@ -51,80 +79,54 @@
     background-color: #161925;
 }
 
+.navbar-toggler-icon {
+    background-color: #f1d102d4;
+}
+
+.logoimg {
+    width: 5rem;
+}
+
+.icons {
+    background-color: #FDFFFC;
+    border: 0;
+    width: 3rem;
+    height: 2rem;
+    border-radius: 15%;
+    padding: 0;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+}
+
 
 /* Add this CSS to your stylesheet */
 
 #carouselExampleIndicators {
     height: 30rem;
-    /* Set the desired height */
     margin: 0;
-    /* Remove any margin */
 }
 
 .carousel-inner img {
     height: 100%;
-    /* Ensure the images fill the carousel height */
     object-fit: cover;
-    /* Ensure images cover the entire carousel */
 }
 
-
-
-
-
-
-
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
-
-/*-- VARIABLES CSS--*/
-/*Colores*/
-:root{
-    --first-color: #E3F8FF;
-    --second-color: #DCFAFB;
-    --third-color: #FFE8DF;
-    --accent-color: #FF5151;
-    --dark-color: #161616;
-}
-
-/*Tipografia responsive*/
-:root{
-    --body-font: 'Open Sans';
-    --h1-font-size: 1.5rem;
-    --h3-font-size: 1rem;
-    --normal-font-size: 0.938rem;
-    --smaller-font-size: 0.75rem;
-}
-@media screen and (min-width: 768px){
-    :root{
-        --h1-font-size: 2rem;
-        --normal-font-size: 1rem;
-        --smaller-font-size: 0.813rem;
-    }
-}
-
-/*-- BASE --*/
-*,::after,::before{
-    box-sizing: border-box;
-}
-img{
-    max-width: 100%;
-    height: auto;
-}
-a{
-    text-decoration: none;
-}
 
 /*-- LAYAOUT --*/
-.productcontainer h1{
+
+.productcontainer h1 {
     margin: 2.5rem;
     margin-bottom: 0;
     font-size: 3rem;
     font-weight: bolder;
 }
+
 .main {
     padding: 2rem 0;
 }
-.bd-grid{
+
+.bd-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     max-width: 1200px;
@@ -134,12 +136,15 @@ a{
     gap: 2rem;
 }
 
+
 /*-- PAGES --*/
-.title-shop{
+
+.title-shop {
     position: relative;
     margin: 0 2.5rem;
 }
-.title-shop::after{
+
+.title-shop::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -149,24 +154,33 @@ a{
     margin-left: .25rem;
 }
 
+
 /*-- COMPONENT --*/
-.card{
+
+.card {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 1.5rem 2rem;
     border-radius: 1rem;
+    box-shadow: 3px 5px 8px 0px #888888;
     overflow: hidden;
     background-color: var(--first-color);
 }
-.card__img{
+
+.card__img {
     width: 180px;
     height: auto;
     padding: 3rem 0;
     transition: .5s;
 }
-.card__name{
+
+.card__img img {
+    height: 180px;
+}
+
+.card__name {
     position: absolute;
     left: -25%;
     top: 0;
@@ -180,99 +194,144 @@ a{
     font-weight: bold;
     transition: .5s;
 }
-.card__icon{
+
+.card__icon {
     font-size: 1.5rem;
     color: var(--dark-color);
 }
-.card__icon:hover{
+
+.card__icon:hover {
     color: var(--accent-color);
 }
-.card__precis{
+
+.card__precis {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     transition: .5s;
 }
-.card__precis h3{
+
+.card__precis h3 {
     color: black;
     display: block;
     text-align: center;
     margin-left: 4rem;
 }
-.card__preci{
+
+.card__preci {
     display: block;
     text-align: center;
 }
-.card__preci--before{
+
+.card__preci--before {
     font-size: var(--smaller-font-size);
     color: var(--accent-color);
     margin-bottom: .25rem;
 }
-.card__preci--now{
+
+.card__preci--now {
     font-size: var(--h3-font-size);
     font-weight: bold;
 }
+
+
 /*Move left*/
-.card:hover{
+
+.card:hover {
     box-shadow: 0 .5rem 1rem #D1D9E6;
 }
-.card:hover .card__name{
+
+.card:hover .card__name {
     left: 0;
 }
-.card:hover .card__img{
+
+.card:hover .card__img {
     transform: rotate(30deg);
     margin-left: 3.5rem;
 }
-.card:hover .card__precis{
+
+.card:hover .card__precis {
     margin-left: 3.5rem;
     padding: 0 1.5rem;
 }
 
+
 /*  button product detail page */
+
 .quantity-selector {
     display: flex;
     align-items: center;
 }
+
 .quantity-btn {
     margin: 0 5px;
 }
 
 
-/* product detail */
-.pdr1{
+/* ========================product detail page======================= */
+
+.pdr1 {
     display: flex;
     margin: 3rem;
 }
-.pdr2{
+
+.pdr2 {
     display: flex;
     flex-direction: row;
     margin: 3rem;
 }
-.pdr2c1{
+
+.pdr2c1 {
     padding: 2rem;
     width: 50%;
-
 }
 
-.pdr2c1 img{
+.pdr2c1 img {
     width: 80%;
 }
-.pdr2c2{
+
+.pdr2c2 {
     padding: 2rem;
     width: 50%;
 }
 
+
+/* ======================profile page=============== */
+
+.profile {
+    padding: 3rem;
+    border: #161925;
+    background-color: white;
+    border-radius: 15%;
+}
+
+
+/* ======================footer===================== */
+
+footer {
+    bottom: 0;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+    background-color: #161925;
+    color: white;
+    text-align: center;
+}
+
+
 /*-- MEDIA QUERIES --*/
-@media screen and (min-width: 1200px){
-    .title-shop{
+
+@media screen and (min-width: 1200px) {
+    .title-shop {
         margin: 0 5rem;
     }
-    .bd-grid{
+    .bd-grid {
         margin-left: auto;
         margin-right: auto;
     }
 }
+
 
 /* Media query for smaller screens */
 
@@ -284,16 +343,6 @@ a{
         margin-left: 0;
     }
     .logoimg {
-        width: 10rem;
+        width: 4rem;
     }
-}
-
-footer {
-    bottom: 0;
-    padding: 10px;
-    width: 100%;
-    position: relative;
-    background-color: #161925;
-    color: white;
-    text-align: center;
 }

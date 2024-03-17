@@ -7,7 +7,7 @@
     </main>
 </container>
 <script>
-    fetch('/api/product/')
+    fetch('/api/category/{{categoryid}}/product')
         .then(response => response.json())
         .then(data => {
             const productContainer = document.getElementById('product-container');
