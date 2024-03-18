@@ -1,16 +1,26 @@
-<div class="container mt-5">
-    <div class="quantity-selector">
-        <button class="btn btn-secondary quantity-btn" id="decrement-btn">-</button>
-        <input type="number" class="form-control" id="quantity-input" value="1" min="1">
-        <button class="btn btn-secondary quantity-btn" id="increment-btn">+</button>
-    </div>
-</div>
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+<container class="productcontainer">
+    <h1>Cart</h1>
+    <main class="main bd-grid" id="product-container">
+        <div class="container mt-5">
+            <div class="quantity-selector">
+                <button class="btn btn-secondary quantity-btn bg-danger" id="decrement-btn">-</button>
+                <input type="number" class="form-control" id="quantity-input" value="1" min="1">
+                <button class="btn btn-secondary quantity-btn bg-success" id="increment-btn">+</button>
+            </div>
+        </div>
+    </main>
+</container>
+
 <script>
-    document.getElementById('increment-btn').addEventListener('click', function() {
+    document.getElementById('increment-btn').addEventListener('click', function () {
         document.getElementById('quantity-input').stepUp();
     });
 
-    document.getElementById('decrement-btn').addEventListener('click', function() {
+    document.getElementById('decrement-btn').addEventListener('click', function () {
         document.getElementById('quantity-input').stepDown();
     });
 </script>
+{% endblock body %}

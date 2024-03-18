@@ -2,40 +2,53 @@
 {% load static %}
 {% block body %}
 <container class="productcontainer">
-    <h1>Products</h1>
+    <h1>Category: <span id="categoryname"></span></h1>
     <main class="main bd-grid" id="product-container">
     </main>
 </container>
 <script>
+    async function getCategoryName(data) {
+        try {
+            const response = await fetch(data);
+            const value = await response.json();
+            return value.category;
+        } catch (err) {
+            console.log('category fetch:', err);
+            return null;
+        }
+    }
     fetch('/api/category/{{categoryid}}/product')
         .then(response => response.json())
-        .then(data => {
+        .then(async data => {
             const productContainer = document.getElementById('product-container');
-            data.forEach(product => {
+            for (const product of data) {
+                document.getElementById('categoryname').innerText = await getCategoryName(product.category);
                 const card = document.createElement('article');
                 card.className = 'card';
                 card.innerHTML = `
-                <a href="/product/${product.product_id}">
-                    <div class="card__img">
-                        <img src="${product.img}" alt="${product.name}">
+            <a href="/product/${product.product_id}">
+                <div class="card__img">
+                    <img src="${product.img}" alt="${product.name}">
+                </div>
+                <div class="card__precis">
+                    <h3>${product.name}</h3>
+                </div>
+                <div class="card__name">
+                    <p>${product.name}</p>
+                </div>
+                <div class="card__precis">
+                    <a href="/wishlist/${product.product_id}" class="card__icon btn btn-danger"> <i class="bi bi-heart"></i></a>
+                    <div>
+                        <span class="card__preci card__preci--now">₹${product.price}</span>
                     </div>
-                    <div class="card__precis">
-                        <h3>${product.name}</h3>
-                    </div>
-                    <div class="card__name">
-                        <p>${product.name}</p>
-                    </div>
-                    <div class="card__precis">
-                        <a href="/wishlist/${product.product_id}" class="card__icon btn btn-danger"> <i class="bi bi-heart"></i></a>
-                        <div>
-                            <span class="card__preci card__preci--now">₹${product.price}</span>
-                        </div>
-                        <a href="" class="card__icon  btn btn-success"><i class="bi bi-cart-check"></i></a>
-                    </div></a>
-                `;
+                    <a href="" class="card__icon  btn btn-success"><i class="bi bi-cart-check"></i></a>
+                </div>
+            </a>
+            `;
                 productContainer.appendChild(card);
-            });
+            }
         })
         .catch(error => console.error('Error fetching products:', error));
+
 </script>
 {% endblock body %}

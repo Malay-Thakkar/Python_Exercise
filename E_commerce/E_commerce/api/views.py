@@ -20,3 +20,5 @@ class CategoryViewSet(viewsets.ModelViewSet):
         filter_product=ProductModel.objects.filter(category=category)
         filter_product_serializers=ProductSerializers(filter_product,many=True,context={'request':request})
         return Response(filter_product_serializers.data)
+      
+    

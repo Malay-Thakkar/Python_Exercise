@@ -72,6 +72,8 @@
                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                             {% if user.is_authenticated %}
                             <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                            <li><a class="dropdown-item" href="/order">Order</a></li>
+                            <li><a class="dropdown-item" href="/forgatepasswd">Change Passwoard</a></li>
                             <li><a class="dropdown-item" href="/signout">Sign out</a></li>
                             {% else %}
                             <li><a class="dropdown-item" href="/signin">Sign In</a></li>
@@ -85,7 +87,7 @@
                         </button></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><button class="icons d-flex">
+                        <a class="nav-link" href="/cart"><button class="icons d-flex">
                             <i class="bi bi-cart-check-fill"></i> 12
                         </button></a>
                     </li>

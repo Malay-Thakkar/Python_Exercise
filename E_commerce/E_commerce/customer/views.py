@@ -74,10 +74,6 @@ def resetpasswd(request):
 def home(request):
     return render(request,"index.html")
 
-
-def tandc(request):
-    return render(request,"tandc.html")
-
 def product(request):
     return render(request,"products.html")
 
@@ -87,12 +83,17 @@ def productdetail(request,productid):
 def productfilter(request,categoryid):
     return render(request,'productfilter.html',{'categoryid':categoryid})
 
+def tandc(request):
+    return render(request,"tandc.html")
+
 def notfound(request):
     return render(request,"404.html")
 
+def thankyou(request):
+    return render(request,'thankyou.html')
+
 def aboutus(request):
     return render(request,"aboutus.html")
-
 
 def contactus(request):
     if request.method == 'POST':
@@ -110,19 +111,14 @@ def contactus(request):
         return render(request,'thankyou.html')
     return render(request,"contactus.html")
 
-def thankyou(request):
-    return render(request,'thankyou.html')
-
 @login_required(login_url='/signin')
 def profile(request):
     logged_in_user = request.user
+    myuser=CustomUser.objects.filter(username=logged_in_user).values()
     context = {
-        'firstname': logged_in_user.first_name,
-        'lastname': logged_in_user.last_name,
-        'email': logged_in_user.email,
-        'phone': logged_in_user.phone,
-        'address': logged_in_user.Address,
+        'myuser': myuser
     }
-    print(context)
     return render(request, 'profile.html', context)
+
+
 

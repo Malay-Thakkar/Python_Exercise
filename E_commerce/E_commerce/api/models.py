@@ -1,5 +1,4 @@
 from django.db import models
-
 # Create your models here.
     
 #class category
@@ -21,5 +20,5 @@ class ProductModel(models.Model):
     img=models.FileField()
     category =models.ForeignKey(CategoryModel,on_delete =models.CASCADE)
 
-
+ 
 #class bills
