@@ -15,6 +15,11 @@
             <p>Category: <span id="product-category"></span></p>
             <p>Description: <span id="product-description"></span></p>
             <p>Price: ₹<span id="product-price"></span></p>
+            <div class="quantity-selector" style="width: 100px;">
+                <button class="btn btn-secondary quantity-btn bg-danger decrement-btn">-</button>
+                <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 50px;" id="qty-cart">
+                <button class="btn btn-secondary quantity-btn bg-success increment-btn">+</button>
+            </div>
             <a href=""><button class="btn btn-danger">Add to WishList <i class="bi bi-heart-fill"></i></button></a>
             
             <a href="" class="m-3 btn btn-success" id="add-cart" data-productid="{{ productid }}">Add to Cart<i class="bi bi-cart-check-fill"></i></a>
@@ -87,12 +92,14 @@
     $(document).on('click', '#add-cart', function(e) {
         e.preventDefault()
         var product_id = $(this).data('productid');
+        var product_qty = document.getElementById('qty-cart').value;
         $.ajax({
             type: 'POST',
             url: '{% url 'cart_add' %}',
             data: {
-                product_id: product_id, 
                 // product_id: 2, 
+                product_id: product_id,
+                product_qty: product_qty,
                 csrfmiddlewaretoken: '{{ csrf_token }}', 
                 action: 'post'
             },
@@ -105,4 +112,26 @@
             }
         });
     });</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var incrementBtns = document.querySelectorAll('.increment-btn');
+        var decrementBtns = document.querySelectorAll('.decrement-btn');
+
+        incrementBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var input = this.parentNode.querySelector('.quantity-input');
+                input.stepUp();
+            });
+        });
+
+        decrementBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var input = this.parentNode.querySelector('.quantity-input');
+                input.stepDown();
+            });
+        });
+    });
+</script>
     {% endblock body %}

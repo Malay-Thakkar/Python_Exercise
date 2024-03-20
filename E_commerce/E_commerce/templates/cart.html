@@ -5,44 +5,89 @@
     <h1>Cart</h1>
     <main class="main bd-grid" id="product-container">
         <div class="container mt-5">
-            {% for product in cart_products %}
-            <ul class="list-unstyled">
-                <li class="mb-4">
-                    <div class="card p-4">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="d-flex align-items-center">
-                                <img class="card-img" src="../media/{{product.img}}" alt="Product Image">
-                                <span class="font-weight-bold cartprodname">{{product.name}}</span>
-                            </div>
-
-                            <div class="quantity-selector">
-                                <button class="btn btn-secondary quantity-btn bg-danger" id="decrement-btn">-</button>
-                                <input type="number" class="form-control" id="quantity-input" value="1" min="1">
-                                <button class="btn btn-secondary quantity-btn bg-success" id="increment-btn">+</button>
-                            </div>
-                            <!-- <div class="d-flex align-items-center">
-                                <button class="btn btn-warning mr-2">-</button>
-                                <span class="font-weight-bold mr-2">1</span>
-                                <button class="btn btn-warning mr-2">+</button>
-                            </div> -->
-                            <span class="font-weight-bold">{{product.price}}</span>
-                            <button class="btn btn-danger m-5">Delete</button>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            {% endfor %}
+            <div class="table-responsive">
+                {% if cart_products %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Delete Item</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in cart_products %}
+                            <tr>
+                                <td>
+                                    <img class="card-img" src="../media/{{ product.img }}" alt="Product Image">
+                                </td>
+                                <td>
+                                    <span class="font-weight-bold cartprodname">{{ product.name }}</span>
+                                </td>
+                                <td>
+                                    <span class="font-weight-bold">{{ product.price }}</span>
+                                </td>
+                                <td>
+                                    <div class="quantity-selector" style="width: 150px;">
+                                        <button class="btn btn-secondary quantity-btn bg-danger decrement-btn">-</button>
+                                        {% for key, value in cart_quantity.items %}
+                                        {% if key == product.product_id|stringformat:"s" %}
+                                        <input type="number" class="form-control quantity-input"
+                                        value="{{ value }}"min="1" style="width: 70px;" id="qty-cart">
+                                        {% else %}
+                                        
+                                    {% endif %}
+                                {% endfor %}
+                                        <button class="btn btn-secondary quantity-btn bg-success increment-btn">+</button>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
+                                <td>
+                                    <span class="font-weight-bold">852</span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="6" class="align-self-center">
+                                    <h3>Your cart is Empty</h3>
+                                    <img src="{% static 'img/empty-cart.png'%}" alt="Empty Cart" style="width: 100%;">
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
+    
+    
 </container>
 
 <script>
-    document.getElementById('increment-btn').addEventListener('click', function () {
-        document.getElementById('quantity-input').stepUp();
-    });
+    document.addEventListener('DOMContentLoaded', function () {
+        var incrementBtns = document.querySelectorAll('.increment-btn');
+        var decrementBtns = document.querySelectorAll('.decrement-btn');
 
-    document.getElementById('decrement-btn').addEventListener('click', function () {
-        document.getElementById('quantity-input').stepDown();
+        incrementBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var input = this.parentNode.querySelector('.quantity-input');
+                input.stepUp();
+            });
+        });
+
+        decrementBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var input = this.parentNode.querySelector('.quantity-input');
+                input.stepDown();
+            });
+        });
     });
 </script>
 {% endblock body %}
