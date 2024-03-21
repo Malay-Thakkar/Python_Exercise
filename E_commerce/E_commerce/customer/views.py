@@ -108,6 +108,7 @@ def contactus(request):
         sender_email = settings.EMAIL_HOST_USER
         recipient_list = ["malay.thakkar@drcsystems.com",email] 
         send_mail(subject, message_string, sender_email, recipient_list)
+        # messages.success(request,"Thank you for connecting us")
         return render(request,'thankyou.html')
     return render(request,"contactus.html")
 

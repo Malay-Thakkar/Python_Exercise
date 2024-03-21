@@ -36,13 +36,23 @@
   <form method="post" enctype="multipart/form-data" {% if messages.tags != "successfuly" %}action="" {% else %} action="/signin" {% endif %}>
               <!-- Display error/success messages -->
               {% if messages %}
-              <div class="alert alert-primary" role="alert">
+              <div class="alert alert-primary" role="alert" id="messages-container">
                 {% for message in messages %}
                 {{ message }}
                 {% endfor %}
               </div>
               {% endif %}
-             
+              
+              <script>
+                // Function to hide the messages container after 3 seconds
+                setTimeout(function() {
+                  var messagesContainer = document.getElementById('messages-container');
+                  if (messagesContainer) {
+                    messagesContainer.style.display = 'none';
+                  }
+                }, 3000); // 3000 milliseconds = 3 seconds
+              </script>
+              
       {% csrf_token %}
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">

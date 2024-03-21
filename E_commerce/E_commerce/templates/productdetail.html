@@ -3,6 +3,24 @@
 {% block body %}
 
 <body>
+    {% if messages %}
+<div class="alert alert-primary" role="alert" id="messages-container">
+  {% for message in messages %}
+  {{ message }}
+  {% endfor %}
+</div>
+{% endif %}
+
+<script>
+  // Function to hide the messages container after 3 seconds
+  setTimeout(function() {
+    var messagesContainer = document.getElementById('messages-container');
+    if (messagesContainer) {
+      messagesContainer.style.display = 'none';
+    }
+  }, 3000); // 3000 milliseconds = 3 seconds
+</script>
+
     <div class="pdr1">
         <a href="/"><button class="btn btn-info">Go back to home Page</button></a>
     </div>
@@ -95,7 +113,7 @@
         var product_qty = document.getElementById('qty-cart').value;
         $.ajax({
             type: 'POST',
-            url: '{% url 'cart_add' %}',
+            url: "{% url 'cart_add' %}",
             data: {
                 // product_id: 2, 
                 product_id: product_id,
@@ -106,6 +124,7 @@
             success: function(json) {
                 // console.log(json);
                 document.getElementById('cart_quantity').textContent=json.cart_quantity
+                location.reload()
             },
             error: function(xhr, errmsg, err) {
                 console.log(errmsg); // Log the error message to the console

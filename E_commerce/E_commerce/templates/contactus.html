@@ -10,6 +10,24 @@
     /* Adjusted font size */
   }
 </style>
+{% if messages %}
+<div class="alert alert-primary" role="alert" id="messages-container">
+  {% for message in messages %}
+  {{ message }}
+  {% endfor %}
+</div>
+{% endif %}
+
+<script>
+  // Function to hide the messages container after 3 seconds
+  setTimeout(function() {
+    var messagesContainer = document.getElementById('messages-container');
+    if (messagesContainer) {
+      messagesContainer.style.display = 'none';
+    }
+  }, 3000); // 3000 milliseconds = 3 seconds
+</script>
+
 <div class="me-5">
   <h1 class="text-center p-3
     ">Contact US</h1>

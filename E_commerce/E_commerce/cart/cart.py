@@ -31,3 +31,29 @@ class Cart():
     def get_quantity(self):
         quantity=self.cart
         return quantity
+    
+    def update(self,product,quantity):
+        product_id = str(product)
+        product_qty = int(quantity)
+        ourcart = self.cart
+        ourcart[product_id] = product_qty
+        self.session.modified = True 
+        things = self.cart
+        return things
+    
+    def delete(self,product):
+        product_id = str(product)
+        if product_id in self.cart:
+            del self.cart[product_id]
+        self.session.modified = True
+        
+    def cart_total(self):
+        quantity = self.cart
+        total = 0
+        for key, value in quantity.items():
+            key = int(key)
+            prod = ProductModel.objects.filter(product_id = key).values().first()
+            total += (prod['price'] * value)
+        return total
+        
+      
