@@ -8,6 +8,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from E_commerce.settings import EMAIL_BACKEND, EMAIL_HOST_USER
 from customer.models import CustomUser
+from api.models import ProductModel
 
 # Create your views here.
 User = get_user_model()
@@ -20,6 +21,7 @@ def signup(request):
         password = request.POST.get('password')
         phone = request.POST.get('phone')
         Address = request.POST.get('Address')
+        tandc = request.POST.get('tandc')
 
         if not first_name or not last_name or not username or not email or not password or not phone or not Address:
             messages.error(request, "All fields are required!")
@@ -35,7 +37,8 @@ def signup(request):
 			username=username,
    			email=email,
             phone=phone,
-            Address = Address
+            Address = Address,
+            tandc = tandc
 		)
         user.set_password(password)
         user.save()
@@ -107,6 +110,18 @@ def contactus(request):
         # messages.success(request,"Thank you for connecting us")
         return render(request,'thankyou.html')
     return render(request,"contactus.html")
+
+def search(request):
+    if request.method == "POST":
+        searched = request.POST.get('search')
+        #qury for search product in database
+        searched = ProductModel.objects.filter(name__icontains=searched)
+        if not searched:
+            messages.error(request,"no product found try other!!!")
+            return render(request,"search.html",{})
+        else:
+            return render(request,"search.html",{'search':searched})
+    return render(request,"search.html")
 
 @login_required(login_url='/signin')
 def profile(request):

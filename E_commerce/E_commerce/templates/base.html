@@ -63,8 +63,9 @@
                 </div>
 
                 <!-- Search bar -->
-                <form class="d-flex pt-3 mx-4">
-                    <input class="form-control me-2 bg-light" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex pt-3 mx-4" method="POST" action="{% url 'search' %}">
+                    {% csrf_token %}    
+                    <input class="form-control me-2 bg-light" type="search" placeholder="search product" name="search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
 

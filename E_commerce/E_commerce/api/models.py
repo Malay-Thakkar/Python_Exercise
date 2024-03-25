@@ -16,9 +16,10 @@ class ProductModel(models.Model):
     price=models.FloatField()
     unit=models.CharField(max_length=20)
     stock=models.FloatField()
-    disc=models.CharField(max_length=150)
+    desc=models.CharField(max_length=150)
     img=models.FileField()
     category =models.ForeignKey(CategoryModel,on_delete =models.CASCADE)
+    
 
  
 #class bills

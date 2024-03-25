@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import signin,signup,signout,forgotpasswd,home,tandc,product,productdetail,profile,notfound,aboutus,contactus,thankyou,productfilter,updateuser,changepasswd,deleteuser
+from .views import signin,signup,signout,forgotpasswd,home,tandc,product,productdetail,profile,notfound,aboutus,contactus,thankyou,productfilter,updateuser,changepasswd,deleteuser,search
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -17,6 +17,7 @@ urlpatterns = [
     path('product/',product,name="product"),
     path('product/<int:productid>',productdetail,name="productdetail"),
     path('productfilter/<str:categoryid>',productfilter,name="productfilter"),
+    path('search/',search,name="search"),
     path('aboutus/',aboutus,name="aboutus"),
     path('contactus/',contactus,name="contactus"),
     path('404/',notfound,name="notfound"),
