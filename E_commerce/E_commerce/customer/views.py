@@ -10,6 +10,7 @@ from E_commerce.settings import EMAIL_BACKEND, EMAIL_HOST_USER
 from customer.models import CustomUser
 from api.models import ProductModel
 from cart.cart import Cart
+from cart.wishlist import Wishlist
 import json
 
 # Create your views here.
@@ -66,11 +67,18 @@ def signin(request):
             login(request, user)
             current_user = CustomUser.objects.get(id=request.user.id)
             saved_cart = current_user.old_cart
+            saved_wishlist = current_user.old_wishlist
             if saved_cart:
                 converted_cart = json.loads(saved_cart)
                 cart = Cart(request)
                 for key, value in converted_cart.items():
                     cart.db_add(product=key, quantity=value)
+            
+            if saved_wishlist:
+                converted_wishlist = json.loads(saved_wishlist)
+                wishlist = Wishlist(request)
+                for key, value in converted_wishlist.items():
+                    wishlist.db_add_wishlist(product=key)
             return redirect('/')
     return render(request, 'signin.html')
 

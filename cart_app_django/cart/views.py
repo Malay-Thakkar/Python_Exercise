@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from api.models import ProductModel
 from django.http import JsonResponse
 from .cart import Cart
-from .wishlist import Wishlist
 from django.contrib import messages
 
 # Create your views here.
@@ -44,27 +43,3 @@ def cart_update(request):
         cart.update(product=product_id,quantity=product_qty)
         response = JsonResponse({'qty':product_qty})
         return response
-    
-#wishlist views:
-
-def wishlist_summary(request):
-    wishlist = Wishlist(request)
-    wishlist_products = wishlist.get_wishlist_product()
-    return render(request, 'wishlist.html', {'wishlist_products': wishlist_products})
-
-def wishlist_add(request):
-    wishlist = Wishlist(request)
-    if request.POST.get('action') == 'post':
-        product_id = int(request.POST.get('product_id'))
-        product = get_object_or_404(ProductModel, product_id=product_id)
-        wishlist.add(product=product)
-        messages.success(request, 'Successfully added to wishlist')
-        return JsonResponse({'success': True})
-
-def wishlist_delete(request):
-    wishlist = Wishlist(request)
-    if request.POST.get('action') == 'post':
-        product_id = int(request.POST.get('product_id'))
-        wishlist.delete(product_id)
-        messages.success(request, 'Successfully deleted from wishlist')
-        return JsonResponse({'success': True})
