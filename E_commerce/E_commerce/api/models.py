@@ -22,4 +22,4 @@ class ProductModel(models.Model):
     
 
  
-#class bills
+#model bills/order

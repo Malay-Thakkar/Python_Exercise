@@ -7,8 +7,8 @@ from django.contrib import messages
 # Create your views here.
 def cart_summary(request):
     cart=Cart(request)
-    cart_products =cart.get_cart_product
-    cart_quantity =cart.get_quantity
+    cart_products =cart.get_cart_product()
+    cart_quantity =cart.get_quantity()
     total = cart.cart_total()
     return render(request,'cart.html',{'cart_products':cart_products,'cart_quantity':cart_quantity,'total':total})
 

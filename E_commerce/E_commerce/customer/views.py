@@ -14,6 +14,7 @@ import json
 
 # Create your views here.
 User = get_user_model()
+
 def signup(request):
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
