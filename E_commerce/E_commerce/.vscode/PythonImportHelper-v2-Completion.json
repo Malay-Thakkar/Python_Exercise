@@ -112,6 +112,46 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -225,19 +265,11 @@
         "documentation": {}
     },
     {
-        "label": "ProductModel",
-        "importPath": "api.models",
-        "description": "api.models",
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
         "isExtraImport": true,
-        "detail": "api.models",
-        "documentation": {}
-    },
-    {
-        "label": "CategoryModel",
-        "importPath": "api.models",
-        "description": "api.models",
-        "isExtraImport": true,
-        "detail": "api.models",
+        "detail": "django.contrib",
         "documentation": {}
     },
     {
@@ -281,6 +313,14 @@
         "documentation": {}
     },
     {
+        "label": "CategoryModel",
+        "importPath": "api.models",
+        "description": "api.models",
+        "isExtraImport": true,
+        "detail": "api.models",
+        "documentation": {}
+    },
+    {
         "label": "ProductModel",
         "importPath": "api.models",
         "description": "api.models",
@@ -294,6 +334,30 @@
         "description": "api.models",
         "isExtraImport": true,
         "detail": "api.models",
+        "documentation": {}
+    },
+    {
+        "label": "ProductModel",
+        "importPath": "api.models",
+        "description": "api.models",
+        "isExtraImport": true,
+        "detail": "api.models",
+        "documentation": {}
+    },
+    {
+        "label": "ProductModel",
+        "importPath": "api.models",
+        "description": "api.models",
+        "isExtraImport": true,
+        "detail": "api.models",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
         "documentation": {}
     },
     {
@@ -350,6 +414,14 @@
         "description": "rest_framework",
         "isExtraImport": true,
         "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
         "documentation": {}
     },
     {
@@ -513,6 +585,14 @@
         "documentation": {}
     },
     {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "action",
         "importPath": "rest_framework.decorators",
         "description": "rest_framework.decorators",
@@ -545,11 +625,59 @@
         "documentation": {}
     },
     {
+        "label": "CustomUser",
+        "importPath": "customer.models",
+        "description": "customer.models",
+        "isExtraImport": true,
+        "detail": "customer.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomUser",
+        "importPath": "customer.models",
+        "description": "customer.models",
+        "isExtraImport": true,
+        "detail": "customer.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomUser",
+        "importPath": "customer.models",
+        "description": "customer.models",
+        "isExtraImport": true,
+        "detail": "customer.models",
+        "documentation": {}
+    },
+    {
         "label": "Cart",
         "importPath": "cart.cart",
         "description": "cart.cart",
         "isExtraImport": true,
         "detail": "cart.cart",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
+        "importPath": "cart.cart",
+        "description": "cart.cart",
+        "isExtraImport": true,
+        "detail": "cart.cart",
+        "documentation": {}
+    },
+    {
+        "label": "Wishlist",
+        "importPath": "cart.wishlist",
+        "description": "cart.wishlist",
+        "isExtraImport": true,
+        "detail": "cart.wishlist",
+        "documentation": {}
+    },
+    {
+        "label": "Wishlist",
+        "importPath": "cart.wishlist",
+        "description": "cart.wishlist",
+        "isExtraImport": true,
+        "detail": "cart.wishlist",
         "documentation": {}
     },
     {
@@ -578,6 +706,30 @@
     },
     {
         "label": "cart_update",
+        "importPath": "cart.views",
+        "description": "cart.views",
+        "isExtraImport": true,
+        "detail": "cart.views",
+        "documentation": {}
+    },
+    {
+        "label": "wishlist_summary",
+        "importPath": "cart.views",
+        "description": "cart.views",
+        "isExtraImport": true,
+        "detail": "cart.views",
+        "documentation": {}
+    },
+    {
+        "label": "wishlist_add",
+        "importPath": "cart.views",
+        "description": "cart.views",
+        "isExtraImport": true,
+        "detail": "cart.views",
+        "documentation": {}
+    },
+    {
+        "label": "wishlist_delete",
         "importPath": "cart.views",
         "description": "cart.views",
         "isExtraImport": true,
@@ -716,11 +868,12 @@
         "documentation": {}
     },
     {
-        "label": "CustomUser",
-        "importPath": "customer.models",
-        "description": "customer.models",
+        "label": "json",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "customer.models",
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
         "documentation": {}
     },
     {
@@ -832,7 +985,7 @@
         "kind": 6,
         "importPath": "api.models",
         "description": "api.models",
-        "peekOfCode": "class ProductModel(models.Model):\n    product_id=models.AutoField(primary_key=True)\n    name=models.CharField(max_length=50)\n    price=models.FloatField()\n    unit=models.CharField(max_length=20)\n    stock=models.FloatField()\n    desc=models.CharField(max_length=150)\n    img=models.FileField()\n    category =models.ForeignKey(CategoryModel,on_delete =models.CASCADE)\n#class bills",
+        "peekOfCode": "class ProductModel(models.Model):\n    product_id=models.AutoField(primary_key=True)\n    name=models.CharField(max_length=50)\n    price=models.FloatField()\n    unit=models.CharField(max_length=20)\n    stock=models.FloatField()\n    desc=models.CharField(max_length=150)\n    img=models.FileField()\n    category =models.ForeignKey(CategoryModel,on_delete =models.CASCADE)\n#model bills/order",
         "detail": "api.models",
         "documentation": {}
     },
@@ -904,7 +1057,7 @@
         "kind": 6,
         "importPath": "cart.cart",
         "description": "cart.cart",
-        "peekOfCode": "class Cart():\n    def __init__(self, request):\n        self.session = request.session\n        # get current session key\n        cart = self.session.get('session_key')\n        # if no session key, create new user\n        if 'session_key' not in request.session:\n            cart = self.session['session_key'] = {}\n        # Assign cart to self.cart\n        self.cart = cart",
+        "peekOfCode": "class Cart():\n    def __init__(self, request):\n        self.session = request.session\n        self.request = request\n        # get current session key\n        cart = self.session.get('session_key')\n        # if no session key, create new user\n        if 'session_key' not in request.session:\n            cart = self.session['session_key'] = {}\n        # Assign cart to self.cart",
         "detail": "cart.cart",
         "documentation": {}
     },
@@ -913,7 +1066,16 @@
         "kind": 2,
         "importPath": "cart.context_processor",
         "description": "cart.context_processor",
-        "peekOfCode": "def cart(request):\n    return {'cart':Cart(request)}",
+        "peekOfCode": "def cart(request):\n    return {'cart':Cart(request)}\ndef wishlist(request):\n    return {'wishlist':Wishlist(request)}",
+        "detail": "cart.context_processor",
+        "documentation": {}
+    },
+    {
+        "label": "wishlist",
+        "kind": 2,
+        "importPath": "cart.context_processor",
+        "description": "cart.context_processor",
+        "peekOfCode": "def wishlist(request):\n    return {'wishlist':Wishlist(request)}",
         "detail": "cart.context_processor",
         "documentation": {}
     },
@@ -922,7 +1084,7 @@
         "kind": 5,
         "importPath": "cart.urls",
         "description": "cart.urls",
-        "peekOfCode": "urlpatterns = [\n    path('',cart_summary,name=\"cart_summary\"),\n    path('add/',cart_add,name=\"cart_add\"),\n    path('delete/',cart_delete,name=\"cart_delete\"), \n    path('update/',cart_update,name=\"cart_update\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('cart/',cart_summary,name=\"cart_summary\"),\n    path('cart/add/',cart_add,name=\"cart_add\"),\n    path('cart/delete/',cart_delete,name=\"cart_delete\"), \n    path('cart/update/',cart_update,name=\"cart_update\"),\n    path('wishlist/', wishlist_summary, name=\"wishlist_summary\"),\n    path('wishlist/add/', wishlist_add, name=\"wishlist_add\"),\n    path('wishlist/delete/', wishlist_delete, name=\"wishlist_delete\"),\n]",
         "detail": "cart.urls",
         "documentation": {}
     },
@@ -931,7 +1093,7 @@
         "kind": 2,
         "importPath": "cart.views",
         "description": "cart.views",
-        "peekOfCode": "def cart_summary(request):\n    cart=Cart(request)\n    cart_products =cart.get_cart_product\n    cart_quantity =cart.get_quantity\n    total = cart.cart_total()\n    return render(request,'cart.html',{'cart_products':cart_products,'cart_quantity':cart_quantity,'total':total})\ndef cart_add(request):\n    cart = Cart(request)\n    if request.POST.get('action')=='post':\n        product_id = int(request.POST.get('product_id'))",
+        "peekOfCode": "def cart_summary(request):\n    cart=Cart(request)\n    cart_products =cart.get_cart_product()\n    cart_quantity =cart.get_quantity()\n    total = cart.cart_total()\n    return render(request,'cart.html',{'cart_products':cart_products,'cart_quantity':cart_quantity,'total':total})\ndef cart_add(request):\n    cart = Cart(request)\n    if request.POST.get('action')=='post':\n        product_id = int(request.POST.get('product_id'))",
         "detail": "cart.views",
         "documentation": {}
     },
@@ -958,8 +1120,44 @@
         "kind": 2,
         "importPath": "cart.views",
         "description": "cart.views",
-        "peekOfCode": "def cart_update(request):\n    cart = Cart(request)\n    if request.POST.get('action')=='post':\n        product_id = int(request.POST.get('product_id'))\n        product_qty = int(request.POST.get('product_qty'))\n        cart.update(product=product_id,quantity=product_qty)\n        response = JsonResponse({'qty':product_qty})\n        return response",
+        "peekOfCode": "def cart_update(request):\n    cart = Cart(request)\n    if request.POST.get('action')=='post':\n        product_id = int(request.POST.get('product_id'))\n        product_qty = int(request.POST.get('product_qty'))\n        cart.update(product=product_id,quantity=product_qty)\n        response = JsonResponse({'qty':product_qty})\n        return response\n#wishlist views:\ndef wishlist_summary(request):",
         "detail": "cart.views",
+        "documentation": {}
+    },
+    {
+        "label": "wishlist_summary",
+        "kind": 2,
+        "importPath": "cart.views",
+        "description": "cart.views",
+        "peekOfCode": "def wishlist_summary(request):\n    wishlist = Wishlist(request)\n    wishlist_products = wishlist.get_wishlist_product()\n    return render(request, 'wishlist.html', {'wishlist_products': wishlist_products})\ndef wishlist_add(request):\n    wishlist = Wishlist(request)\n    if request.POST.get('action') == 'post':\n        product_id = int(request.POST.get('product_id'))\n        product = get_object_or_404(ProductModel, product_id=product_id)\n        wishlist.add(product=product)",
+        "detail": "cart.views",
+        "documentation": {}
+    },
+    {
+        "label": "wishlist_add",
+        "kind": 2,
+        "importPath": "cart.views",
+        "description": "cart.views",
+        "peekOfCode": "def wishlist_add(request):\n    wishlist = Wishlist(request)\n    if request.POST.get('action') == 'post':\n        product_id = int(request.POST.get('product_id'))\n        product = get_object_or_404(ProductModel, product_id=product_id)\n        wishlist.add(product=product)\n        messages.success(request, 'Successfully added to wishlist')\n        return JsonResponse({'success': True})\ndef wishlist_delete(request):\n    wishlist = Wishlist(request)",
+        "detail": "cart.views",
+        "documentation": {}
+    },
+    {
+        "label": "wishlist_delete",
+        "kind": 2,
+        "importPath": "cart.views",
+        "description": "cart.views",
+        "peekOfCode": "def wishlist_delete(request):\n    wishlist = Wishlist(request)\n    if request.POST.get('action') == 'post':\n        product_id = int(request.POST.get('product_id'))\n        wishlist.delete(product_id)\n        messages.success(request, 'Successfully deleted from wishlist')\n        return JsonResponse({'success': True})",
+        "detail": "cart.views",
+        "documentation": {}
+    },
+    {
+        "label": "Wishlist",
+        "kind": 6,
+        "importPath": "cart.wishlist",
+        "description": "cart.wishlist",
+        "peekOfCode": "class Wishlist():\n    def __init__(self, request):\n        self.session = request.session\n        self.request = request\n        wishlist = self.session.get('wishlist')\n        if 'wishlist' not in request.session:\n            wishlist = self.session['wishlist'] = {}\n        self.wishlist = wishlist\n    def db_add_wishlist(self, product):\n        product_id = str(product)",
+        "detail": "cart.wishlist",
         "documentation": {}
     },
     {
@@ -990,6 +1188,24 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "customer.migrations.0004_customuser_old_cart",
+        "description": "customer.migrations.0004_customuser_old_cart",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('customer', '0003_alter_customuser_tandc'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customuser',\n            name='old_cart',\n            field=models.CharField(blank=True, max_length=250),\n        ),",
+        "detail": "customer.migrations.0004_customuser_old_cart",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "customer.migrations.0005_customuser_old_wishlist",
+        "description": "customer.migrations.0005_customuser_old_wishlist",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('customer', '0004_customuser_old_cart'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customuser',\n            name='old_wishlist',\n            field=models.CharField(blank=True, max_length=250),\n        ),",
+        "detail": "customer.migrations.0005_customuser_old_wishlist",
+        "documentation": {}
+    },
+    {
         "label": "CustomerConfig",
         "kind": 6,
         "importPath": "customer.apps",
@@ -1003,7 +1219,7 @@
         "kind": 6,
         "importPath": "customer.models",
         "description": "customer.models",
-        "peekOfCode": "class CustomUser(AbstractUser):\n    phone = models.CharField(max_length=12, blank=True)\n    Address = models.TextField(blank=True)\n    tandc = models.CharField(blank=True)\n    # Add any other custom fields you need\n    def __str__(self):\n        return self.username",
+        "peekOfCode": "class CustomUser(AbstractUser):\n    phone = models.CharField(max_length=12, blank=True)\n    Address = models.TextField(blank=True)\n    tandc = models.CharField(blank=True)\n    old_cart = models.CharField(max_length=250,blank=True)\n    old_wishlist = models.CharField(max_length=250,blank=True)\n    # Add any other custom fields you need\n    def __str__(self):\n        return self.username",
         "detail": "customer.models",
         "documentation": {}
     },
@@ -1030,7 +1246,7 @@
         "kind": 2,
         "importPath": "customer.views",
         "description": "customer.views",
-        "peekOfCode": "def signin(request):\n\tif request.method == \"POST\":\n\t\tusername = request.POST.get('username')\n\t\tpassword = request.POST.get('password')\n\t\tif not User.objects.filter(username=username).exists():\n\t\t\tmessages.error(request, 'Invalid Username')\n\t\t\treturn redirect('/signin/')\n\t\tuser = authenticate(username=username, password=password)\n\t\tif user is None:\n\t\t\tmessages.error(request, \"Invalid Password\")",
+        "peekOfCode": "def signin(request):\n    if request.method == \"POST\":\n        username = request.POST.get('username')\n        password = request.POST.get('password')\n        if not User.objects.filter(username=username).exists():\n            messages.error(request, 'Invalid Username')\n            return redirect('/signin/')\n        user = authenticate(username=username, password=password)\n        if user is None:\n            messages.error(request, \"Invalid Password\")",
         "detail": "customer.views",
         "documentation": {}
     },
@@ -1184,33 +1400,6 @@
         "importPath": "customer.views",
         "description": "customer.views",
         "peekOfCode": "User = get_user_model()\ndef signup(request):\n    if request.method == 'POST':\n        first_name = request.POST.get('first_name')\n        last_name = request.POST.get('last_name')\n        username = request.POST.get('username')\n        email = request.POST.get('email')\n        password = request.POST.get('password')\n        phone = request.POST.get('phone')\n        Address = request.POST.get('Address')",
-        "detail": "customer.views",
-        "documentation": {}
-    },
-    {
-        "label": "\t\tusername",
-        "kind": 5,
-        "importPath": "customer.views",
-        "description": "customer.views",
-        "peekOfCode": "\t\tusername = request.POST.get('username')\n\t\tpassword = request.POST.get('password')\n\t\tif not User.objects.filter(username=username).exists():\n\t\t\tmessages.error(request, 'Invalid Username')\n\t\t\treturn redirect('/signin/')\n\t\tuser = authenticate(username=username, password=password)\n\t\tif user is None:\n\t\t\tmessages.error(request, \"Invalid Password\")\n\t\t\treturn redirect('/signin/')\n\t\telse:",
-        "detail": "customer.views",
-        "documentation": {}
-    },
-    {
-        "label": "\t\tpassword",
-        "kind": 5,
-        "importPath": "customer.views",
-        "description": "customer.views",
-        "peekOfCode": "\t\tpassword = request.POST.get('password')\n\t\tif not User.objects.filter(username=username).exists():\n\t\t\tmessages.error(request, 'Invalid Username')\n\t\t\treturn redirect('/signin/')\n\t\tuser = authenticate(username=username, password=password)\n\t\tif user is None:\n\t\t\tmessages.error(request, \"Invalid Password\")\n\t\t\treturn redirect('/signin/')\n\t\telse:\n\t\t\tlogin(request, user)",
-        "detail": "customer.views",
-        "documentation": {}
-    },
-    {
-        "label": "\t\tuser",
-        "kind": 5,
-        "importPath": "customer.views",
-        "description": "customer.views",
-        "peekOfCode": "\t\tuser = authenticate(username=username, password=password)\n\t\tif user is None:\n\t\t\tmessages.error(request, \"Invalid Password\")\n\t\t\treturn redirect('/signin/')\n\t\telse:\n\t\t\tlogin(request, user)\n\t\t\treturn redirect('/')\n\treturn render(request, 'signin.html')\ndef signout(request):\n    logout(request)",
         "detail": "customer.views",
         "documentation": {}
     },
@@ -1489,7 +1678,7 @@
         "kind": 5,
         "importPath": "E_commerce.urls",
         "description": "E_commerce.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('',include('customer.urls')),\n    path('api/',include('api.urls')),\n    path('cart/',include('cart.urls')),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('',include('customer.urls')),\n    path('',include('cart.urls')),\n    path('api/',include('api.urls')),\n]",
         "detail": "E_commerce.urls",
         "documentation": {}
     },
@@ -1509,6 +1698,15 @@
         "description": "owner.apps",
         "peekOfCode": "class OwnerConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'owner'",
         "detail": "owner.apps",
+        "documentation": {}
+    },
+    {
+        "label": "PaymentConfig",
+        "kind": 6,
+        "importPath": "payment.apps",
+        "description": "payment.apps",
+        "peekOfCode": "class PaymentConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'payment'",
+        "detail": "payment.apps",
         "documentation": {}
     },
     {

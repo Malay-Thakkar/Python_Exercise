@@ -161,6 +161,7 @@ a {
     position: relative;
     display: flex;
     flex-direction: column;
+    max-width: 20rem;
     align-items: center;
     padding: 1.5rem 2rem;
     border-radius: 1rem;
@@ -306,26 +307,33 @@ a {
     border-radius: 15%;
 }
 
+
 /* ======================cart======================= */
-  
+
 .card {
+    max-width: 20rem;
     background-color: #f8f9fa;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     align-items: start;
 }
-.cartprodname{
-    margin-left:3rem ;
+
+.cartprodname {
+    margin-left: 3rem;
 }
-.quantity-selector{
+
+.quantity-selector {
     justify-content: center;
 }
+
 .card-img {
     width: 80px;
     height: 80px;
     object-fit: cover;
     border-radius: 5px;
 }
+
+
 /* ======================footer===================== */
 
 footer {
