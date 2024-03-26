@@ -1,7 +1,9 @@
 from api.models import ProductModel
+from customer.models import CustomUser
 class Cart():
     def __init__(self, request):
         self.session = request.session
+        self.request = request
         # get current session key
         cart = self.session.get('session_key')
         # if no session key, create new user
@@ -10,6 +12,23 @@ class Cart():
         # Assign cart to self.cart
         self.cart = cart
 
+    def db_add(self, product,quantity):
+        product_id = str(product)
+        product_qty = str(quantity)
+        if product_id in self.cart:
+            pass
+        else:
+            # self.cart[product_id] = {'price': str(product.price)}
+            self.cart[product_id] = int(product_qty)
+        self.session.modified = True 
+        
+        #for login user to store in db 
+        if self.request.user.is_authenticated:
+            current_user = CustomUser.objects.filter(id = self.request.user.id)
+            carty = str(self.cart)
+            carty = carty.replace("\'","\"")
+            current_user.update(old_cart=carty)
+            
     def add(self, product,quantity):
         product_id = str(product.product_id)
         product_qty = str(quantity)
@@ -19,6 +38,13 @@ class Cart():
             # self.cart[product_id] = {'price': str(product.price)}
             self.cart[product_id] = int(product_qty)
         self.session.modified = True 
+        
+        #for login user to store in db 
+        if self.request.user.is_authenticated:
+            current_user = CustomUser.objects.filter(id = self.request.user.id)
+            carty = str(self.cart)
+            carty = carty.replace("\'","\"")
+            current_user.update(old_cart=carty)
 
     def __len__(self):
         return len(self.cart)
@@ -38,6 +64,12 @@ class Cart():
         ourcart = self.cart
         ourcart[product_id] = product_qty
         self.session.modified = True 
+        #for login user to store in db 
+        if self.request.user.is_authenticated:
+            current_user = CustomUser.objects.filter(id = self.request.user.id)
+            carty = str(self.cart)
+            carty = carty.replace("\'","\"")
+            current_user.update(old_cart=carty)
         things = self.cart
         return things
     
@@ -46,6 +78,13 @@ class Cart():
         if product_id in self.cart:
             del self.cart[product_id]
         self.session.modified = True
+        
+        #for login user to store in db 
+        if self.request.user.is_authenticated:
+            current_user = CustomUser.objects.filter(id = self.request.user.id)
+            carty = str(self.cart)
+            carty = carty.replace("\'","\"")
+            current_user.update(old_cart=carty)
         
     def cart_total(self):
         quantity = self.cart

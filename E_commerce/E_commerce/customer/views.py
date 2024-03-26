@@ -9,6 +9,8 @@ from django.conf import settings
 from E_commerce.settings import EMAIL_BACKEND, EMAIL_HOST_USER
 from customer.models import CustomUser
 from api.models import ProductModel
+from cart.cart import Cart
+import json
 
 # Create your views here.
 User = get_user_model()
@@ -48,22 +50,28 @@ def signup(request):
     return render(request, 'signup.html')
 
 def signin(request):
-	if request.method == "POST":
-		username = request.POST.get('username')
-		password = request.POST.get('password')
-		if not User.objects.filter(username=username).exists():
-			messages.error(request, 'Invalid Username')
-			return redirect('/signin/')
-		user = authenticate(username=username, password=password)
-		
-		if user is None:
-			messages.error(request, "Invalid Password")
-			return redirect('/signin/')
-		else:
-			login(request, user)
-			return redirect('/')
-	return render(request, 'signin.html')
-
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        if not User.objects.filter(username=username).exists():
+            messages.error(request, 'Invalid Username')
+            return redirect('/signin/')
+        user = authenticate(username=username, password=password)
+        
+        if user is None:
+            messages.error(request, "Invalid Password")
+            return redirect('/signin/')
+        else:
+            login(request, user)
+            current_user = CustomUser.objects.get(id=request.user.id)
+            saved_cart = current_user.old_cart
+            if saved_cart:
+                converted_cart = json.loads(saved_cart)
+                cart = Cart(request)
+                for key, value in converted_cart.items():
+                    cart.db_add(product=key, quantity=value)
+            return redirect('/')
+    return render(request, 'signin.html')
 
 
 def signout(request):
