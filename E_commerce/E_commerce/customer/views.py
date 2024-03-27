@@ -198,12 +198,18 @@ def changepasswd(request):
         conformpasswd = request.POST.get('conformpasswd')
         
         if conformpasswd == newpasswd:
-            print(newpasswd,oldpasswd,conformpasswd)
-            print(newpasswd,myuser.password)
-            if newpasswd == myuser.password:
-                print(newpasswd,oldpasswd,conformpasswd)
-    # myuser.set_password(passwd)
-    # myuser.save()
+            user = authenticate(username=myuser.username, password=oldpasswd)
+            if user is None:
+                messages.error(request, "Invalid old Password")
+                return redirect('/changepasswd/')
+            else:
+                myuser.set_password(conformpasswd)
+                myuser.save()
+                messages.success(request, "successfully chang Password")
+                return redirect('/signin/')
+                
+        else:
+            messages.error(request,"conformpasswd and newpasswd are not same!!!")
     return render(request,"updatepasswd.html")
 
 def forgotpasswd(request):

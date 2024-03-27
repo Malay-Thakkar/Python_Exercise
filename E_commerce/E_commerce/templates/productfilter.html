@@ -55,7 +55,7 @@
                         <p>${product.name}</p>
                     </div>
                     <div class="card__precis">
-                        <a href="/wishlist/${product.product_id}" class="card__icon btn btn-danger"> <i class="bi bi-heart"></i></a>
+                        <a href="" class="card__icon btn btn-danger" id="add-wishlist" data-productid="${product.product_id}"> <i class="bi bi-heart"></i></a>
                         <div>
                             <span class="card__preci card__preci--now">₹${product.price}</span>
                         </div>
@@ -89,6 +89,30 @@
                 location.reload()
             },
             error: function (xhr, errmsg, err) {
+                console.log(errmsg);
+            }
+        });
+    });
+
+
+    $(document).on('click', '#add-wishlist', function(e) {
+        e.preventDefault()
+        var product_id = $(this).data('productid');
+
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'wishlist_add' %}",
+            data: {
+                product_id: product_id,
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+            success: function(json) {
+                console.log(json);
+                document.getElementById('wishlist_quantity').textContent = json.wishlist_quantity
+                location.reload()
+            },
+            error: function(xhr, errmsg, err) {
                 console.log(errmsg); // Log the error message to the console
             }
         });

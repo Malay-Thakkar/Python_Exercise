@@ -4,22 +4,22 @@
 
 <body>
     {% if messages %}
-<div class="alert alert-primary" role="alert" id="messages-container">
-  {% for message in messages %}
-  {{ message }}
-  {% endfor %}
-</div>
-{% endif %}
+    <div class="alert alert-primary" role="alert" id="messages-container">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
 
-<script>
-  // Function to hide the messages container after 3 seconds
-  setTimeout(function() {
-    var messagesContainer = document.getElementById('messages-container');
-    if (messagesContainer) {
-      messagesContainer.style.display = 'none';
-    }
-  }, 3000); // 3000 milliseconds = 3 seconds
-</script>
+    <script>
+        // Function to hide the messages container after 3 seconds
+        setTimeout(function () {
+            var messagesContainer = document.getElementById('messages-container');
+            if (messagesContainer) {
+                messagesContainer.style.display = 'none';
+            }
+        }, 3000); // 3000 milliseconds = 3 seconds
+    </script>
 
     <div class="pdr1">
         <a href="/"><button class="btn btn-info">Go back to home Page</button></a>
@@ -35,12 +35,14 @@
             <p>Price: ₹<span id="product-price"></span></p>
             <div class="quantity-selector" style="width: 100px;">
                 <button class="btn btn-secondary quantity-btn bg-danger decrement-btn">-</button>
-                <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 50px;" id="qty-cart">
+                <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 50px;"
+                    id="qty-cart">
                 <button class="btn btn-secondary quantity-btn bg-success increment-btn">+</button>
             </div>
-            <a href=""><button class="btn btn-danger">Add to WishList <i class="bi bi-heart-fill"></i></button></a>
-            
-            <a href="" class="m-3 btn btn-success" id="add-cart" data-productid="{{ productid }}">Add to Cart<i class="bi bi-cart-check-fill"></i></a>
+            <a href=""><button class="btn btn-danger" id="add-wishlist" data-productid="{{ productid }}">Add to WishList <i class="bi bi-heart-fill"></i></button></a>
+
+            <a href="" class="m-3 btn btn-success" id="add-cart" data-productid="{{ productid }}">Add to Cart<i
+                    class="bi bi-cart-check-fill"></i></a>
         </div>
     </div>
     <container class="productcontainer">
@@ -94,63 +96,90 @@
                             <p>${product.name}</p>
                         </div>
                         <div class="card__precis">
-                            <a href="/wishlist/${product.product_id}" class="card__icon btn btn-danger"> <i class="bi bi-heart"></i></a>
-                            <div>
-                                <span class="card__preci card__preci--now">₹${product.price}</span>
-                            </div>
-                            <a href="" class="card__icon  btn btn-success"  id="add-cart"><i class="bi bi-cart-check"></i></a>
-                        </div></a>
+                        <a href="" class="card__icon btn btn-danger" id="add-wishlist" data-productid="${product.product_id}"> <i class="bi bi-heart"></i></a>
+                        <div>
+                            <span class="card__preci card__preci--now">₹${product.price}</span>
+                        </div>
+                        <a href="" class="card__icon  btn btn-success" id="add-cart" data-productid="${product.product_id}"><i class="bi bi-cart-check"></i></a>
+                    </div></a>
                     `;
                     productContainer.appendChild(card);
                 });
             })
             .catch(error => console.error('Error fetching products:', error));
     </script>
-    <script>            
-    $(document).on('click', '#add-cart', function(e) {
-        e.preventDefault()
-        var product_id = $(this).data('productid');
-        var product_qty = document.getElementById('qty-cart').value;
-        $.ajax({
-            type: 'POST',
-            url: "{% url 'cart_add' %}",
-            data: {
-                // product_id: 2, 
-                product_id: product_id,
-                product_qty: product_qty,
-                csrfmiddlewaretoken: '{{ csrf_token }}', 
-                action: 'post'
-            },
-            success: function(json) {
-                // console.log(json);
-                document.getElementById('cart_quantity').textContent=json.cart_quantity
-                location.reload()
-            },
-            error: function(xhr, errmsg, err) {
-                console.log(errmsg); // Log the error message to the console
-            }
-        });
-    });</script>
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var incrementBtns = document.querySelectorAll('.increment-btn');
-        var decrementBtns = document.querySelectorAll('.decrement-btn');
-
-        incrementBtns.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                var input = this.parentNode.querySelector('.quantity-input');
-                input.stepUp();
+    <script>
+        $(document).on('click', '#add-cart', function (e) {
+            e.preventDefault()
+            var product_id = $(this).data('productid');
+            var product_qty = document.getElementById('qty-cart').value;
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'cart_add' %}",
+                data: {
+                    // product_id: 2, 
+                    product_id: product_id,
+                    product_qty: product_qty,
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
+                success: function (json) {
+                    // console.log(json);
+                    document.getElementById('cart_quantity').textContent = json.cart_quantity
+                    location.reload()
+                },
+                error: function (xhr, errmsg, err) {
+                    console.log(errmsg); // Log the error message to the console
+                }
             });
         });
 
-        decrementBtns.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                var input = this.parentNode.querySelector('.quantity-input');
-                input.stepDown();
+        $(document).on('click', '#add-wishlist', function (e) {
+            e.preventDefault()
+            var product_id = $(this).data('productid');
+
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'wishlist_add' %}",
+                data: {
+                    product_id: product_id,
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
+                success: function (json) {
+                    console.log(json);
+                    document.getElementById('wishlist_quantity').textContent = json.wishlist_quantity
+                    location.reload()
+                },
+                error: function (xhr, errmsg, err) {
+                    console.log(errmsg); // Log the error message to the console
+                }
             });
         });
-    });
-</script>
+
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var incrementBtns = document.querySelectorAll('.increment-btn');
+            var decrementBtns = document.querySelectorAll('.decrement-btn');
+
+            incrementBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var input = this.parentNode.querySelector('.quantity-input');
+                    input.stepUp();
+                });
+            });
+
+            decrementBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var input = this.parentNode.querySelector('.quantity-input');
+                    input.stepDown();
+                });
+            });
+        });
+
+
+    </script>
     {% endblock body %}

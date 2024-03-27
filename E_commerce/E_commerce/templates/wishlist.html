@@ -32,6 +32,7 @@
               <th>Name</th>
               <th>Price</th>
               <th>Delete Item</th>
+              <th>Add to cart</th>
             </tr>
           </thead>
           <tbody>
@@ -49,6 +50,10 @@
               </td>
               <td>
                 <button class="btn btn-danger delete-product" data-index="{{ product.product_id }}">Delete</button>
+              </td>
+              <td>
+                <button class="btn btn-success add-cart" data-index="{{ product.product_id }}">Add to Cart<i
+                  class="bi bi-cart-check-fill"></i></button>
               </td>
             </tr>
             {% endfor %}
@@ -86,5 +91,29 @@
       }
     });
   });
+
+  //add to cart
+  $(document).on('click', '.add-cart', function (e) {
+    e.preventDefault()
+    var productid = $(this).data('index');
+    $.ajax({
+      type: 'POST',
+      url: "{% url 'cart_add' %}",
+      data: {
+        product_id: productid,
+        product_qty: 1,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+        action: 'post'
+      },
+      success: function (json) {
+        document.getElementById('cart_quantity').textContent = json.cart_quantity
+        location.reload()
+      },
+      error: function (xhr, errmsg, err) {
+        console.log(errmsg);
+      }
+    });
+  });
+
 </script>
 {% endblock %}
