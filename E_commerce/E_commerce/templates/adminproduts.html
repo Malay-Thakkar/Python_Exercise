@@ -1,0 +1,152 @@
+{% extends "sidebar.html" %}
+{% load static %}
+{% block dashboard-content %}
+{% if messages %}
+<div class="alert alert-primary" role="alert" id="messages-container"
+  style="position: absolute;z-index: 1;width: 100%;">
+  {% for message in messages %}
+  {{ message }}
+  {% endfor %}
+</div>
+{% endif %}
+
+<script>
+  // Function to hide the messages container after 3 seconds
+  setTimeout(function () {
+    var messagesContainer = document.getElementById('messages-container');
+    if (messagesContainer) {
+      messagesContainer.style.display = 'none';
+    }
+  }, 3000); // 3000 milliseconds = 3 seconds
+</script>
+
+<h1>Products</h1>
+<main class="main bd-grid" id="product-container">
+  <div class="container mt-5">
+    <div>
+      <form action="" method="post">
+
+      </form>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Update Item</th>
+            <th>Delete Item</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for product in products %}
+          <tr>
+            <td>
+              <img class="card-img" src="../../media/{{ product.img }}" alt="Product Image" />
+            </td>
+            <td>
+              <span class="font-weight-bold">{{ product.name }}</span>
+            </td>
+            <td>
+              <span class="font-weight-bold">{{ product.price }}</span>
+            </td>
+            <td>
+              <span class="font-weight-bold">{{ product.stock }}</span>
+            </td>
+            <td>
+              <button class="btn btn-info update-product" data-index="{{ product.product_id }}">Update</button>
+              <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Update
+              </button>
+
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<!-- for final delete popup -->
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Confirm Delete Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to permanently delete your account?
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger delete-product" data-index="{{ product.product_id }}">Delete</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<h2>Total Stock: stock total price</h2>
+
+
+<script>
+  // update cart
+  $(document).on('click', '.update-cart', function (e) {
+    e.preventDefault()
+    var productid = $(this).data('index');
+    var product_qty = $('#select' + productid).val();
+    $.ajax({
+      type: 'POST',
+      url: "{% url 'cart_update' %}",
+      data: {
+        // product_id: 2, 
+        product_id: productid,
+        product_qty: product_qty,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+        action: 'post'
+      },
+      success: function (json) {
+        // console.log(json);
+        location.reload();
+      },
+      error: function (xhr, errmsg, err) {
+        console.log(errmsg);
+      }
+    });
+  });
+
+  // delete product in cart
+  $(document).on('click', '.delete-product', function (e) {
+    e.preventDefault()
+    var productid = $(this).data('index');
+    var product_qty = $('#select' + productid).val();
+    $.ajax({
+      type: 'POST',
+      url: "{% url 'cart_delete' %}",
+      data: {
+        product_id: productid,
+        product_qty: product_qty,
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+        action: 'post'
+      },
+      success: function (json) {
+        location.reload();
+      },
+      error: function (xhr, errmsg, err) {
+        console.log(errmsg);
+      }
+    });
+  });
+</script>
+{% endblock dashboard-content %}

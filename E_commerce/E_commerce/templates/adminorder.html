@@ -1,0 +1,28 @@
+{% extends "sidebar.html" %}
+{% load static %}
+{% block dashboard-content %}
+{% if messages %}
+<div class="alert alert-primary" role="alert" id="messages-container"  style="position: absolute;z-index: 1;width: 100%;">
+  {% for message in messages %}
+  {{ message }}
+  {% endfor %}
+</div>
+{% endif %}
+
+<script>
+  // Function to hide the messages container after 3 seconds
+  setTimeout(function() {
+    var messagesContainer = document.getElementById('messages-container');
+    if (messagesContainer) {
+      messagesContainer.style.display = 'none';
+    }
+  }, 3000); // 3000 milliseconds = 3 seconds
+</script>
+
+
+<h1>Order</h1>  
+
+<h2>Total sale: order total</h2>
+<h2>Total Stock: stock total price</h2>
+{% endblock dashboard-content %}
+
