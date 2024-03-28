@@ -18,8 +18,9 @@ def adminorder(request):
 
 def adminproducts(request):
     if request.user.is_staff:
+        domain = request.get_host()
         products = ProductModel.objects.all()
-        return render(request,"adminproduts.html",{'products':products})
+        return render(request,"adminproduts.html",{'products':products,'domain':domain})
     return redirect('/')
 
 def admincategory(request):

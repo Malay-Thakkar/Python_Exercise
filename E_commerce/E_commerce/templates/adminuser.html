@@ -21,6 +21,189 @@
 
 
 <h1>adminuser</h1>  
+
+
+
+<h1>Products</h1>
+  <main class="main bd-grid" id="product-container">
+    <div class="container mt-5">
+      <div>
+        <!-- Add Product Form -->
+        <form id="addProductForm" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" class="form-control" type="text" required>
+          </div>
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input id="price" name="price" class="form-control" type="number" required>
+          </div>
+          <div class="form-group">
+            <label for="unit">Unit</label>
+            <input id="unit" name="unit" class="form-control" type="text" required>
+          </div>
+          <div class="form-group">
+            <label for="stock">Stock</label>
+            <input id="stock" name="stock" class="form-control" type="number" required>
+          </div>
+          <div class="form-group">
+            <label for="desc">Description</label>
+            <input id="desc" name="desc" class="form-control" type="text" required>
+          </div>
+          <div class="form-group">
+            <label for="img">Image</label>
+            <input id="img" name="img" type="file" required>
+          </div>
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" class="form-control" name="category" required>
+              <!-- Categories will be populated dynamically -->
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Update Item</th>
+              <th>Delete Item</th>
+            </tr>
+          </thead>
+          <tbody id="productList">
+            <!-- Product list will be populated dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal for Delete Confirmation -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Confirm Delete Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this product?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-index="{{ product.product_id }}" id="confirmDelete">Delete</button>
+          <button class="btn btn-danger delete-product" data-index="{{ product.product_id }}">Delete</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript for Ajax functionality -->
+  <script>
+    $(document).ready(function () {
+
+      // Function to fetch categories and populate the select dropdown
+      function fetchCategories() {
+        $.ajax({
+          url: '/api/category/',
+          type: 'GET',
+          success: function (response) {
+            // Populate categories dropdown
+            response.forEach(function (category) {
+              $('#category').append($('<option>', {
+                value: category.id,
+                text: category.name
+              }));
+            });
+          },
+          error: function (error) {
+            console.log(error);
+          }
+        });
+      }
+
+      // Function to fetch products and render them
+      function fetchProducts() {
+        $.ajax({
+          url: '/api/product/',
+          type: 'GET',
+          success: function (response) {
+            // Clear previous products
+            $('#productList').empty();
+            // Render products
+            response.forEach(function (product) {
+              $('#productList').append('<tr><td><img class="card-img" src="' + product.img + '" alt="Product Image"></td>' +
+                '<td>' + product.name + '</td>' +
+                '<td>' + product.price + '</td>' +
+                '<td>' + product.stock + '</td>' +
+                '<td><button class="btn btn-info update-product" data-index="' + product.id + '">Update</button></td>' +
+                '<td><button class="btn btn-danger delete-product" data-index="' + product.id + '">Delete</button></td></tr>');
+            });
+          },
+          error: function (error) {
+            console.log(error);
+          }
+        });
+      }
+
+      // Fetch categories and products initially
+      fetchCategories();
+      fetchProducts();
+
+      // Add Product Form Submission
+      $('#addProductForm').submit(function (event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+          url: '/api/product/',
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (response) {
+            // Fetch products after successful addition
+            fetchProducts();
+            // Clear form fields
+            $('#addProductForm')[0].reset();
+          },
+          error: function (error) {
+            console.log(error);
+          }
+        });
+      });
+
+      // Delete Product Button Click
+      $(document).on('click', '.delete-product', function () {
+        var productId = $(this).data('index');
+        $('#confirmDelete').data('productId', productId);
+        $('#deleteModal').modal('show');
+      });
+
+      // Confirm Delete Product Button Click
+      $('#confirmDelete').click(function () {
+        var productId = $(this).data('productId');
+        $.ajax({
+          url: '/api/product/' + productId + '/',
+          type: 'DELETE',
+          success: function (response) {
+            // Fetch products after successful deletion
+            fetchProducts();
+            $('#deleteModal').modal('hide');
+          },
+          error: function (error) {
+            console.log(error);
+          }
+        });
+      });
+
+    });
+  </script>
+
 <h2>Total sale: order total</h2>
 <h2>Total Stock: stock total price</h2>
 {% endblock dashboard-content %}
