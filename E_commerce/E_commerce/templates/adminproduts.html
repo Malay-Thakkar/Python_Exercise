@@ -32,8 +32,9 @@
       <div class="mr-auto p-2">
         <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#add_productModal">
           Add Product
-      </button>
-        <button type="button" class="btn btn-primary me-2"  data-bs-toggle="modal" data-bs-target="#add_multiple_productModal">
+        </button>
+        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal"
+          data-bs-target="#add_multiple_productModal">
           Add Multiple Products
         </button>
       </div>
@@ -65,7 +66,20 @@
             </tr>
           </thead>
           <tbody id="productList">
-            <!-- Product list will be populated dynamically -->
+            {% for product in products %}
+            <tr>
+              <td><img class="card-img" src="../../media/{{product.img}}" alt="Product Image"></td>
+              <td>{{product.name}}</td>
+              <td>{{product.price}}</td>
+              <td>{{product.stock}}</td>
+              <td>
+                <form action="{% url 'adminproductsupdate' product_id=product.product_id %}" method="get">
+                  <button class="btn btn-info update-button" type="submit">Update</button>
+              </form>
+                </td>
+              <td><button class="btn btn-danger delete-button" data-index="{{product.product_id}}" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button></td>
+            </tr>            
+            {% endfor %}
           </tbody>
         </table>
       </div>
@@ -162,7 +176,8 @@
 
 <!-- for add multiple product popup -->
 <!-- Modal -->
-<div class="modal fade" id="add_multiple_productModal" tabindex="-1" aria-labelledby="add_multiple_productModalLabel" aria-hidden="true">
+<div class="modal fade" id="add_multiple_productModal" tabindex="-1" aria-labelledby="add_multiple_productModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -170,11 +185,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        
-<form action="/action_page.php">
-  <input type="file" id="myFile" name="filename">
-  <input type="submit">
-</form>
+
+        <form action="/action_page.php">
+          <input type="file" id="myFile" name="filename">
+          <input type="submit">
+        </form>
 
       </div>
       <div class="modal-footer">
@@ -187,7 +202,7 @@
 
 <!-- for final delete popup -->
 <!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -195,201 +210,28 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Are you sure you want to permanently delete your account?
+        Are you sure you want to permanently delete this product?
       </div>
       <div class="modal-footer">
-        <button class="btn btn-danger " id="#delete-button" data-index="{{ product.product_id }}">Delete</button>
+        <form method="post" id="delete-form">
+          {% csrf_token %}
+          <input type="hidden" name="_method" value="DELETE">
+          <button class="btn btn-danger" id="delete-button" type="submit">Delete</button>
+        </form>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
-
-<!-- for update popup -->
-<!-- Modal -->
-<div class="modal" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="updateModalLabel">Update product</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Update Product
-        <div>
-          <div class="form-group ">
-            <label class="col-sm-2 control-label ">
-              Name
-            </label>
-            <div class="col-sm-10">
-              <input name="name" class="form-control" type="text" value="">
-            </div>
-          </div>
-          <div class="form-group ">
-            <label class="col-sm-2 control-label ">
-              Price
-            </label>
-            <div class="col-sm-10">
-              <input name="price" class="form-control" type="number" value="">
-            </div>
-          </div>
-          <div class="form-group ">
-            <label class="col-sm-2 control-label ">
-              Unit
-            </label>
-            <div class="col-sm-10">
-              <input name="unit" class="form-control" type="text" value="">
-            </div>
-          </div>
-          <div class="form-group ">
-            <label class="col-sm-2 control-label ">
-              Stock
-            </label>
-            <div class="col-sm-10">
-              <input name="stock" class="form-control" type="number" value="">
-            </div>
-          </div>
-          <div class="form-group ">
-            <label class="col-sm-2 control-label ">
-              Desc
-            </label>
-            <div class="col-sm-10">
-              <input name="desc" class="form-control" type="text" value="">
-            </div>
-          </div>
-          <div class="form-group ">
-            <label class="col-sm-2 control-label ">
-              Img
-            </label>
-            <div class="col-sm-10">
-              <input name="img" type="file" value="">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label ">
-              Category
-            </label>
-            <div class="col-sm-10">
-              <select class="form-control" name="category">
-                <option value="http://127.0.0.1:8000/api/category/1/">Cadbury</option>
-                <option value="http://127.0.0.1:8000/api/category/2/">Nestle</option>
-                <option value="http://127.0.0.1:8000/api/category/3/">Kinder Joy</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-actions">
-            <button class="btn btn-primary js-tooltip" title=""
-              data-original-title="Make a POST request on the Product List resource">POST</button>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-danger update-product" data-index="{{ product.product_id }}">update</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
-  $(document).ready(function () {
-
-    // Function to fetch categories and populate the select dropdown
-    function fetchCategories() {
-      $.ajax({
-        url: '/api/category/',
-        type: 'GET',
-        success: function (response) {
-          // Populate categories dropdown
-          response.forEach(function (category) {
-            $('#category').append($('<option>', {
-              value: category.id,
-              text: category.name
-            }));
-          });
-        },
-        error: function (error) {
-          console.log(error);
-        }
-      });
-    }
-
-    function fetchProducts() {
-      $.ajax({
-        url: '/api/product/',
-        type: 'GET',
-        success: function (response) {
-          // Clear previous products
-          $('#productList').empty();
-          // Render products
-          response.forEach(function (product) {
-            $('#productList').append('<tr><td><img class="card-img" src="' + product.img + '" alt="Product Image"></td>' +
-              '<td>' + product.name + '</td>' +
-              '<td>' + product.price + '</td>' +
-              '<td>' + product.stock + '</td>' +
-              '<td><button class="btn btn-info update-product" data-index="' + product.id + '" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button></td>' +
-              '<td><button class="btn btn-danger delete-product" data-index="' + product.id + '" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button></td></tr>');
-          });
-
-        },
-        error: function (error) {
-          console.log(error);
-        }
-      });
-    }
-
-    // Fetch categories and products initially
-    fetchCategories();
-    fetchProducts();
-
-    // Add Product Form Submission
-    $('#addProductForm').submit(function (event) {
-      event.preventDefault();
-      var formData = new FormData(this);
-      $.ajax({
-        url: '/api/product/',
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-          // Fetch products after successful addition
-          fetchProducts();
-          // Clear form fields
-          $('#addProductForm')[0].reset();
-        },
-        error: function (error) {
-          console.log(error);
-        }
-      });
+  // for delete 
+  document.querySelectorAll('.delete-button').forEach(button => {
+    button.addEventListener('click', function() {
+      var product_id = this.getAttribute('data-index');
+      var form = document.getElementById('delete-form');
+      form.action = "{% url 'adminproductsdelete' product_id=999 %}".replace('999', product_id); 
     });
-
-    // Confirm Delete Product Button Click
-    $(document).ready(function () {
-      $('#delete-button').click(function (e) {
-        e.preventDefault();
-        var productId = $('#product-id').val(); // Assuming you have an input field with id 'product-id' to capture product ID
-        alert(productId)
-        $.ajax({
-          url: '/api/product/' + productId + '/', // Assuming productId is appended to the API endpoint
-          method: 'DELETE',
-          headers: {
-            'X-CSRFToken': '{{ csrf_token }}',
-            'Authorization': 'Bearer your-token', // Example: If using token-based authentication
-            // Add any other custom headers here as needed
-          },
-          success: function (response) {
-            // Handle success response
-            console.log('Product deleted successfully');
-          },
-          error: function (xhr, status, error) {
-            // Handle error
-            console.error('Error deleting product:', error);
-          }
-        });
-      });
-    });
-
   });
-</script>
+
+  </script>
 {% endblock dashboard-content %}
