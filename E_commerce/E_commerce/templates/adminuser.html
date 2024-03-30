@@ -1,8 +1,14 @@
 {% extends "sidebar.html" %}
 {% load static %}
 {% block dashboard-content %}
+<style>
+  .modal-content {
+    background-color: ivory;
+  }
+</style>
 {% if messages %}
-<div class="alert alert-primary" role="alert" id="messages-container"  style="position: absolute;z-index: 1;width: 100%;">
+<div class="alert alert-primary" role="alert" id="messages-container"
+  style="position: absolute;z-index: 1;width: 100%;">
   {% for message in messages %}
   {{ message }}
   {% endfor %}
@@ -11,7 +17,7 @@
 
 <script>
   // Function to hide the messages container after 3 seconds
-  setTimeout(function() {
+  setTimeout(function () {
     var messagesContainer = document.getElementById('messages-container');
     if (messagesContainer) {
       messagesContainer.style.display = 'none';
@@ -19,9 +25,372 @@
   }, 3000); // 3000 milliseconds = 3 seconds
 </script>
 
+<h1>Products</h1>
+<main class="main bd-grid" id="product-container">
+  <div class="container mt-3">
+    <div class="d-flex">
+      <div class="mr-auto p-2">
+        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#add_productModal">
+          Add Product
+      </button>
+        <button type="button" class="btn btn-primary me-2"  data-bs-toggle="modal" data-bs-target="#add_multiple_productModal">
+          Add Multiple Products
+        </button>
+      </div>
+      <div class="p-2">
+        <!-- Search bar -->
+        <form class="d-flex pl-5" method="POST" action="{% url 'search' %}">
+          {% csrf_token %}
+          <div class="input-group">
+            <input class="form-control bg-light" type="search" placeholder="Search product" name="search"
+              aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="d-flex flex-wrap align-items-center mb-3">
+    </div>
+    <div class="table-responsive">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Update Item</th>
+              <th>Delete Item</th>
+            </tr>
+          </thead>
+          <tbody id="productList">
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <h2>Total Stock: stock total price</h2>
+  </div>
+</main>
 
-<h1>adminuser</h1>  
-<h2>Total sale: order total</h2>
-<h2>Total Stock: stock total price</h2>
+<!-- for add product popup -->
+<!-- Modal -->
+<div class="modal" id="add_productModal" tabindex="-1" aria-labelledby="add_productModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="add_productModalLabel">add_product product</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        add_product Product
+        <div>
+          <div class="form-group ">
+            <label class="col-sm-2 control-label ">
+              Name
+            </label>
+            <div class="col-sm-10">
+              <input name="name" class="form-control" type="text" value="">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label class="col-sm-2 control-label ">
+              Price
+            </label>
+            <div class="col-sm-10">
+              <input name="price" class="form-control" type="number" value="">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label class="col-sm-2 control-label ">
+              Unit
+            </label>
+            <div class="col-sm-10">
+              <input name="unit" class="form-control" type="text" value="">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label class="col-sm-2 control-label ">
+              Stock
+            </label>
+            <div class="col-sm-10">
+              <input name="stock" class="form-control" type="number" value="">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label class="col-sm-2 control-label ">
+              Desc
+            </label>
+            <div class="col-sm-10">
+              <input name="desc" class="form-control" type="text" value="">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label class="col-sm-2 control-label ">
+              Img
+            </label>
+            <div class="col-sm-10">
+              <input name="img" type="file" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label ">
+              Category
+            </label>
+            <div class="col-sm-10">
+              <select class="form-control" name="category">
+                <option value="http://127.0.0.1:8000/api/category/1/">Cadbury</option>
+                <option value="http://127.0.0.1:8000/api/category/2/">Nestle</option>
+                <option value="http://127.0.0.1:8000/api/category/3/">Kinder Joy</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary js-tooltip" title=""
+              data-original-title="Make a POST request on the Product List resource">POST</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger add_product-product" data-index="{{ product.product_id }}">add_product</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- for add multiple product popup -->
+<!-- Modal -->
+<div class="modal fade" id="add_multiple_productModal" tabindex="-1" aria-labelledby="add_multiple_productModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="add_multiple_productModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+<form action="/action_page.php">
+  <input type="file" id="myFile" name="filename">
+  <input type="submit">
+</form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- for final delete popup -->
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete Account</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to permanently delete your account?
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger " id="#delete-button" data-index="{{ product.product_id }}">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- for update popup -->
+<!-- Modal -->
+<div class="modal" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateModalLabel">Update product</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Update Product
+        <div>
+          <div class="form-group ">
+            <label class="col-sm-2 control-label ">
+              Name
+            </label>
+            <div class="col-sm-10">
+              <input name="name" class="form-control" type="text" value="">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label class="col-sm-2 control-label ">
+              Price
+            </label>
+            <div class="col-sm-10">
+              <input name="price" class="form-control" type="number" value="">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label class="col-sm-2 control-label ">
+              Unit
+            </label>
+            <div class="col-sm-10">
+              <input name="unit" class="form-control" type="text" value="">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label class="col-sm-2 control-label ">
+              Stock
+            </label>
+            <div class="col-sm-10">
+              <input name="stock" class="form-control" type="number" value="">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label class="col-sm-2 control-label ">
+              Desc
+            </label>
+            <div class="col-sm-10">
+              <input name="desc" class="form-control" type="text" value="">
+            </div>
+          </div>
+          <div class="form-group ">
+            <label class="col-sm-2 control-label ">
+              Img
+            </label>
+            <div class="col-sm-10">
+              <input name="img" type="file" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label ">
+              Category
+            </label>
+            <div class="col-sm-10">
+              <select class="form-control" name="category">
+                <option value="http://127.0.0.1:8000/api/category/1/">Cadbury</option>
+                <option value="http://127.0.0.1:8000/api/category/2/">Nestle</option>
+                <option value="http://127.0.0.1:8000/api/category/3/">Kinder Joy</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary js-tooltip" title=""
+              data-original-title="Make a POST request on the Product List resource">POST</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger update-product" data-index="{{ product.product_id }}">update</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  
+  $(document).ready(function () {
+
+    // Function to fetch categories and populate the select dropdown
+    function fetchCategories() {
+      $.ajax({
+        url: '/api/category/',
+        type: 'GET',
+        success: function (response) {
+          // Populate categories dropdown
+          response.forEach(function (category) {
+            $('#category').append($('<option>', {
+              value: category.id,
+              text: category.name
+            }));
+          });
+        },
+        error: function (error) {
+          console.log(error);
+        }
+      });
+    }
+
+    function fetchProducts() {
+      $.ajax({
+        url: '/api/product/',
+        type: 'GET',
+        success: function (response) {
+          // Clear previous products
+          $('#productList').empty();
+          // Render products
+          response.forEach(function (product) {
+            $('#productList').append('<tr><td><img class="card-img" src="' + product.img + '" alt="Product Image"></td>' +
+              '<td>' + product.name + '</td>' +
+              '<td>' + product.price + '</td>' +
+              '<td>' + product.stock + '</td>' +
+              '<td><button class="btn btn-info update-product" data-index="' + product.id + '" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button></td>' +
+              '<td><button class="btn btn-danger delete-product" data-index="' + product.id + '" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button></td></tr>');
+          });
+
+        },
+        error: function (error) {
+          console.log(error);
+        }
+      });
+    }
+
+    // Fetch categories and products initially
+    fetchCategories();
+    fetchProducts();
+
+    // Add Product Form Submission
+    $('#addProductForm').submit(function (event) {
+      event.preventDefault();
+      var formData = new FormData(this);
+      $.ajax({
+        url: '/api/product/',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          // Fetch products after successful addition
+          fetchProducts();
+          // Clear form fields
+          $('#addProductForm')[0].reset();
+        },
+        error: function (error) {
+          console.log(error);
+        }
+      });
+    });
+
+    // Confirm Delete Product Button Click
+    $(document).ready(function () {
+      $('#delete-button').click(function (e) {
+        e.preventDefault();
+        var productId = $('#product-id').val();
+        alert(productId)
+        $.ajax({
+          url: '/api/product/' + productId + '/',
+          method: 'DELETE',
+          headers: {
+            'X-CSRFToken': '{{ csrf_token }}',
+            'Authorization': 'Bearer your-token',
+          },
+          success: function (response) {
+            // Handle success response
+            console.log('Product deleted successfully');
+          },
+          error: function (xhr, status, error) {
+            // Handle error
+            console.error('Error deleting product:', error);
+          }
+        });
+      });
+    });
+
+  });
+</script>
 {% endblock dashboard-content %}
-

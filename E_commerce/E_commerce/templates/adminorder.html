@@ -21,6 +21,52 @@
 
 
 <h1>Order</h1>  
+{{data}}
+{{error}}
+<div class="table-responsive">
+  <h2>Add New Product</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name"><br>
+      <label for="price">Price:</label><br>
+      <input type="number" id="price" name="price"><br>
+      <label for="unit">unit:</label><br>
+      <input type="text" id="unit" name="unit"><br>
+      <label for="stock">Stock:</label><br>
+      <input type="number" id="stock" name="stock"><br>
+      <label for="image">Image:</label><br>
+      <input type="file" id="image" name="image"><br>
+      <label for="desc">Description:</label><br>
+      <input type="text" id="desc" name="desc"><br><br>
+      <input type="submit" value="Add Product">
+    </form>
+    <hr>
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Update Item</th>
+        <th>Delete Item</th>
+      </tr>
+    </thead>
+    <tbody id="productList">
+      {% for product in products %}
+      <tr>
+        <td><img class="card-img" src="{{ product.img }}" alt="Product Image"></td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.stock }}</td>
+        <td><button class="btn btn-info" data-index="{{ product.id }}" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button></td>
+        <td><button class="btn btn-danger" data-index="{{ product.id }}" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button></td>
+      </tr>            
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
 <h2>Total sale: order total</h2>
 <h2>Total Stock: stock total price</h2>

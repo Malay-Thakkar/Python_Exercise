@@ -4,11 +4,15 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from api.models import ProductModel,CategoryModel
 from api.serializers import ProductSerializers,CategorySerializers
+# from rest_framework.permissions import IsAuthenticated
+# from rest_framework.authentication import TokenAuthentication
 # Create your views here.
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset =ProductModel.objects.all()
     serializer_class = ProductSerializers
+    # authentication_classes = [TokenAuthentication]
+    # permission_classes = [IsAuthenticated]
     
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset =CategoryModel.objects.all()
