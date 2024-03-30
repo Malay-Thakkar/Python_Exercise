@@ -1,123 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product CRUD</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
-    <h1>Product CRUD</h1>
-    <div>
-        <h2>Add Product</h2>
-        <form id="addProductForm" enctype="multipart/form-data">
-            <input type="text" name="name" placeholder="Name">
-            <input type="number" name="price" placeholder="Price">
-            <input type="text" name="unit" placeholder="Unit">
-            <input type="number" name="stock" placeholder="Stock">
-            <input type="text" name="desc" placeholder="Description">
-            <input type="file" name="img" accept="image/*">
-            <select name="category">
-                <option value="" disabled selected>Select Category</option>
-                <!-- Populate this dynamically from your API -->
-            </select>
-            <button type="submit">Add</button>
-        </form>
+{% extends "sidebar.html" %} {% load static %} {% block dashboard-content %}
+<style>
+    .modal-content {
+        background-color: ivory;
+    }
+</style>
+{% if messages %}
+<div class="alert alert-primary" role="alert" id="messages-container" style="position: absolute;z-index: 1;width: 100%;">
+    {% for message in messages %} {{ message }} {% endfor %}
+</div>
+{% endif %}
+
+<script>
+    // Function to hide the messages container after 3 seconds
+    setTimeout(function() {
+        var messagesContainer = document.getElementById('messages-container');
+        if (messagesContainer) {
+            messagesContainer.style.display = 'none';
+        }
+    }, 3000); // 3000 milliseconds = 3 seconds
+</script>
+
+<h1>Category</h1>
+<main class="main bd-grid" id="product-container">
+    <div class="container mt-2">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#add_category">
+          Add Category
+        </button>
+            </div>
+            <div class="p-2" style="margin-left: 28rem;">
+                <!-- Search bar -->
+                <form class="d-flex pl-5" method="POST" action="{% url 'search' %}">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input class="form-control bg-light" type="search" placeholder="Search Category" name="search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap align-items-center mb-3">
+        </div>
+        <div class="table-responsive">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Category ID</th>
+                            <th>Category Name</th>
+                            <th>Update Item</th>
+                            <th>Delete Item</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productList">
+                        {% for Category in Categorys %}
+                        <tr>
+                            <td>{{Category.category_id}}</td>
+                            <td>{{Category.category}}</td>
+                            <td><button class="btn btn-info " data-bs-toggle="modal" data-bs-target="#updateModal-{{forloop.counter}}">Update</button></td>
+                            <td><button class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#deleteModal-{{forloop.counter}}">Delete</button></td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h2>Total Stock: stock total price</h2>
     </div>
-    <div id="productList">
-        <!-- Product list will be displayed here -->
+</main>
+
+<!-- for add popup -->
+<!-- Modal -->
+<div class="modal" id="add_category" tabindex="-1" aria-labelledby="add_categoryLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="add_categoryLabel">Add Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'admincategoryadd' %}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="col-12 my-2">
+                            <label for="inputquestio" class="form-label fs-4 fw-bold">Category</label>
+                            <input type="text" class="form-control border border-secondary" id="inputquery" name="category">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-info" type="submit">ADD</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
 
-    <script>
-        $(document).ready(function(){
-            // Function to fetch categories and populate the select dropdown
-            function fetchCategories() {
-                $.ajax({
-                    url: '/api/category/',
-                    type: 'GET',
-                    success: function(response) {
-                        // Populate categories dropdown
-                        $.each(response, function(index, category) {
-                            $('select[name="category"]').append($('<option>', {
-                                value: category.id,
-                                text: category.name
-                            }));
-                        });
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            }
+<!-- for update popup -->
+<!-- Modal -->
+{% for category in Categorys %}
+<div class="modal" id="updateModal-{{forloop.counter}}" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">Update Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="{% url 'admincategoryupdate' category_id=category.category_id %}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="col-12 my-2">
+                        <label for="inputquery" class="form-label fs-4 fw-bold">Category</label>
+                        <input type="text" class="form-control border border-secondary" id="inputquery" name="category" value="{{ category.category }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info" type="submit">Update</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
 
-            // Function to fetch products and render them
-            function fetchProducts() {
-                $.ajax({
-                    url: '/api/product/',
-                    type: 'GET',
-                    success: function(response) {
-                        // Clear previous products
-                        $('#productList').empty();
-                        // Render products
-                        $.each(response, function(index, product) {
-                            $('#productList').append('<div><p>Name: ' + product.name + '</p>' +
-                                                     '<p>Price: ' + product.price + '</p>' +
-                                                     '<p>Unit: ' + product.unit + '</p>' +
-                                                     '<p>Stock: ' + product.stock + '</p>' +
-                                                     '<p>Description: ' + product.desc + '</p>' +
-                                                     '<img src="' + product.img + '" alt="Product Image">' +
-                                                     '<p>Category: ' + product.category + '</p>' +
-                                                     '<button onclick="deleteProduct(' + product.id + ')">Delete</button>' +
-                                                     '</div>');
-                        });
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            }
+<!-- for delete popup -->
+<!-- Modal -->
+{% for category in Categorys %}
+<div class="modal" id="deleteModal-{{forloop.counter}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="{% url 'admincategorydelete' category_id=category.category_id %}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    Are you sure you want to permanently delete this category?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" type="submit">delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
 
-            // Function to add a product
-            $('#addProductForm').submit(function(event) {
-                event.preventDefault();
-                var formData = new FormData(this);
-                $.ajax({
-                    url: '/api/product/',
-                    type: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        // Fetch products after successful addition
-                        fetchProducts();
-                        // Clear form fields
-                        $('#addProductForm')[0].reset();
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            });
-
-            // Function to delete a product
-            window.deleteProduct = function(id) {
-                $.ajax({
-                    url: '/api/product/' + id + '/',
-                    type: 'DELETE',
-                    success: function(response) {
-                        // Fetch products after successful deletion
-                        fetchProducts();
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            }
-
-            // Fetch categories and products initially
-            fetchCategories();
-            fetchProducts();
-        });
-    </script>
-</body>
-</html>
+{% endblock dashboard-content %}
