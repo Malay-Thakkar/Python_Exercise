@@ -30,15 +30,13 @@
         </button>
             </div>
             <div class="p-2" style="margin-left: 28rem;">
-                <!-- Search bar -->
-                <form class="d-flex pl-5" method="POST" action="{% url 'search' %}">
-                    {% csrf_token %}
+                <form class="d-flex pl-5">
                     <div class="input-group">
-                        <input class="form-control bg-light" type="search" placeholder="Search Category" name="search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <input class="form-control bg-light" type="search" placeholder="Search product" id="searchbar" aria-label="Search">
+                        <button class="btn btn-outline-success" type="button">Search</button>
                     </div>
                 </form>
-            </div>
+        </div>
         </div>
         <div class="d-flex flex-wrap align-items-center mb-3">
         </div>
@@ -151,5 +149,24 @@
     </div>
 </div>
 {% endfor %}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        // Intercept input in the search box
+        $('#searchbar').on('input', function() {
+            var query = $(this).val();  // Get the value typed in the search box
+            $.ajax({
+                type: "GET",
+                url: "{% url 'searchcategory' %}",  // URL to your search endpoint
+                data: {
+                    'search': query,  // Pass the query as data to the server
+                },
+                success: function(response) {
+                    $('#productList').html(response.html);  // Update the product container with the search results HTML snippet
+                }
+            });
+        });
+    });
+</script>
 
 {% endblock dashboard-content %}

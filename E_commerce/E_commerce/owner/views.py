@@ -1,14 +1,12 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from customer.models import CustomUser
 from api.models import ProductModel,CategoryModel
 import requests
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from django.http import JsonResponse
 # Create your views here.
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+
 
 def dashboard(request):
     if request.user.is_staff:
@@ -200,3 +198,20 @@ def adminproductsdelete(request, product_id):
                 return render(request,"404.html",{'error':"product id not found"})
     return redirect('/')
     
+def searchproduct(request):
+    if request.method == 'GET':
+        query = request.GET.get('search')
+        if query:
+            results = ProductModel.objects.filter(Q(name__icontains=query) | Q(category__category__icontains=query))
+            context = {'products': results}
+            return JsonResponse({'html': render(request, 'search_products.html', context).content.decode('utf-8')})
+    return JsonResponse({'html': ''})
+
+def searchcategory(request):
+    if request.method == 'GET':
+        query = request.GET.get('search')
+        if query:
+            results = CategoryModel.objects.filter(Q(category__icontains=query))
+            context = {'Categorys': results}
+            return JsonResponse({'html': render(request, 'search_category.html', context).content.decode('utf-8')})
+    return JsonResponse({'html': ''})

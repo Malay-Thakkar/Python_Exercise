@@ -19,6 +19,7 @@ class ProductModel(models.Model):
     desc=models.CharField(max_length=150)
     img=models.FileField()
     category =models.ForeignKey(CategoryModel,on_delete =models.CASCADE)
+    SearchableFields=['name','category']
     
 
  
