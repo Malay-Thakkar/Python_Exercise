@@ -11,7 +11,8 @@ def cart_summary(request):
     cart_products =cart.get_cart_product()
     cart_quantity =cart.get_quantity()
     total = cart.cart_total()
-    return render(request,'cart.html',{'cart_products':cart_products,'cart_quantity':cart_quantity,'total':total})
+    gsttotal = cart.cart_gsttotal()
+    return render(request,'cart.html',{'cart_products':cart_products,'cart_quantity':cart_quantity,'total':total,'gsttotal':gsttotal})
 
 def cart_add(request):
     cart = Cart(request)

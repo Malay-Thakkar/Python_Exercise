@@ -21,6 +21,9 @@ class ProductModel(models.Model):
     category =models.ForeignKey(CategoryModel,on_delete =models.CASCADE)
     SearchableFields=['name','category']
     
+    def __str__(self):
+        return self.name
+    
 
  
 #model bills/order

@@ -22,6 +22,7 @@ urlpatterns = [
     path('dj-admin/', admin.site.urls),
     path('',include('customer.urls')),
     path('',include('cart.urls')),
+    path('',include('payment.urls')),
     path('api/',include('api.urls')),
     path('admin/',include('owner.urls')),
 ]

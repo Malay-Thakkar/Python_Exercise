@@ -87,12 +87,28 @@ class Cart():
             current_user.update(old_cart=carty)
         
     def cart_total(self):
-        quantity = self.cart
+        cartitems = self.cart
         total = 0
-        for key, value in quantity.items():
+        for key, value in cartitems.items():
             key = int(key)
             prod = ProductModel.objects.filter(product_id = key).values().first()
-            total += (prod['price'] * value)
+            if prod is not None:
+                total += (prod['price'] * value)
+            else:
+                print(f"Product with ID {key} not found.")
         return total
         
       
+    def cart_gsttotal(self):
+        cartitems = self.cart
+        total = 0
+        gsttotal=0
+        for key, value in cartitems.items():
+            key = int(key)
+            prod = ProductModel.objects.filter(product_id = key).values().first()
+            if prod is not None:
+                total += (prod['price'] * value)
+            else:
+                print(f"Product with ID {key} not found.")
+        gsttotal=((total*18)/100)+total
+        return gsttotal

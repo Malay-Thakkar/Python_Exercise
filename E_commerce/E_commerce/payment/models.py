@@ -1,3 +1,72 @@
 from django.db import models
-
+from django.conf import settings
+from api.models import ProductModel
 # Create your models here.
+
+#payment 
+class Payment(models.Model):
+    STATUS = (
+        ('Completed', 'Completed'),
+        ('Not_Completed', 'Not_Completed'),
+    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    payment_id = models.CharField(max_length=100)
+    payment_method = models.CharField(max_length=100)
+    amount_paid = models.CharField(max_length=100) # this is the total amount paid
+    status = models.CharField(choices=STATUS,default='Not_Completed')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.payment_id
+    
+#shipping address model
+class ShippingAddressModel(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=True,blank=True)
+    shipping_first_name = models.CharField(max_length=50)
+    shipping_last_name = models.CharField(max_length=50)
+    shipping_phone = models.CharField(max_length=12)
+    shipping_email = models.EmailField(max_length=50)
+    shipping_address = models.TextField()
+    shipping_city = models.CharField(max_length=50)
+    shipping_state = models.CharField(max_length=50)
+    shipping_note = models.CharField(max_length=200,null=True,blank=True)
+    
+    class Meta:
+        verbose_name = 'Shipping Address'
+        verbose_name_plural = 'Shipping Address'
+        
+#Order model
+class Order(models.Model):
+    STATUS = (
+        ('Pending', 'Pending'),
+        ('Accepted', 'Accepted'),
+        ('Completed', 'Completed'),
+        ('Cancelled', 'Cancelled'),
+    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
+    full_name = models.CharField(max_length=250)
+    order_number = models.CharField(max_length=20)
+    order_status=models.CharField(choices=STATUS,default='Pending')
+    order_note = models.CharField(max_length=50,blank=True, null=True)
+    order_total = models.DecimalField(max_digits=10,decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.user.username
+    
+
+
+#Order Items model
+
+class OrderItems(models.Model):
+    Order=models.ForeignKey(Order,on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey(ProductModel,on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    quantity = models.PositiveIntegerField(default=1)
+    price = models.DecimalField(max_digits=10,decimal_places=2)
+    
+    def __str__(self):
+        return self.product.name
+

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<container class="productcontainer">
+  {% if messages %}
+  <div class="alert alert-primary" role="alert" id="messages-container">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+  </div>
+  {% endif %}
+  
+  <script>
+    // Function to hide the messages container after 3 seconds
+    setTimeout(function() {
+      var messagesContainer = document.getElementById('messages-container');
+      if (messagesContainer) {
+        messagesContainer.style.display = 'none';
+      }
+    }, 3000); // 3000 milliseconds = 3 seconds
+  </script>
+  
+  <h1>Checkout</h1>
+  <main class="main bd-grid">
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-8 border">
+            <h3 class="mt-5">Shipping Address Form</h3>
+            <form method="post">
+                {% csrf_token %}
+                <label for="shipping_first_name">First Name:</label>
+                <input type="text" id="shipping_first_name" name="shipping_first_name" required><br><br>
+                
+                <label for="shipping_last_name">Last Name:</label>
+                <input type="text" id="shipping_last_name" name="shipping_last_name" required><br><br>
+                
+                <label for="shipping_phone">Phone:</label>
+                <input type="text" id="shipping_phone" name="shipping_phone" required><br><br>
+                
+                <label for="shipping_email">Email:</label>
+                <input type="email" id="shipping_email" name="shipping_email" required><br><br>
+                
+                <label for="shipping_address">Address:</label>
+                <textarea id="shipping_address" name="shipping_address" required></textarea><br><br>
+                
+                <label for="shipping_city">City:</label>
+                <input type="text" id="shipping_city" name="shipping_city" required><br><br>
+                
+                <label for="shipping_state">State:</label>
+                <input type="text" id="shipping_state" name="shipping_state" required><br><br>
+                
+                <label for="shipping_note">Note:</label>
+                <textarea id="shipping_note" name="shipping_note"></textarea><br><br>
+                
+                <button type="submit">Submit</button>
+            </form>
+          </div>
+          <div class="col-sm-4 border">col-sm-4</div>
+        </div>
+      </div>
+  </main>
+</container>
+
+<script>
+  
+</script>
+{% endblock %}
