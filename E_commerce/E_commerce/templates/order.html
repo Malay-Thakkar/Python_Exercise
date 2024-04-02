@@ -1,25 +1,25 @@
-{% extends "sidebar.html" %}
+{% extends 'base.html' %}
 {% load static %}
-{% block dashboard-content %}
-{% if messages %}
-<div class="alert alert-primary" role="alert" id="messages-container"  style="position: absolute;z-index: 1;width: 100%;">
-  {% for message in messages %}
-  {{ message }}
-  {% endfor %}
-</div>
-{% endif %}
-
-<script>
-  // Function to hide the messages container after 3 seconds
-  setTimeout(function() {
-    var messagesContainer = document.getElementById('messages-container');
-    if (messagesContainer) {
-      messagesContainer.style.display = 'none';
-    }
-  }, 3000); // 3000 milliseconds = 3 seconds
-</script>
-
+{% block body %}
 <container class="productcontainer">
+  {% if messages %}
+  <div class="alert alert-primary" role="alert" id="messages-container">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+  </div>
+  {% endif %}
+  
+  <script>
+    // Function to hide the messages container after 3 seconds
+    setTimeout(function() {
+      var messagesContainer = document.getElementById('messages-container');
+      if (messagesContainer) {
+        messagesContainer.style.display = 'none';
+      }
+    }, 3000); // 3000 milliseconds = 3 seconds
+  </script>
+  
   <h1>Order</h1>
   <main class="main bd-grid" id="product-container">
     <div class="container mt-5">
@@ -32,9 +32,6 @@
               <th>Order Status</th>
               <th>Order Amount</th>
               <th>Order date</th>
-              <th>Open</th>
-              <th>Update</th>
-              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -53,15 +50,6 @@
               <td>
                 <span class="font-weight-bold">{{ order.created_at }}</span>
               </td>
-              <td>
-                <span class="font-weight-bold btn btn-success"><i class="bi bi-eye-fill"></i></span>
-              </td>
-              <td>
-                <span class="font-weight-bold btn btn-info">Update</span>
-              </td>
-              <td>
-                <span class="font-weight-bold btn btn-danger">Delete</span>
-              </td>
             {% endfor %}
           </tbody>
         </table>
@@ -75,5 +63,4 @@
     </div>
   </main>
 </container>
-{% endblock dashboard-content %}
-
+{% endblock %}

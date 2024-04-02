@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import signin,signup,signout,forgotpasswd,home,tandc,product,productdetail,profile,notfound,aboutus,contactus,thankyou,productfilter,updateuser,changepasswd,deleteuser,search
+from .views import signin,signup,signout,forgotpasswd,home,tandc,product,productdetail,profile,notfound,aboutus,contactus,thankyou,productfilter,updateuser,changepasswd,deleteuser,search,Order,orderdetail
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -22,6 +22,8 @@ urlpatterns = [
     path('contactus/',contactus,name="contactus"),
     path('404/',notfound,name="notfound"),
     path('thankyou/',thankyou,name="thankyou"),
+    path('order/',Order,name="order"),
+    path('order/<int:orderid>',orderdetail,name="orderdetail"),
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

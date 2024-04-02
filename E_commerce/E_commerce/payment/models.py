@@ -9,9 +9,11 @@ class Payment(models.Model):
         ('Completed', 'Completed'),
         ('Not_Completed', 'Not_Completed'),
     )
+    
+    method = (('cash','cash'),('online','online'))
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     payment_id = models.CharField(max_length=100)
-    payment_method = models.CharField(max_length=100)
+    payment_method = models.CharField(choices=method)
     amount_paid = models.CharField(max_length=100) # this is the total amount paid
     status = models.CharField(choices=STATUS,default='Not_Completed')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -66,6 +68,7 @@ class OrderItems(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     quantity = models.PositiveIntegerField(default=1)
     price = models.DecimalField(max_digits=10,decimal_places=2)
+    user_cart = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='cart_items', on_delete=models.SET_NULL, null=True)
     
     def __str__(self):
         return self.product.name

@@ -8,6 +8,7 @@ from django.conf import settings
 from E_commerce.settings import EMAIL_BACKEND, EMAIL_HOST_USER
 from customer.models import CustomUser
 from api.models import ProductModel
+from payment.models import Order,OrderItems,Payment
 from cart.cart import Cart
 from cart.wishlist import Wishlist
 import json
@@ -220,3 +221,12 @@ def deleteuser(request):
     myuser = CustomUser.objects.get(username=logged_in_user)
     myuser.delete()
     return redirect('/signup/')
+
+@login_required(login_url='/signin')
+def order(request):
+    orders = Order.objects.filter(user=request.user)
+    return render(request,"order.html",{'orders':orders})
+
+@login_required(login_url='/signin')
+def orderdetail(request,orderid):
+    pass

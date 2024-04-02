@@ -240,10 +240,12 @@
                     <div class="col-12 my-2">
                         <label for="inputquestio" class="form-label fs-4 fw-bold">Img</label>
                         <input type="file" class="form-control border border-secondary" id="inputquery" value="{{prod.img}}" name="img">
+                        <!-- Display existing image -->
+                        <img id="existing-image" src="../../media/{{prod.img}}" alt="Existing Image" class="card-img">
                     </div>
                     <div class="form-group">
-                        <label for="category">Category:</label>
-                        <select id="category" name="category" class="form-control">
+                        <label for="category" class="form-label fs-4 fw-bold">Category:</label>
+                        <select id="category" name="category" class="form-control border border-secondary">
                         {% for category in categorys %}
                         <option value="{{ category.category_id }}" {% if category.category_id == prod.category_id %}selected{% endif %}>{{ category.category }}</option>
                         {% endfor %}
@@ -266,7 +268,7 @@
             var query = $(this).val();  // Get the value typed in the search box
             $.ajax({
                 type: "GET",
-                url: "{% url 'searchproduct' %}",  // URL to your search endpoint
+                url: "{% url 'searchproduct' %}", 
                 data: {
                     'search': query,  // Pass the query as data to the server
                 },
