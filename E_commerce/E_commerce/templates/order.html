@@ -32,6 +32,8 @@
               <th>Order Status</th>
               <th>Order Amount</th>
               <th>Order date</th>
+              <th>view order</th>
+              <th>cancel order</th>
             </tr>
           </thead>
           <tbody>
@@ -39,7 +41,8 @@
            
             <tr>
               <td>
-                <span class="font-weight-bold cartprodname">{{ order.order_number }}</span>
+                <!-- <span class="font-weight-bold cartprodname">{{ order.order_number }}</span> -->
+                <span class="font-weight-bold cartprodname">{{ order.id }}</span>
               </td>
               <td>
                 <span class="font-weight-bold cartprodname">{{ order.order_status }}</span>
@@ -49,6 +52,12 @@
               </td>
               <td>
                 <span class="font-weight-bold">{{ order.created_at }}</span>
+              </td>
+              <td>
+                <a href="{% url 'orderdetail' order.id %}"><span class="font-weight-bold btn btn-success"><i class="bi bi-eye-fill"></i></span></a>
+              </td>
+              <td>
+                <span class="font-weight-bold btn btn-danger">cancel order</span>
               </td>
             {% endfor %}
           </tbody>

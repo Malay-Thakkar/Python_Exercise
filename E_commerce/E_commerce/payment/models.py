@@ -9,17 +9,15 @@ class Payment(models.Model):
         ('Completed', 'Completed'),
         ('Not_Completed', 'Not_Completed'),
     )
-    
     method = (('cash','cash'),('online','online'))
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    payment_id = models.CharField(max_length=100)
     payment_method = models.CharField(choices=method)
     amount_paid = models.CharField(max_length=100) # this is the total amount paid
     status = models.CharField(choices=STATUS,default='Not_Completed')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.payment_id
+        return str(self.id)
     
 #shipping address model
 class ShippingAddressModel(models.Model):
@@ -48,28 +46,28 @@ class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     full_name = models.CharField(max_length=250)
-    order_number = models.CharField(max_length=20)
     order_status=models.CharField(choices=STATUS,default='Pending')
     order_note = models.CharField(max_length=50,blank=True, null=True)
     order_total = models.DecimalField(max_digits=10,decimal_places=2)
+    order_total_gst=models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return self.user.username
-    
-
+        return str(self.id)
 
 #Order Items model
 
 class OrderItems(models.Model):
-    Order=models.ForeignKey(Order,on_delete=models.SET_NULL, null=True)
+    Order=models.ForeignKey(Order,on_delete=models.CASCADE, null=True)
     product = models.ForeignKey(ProductModel,on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    img = models.FileField(blank=True,null=True)
+    name = models.CharField(max_length = 50,blank=True)
     quantity = models.PositiveIntegerField(default=1)
     price = models.DecimalField(max_digits=10,decimal_places=2)
-    user_cart = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='cart_items', on_delete=models.SET_NULL, null=True)
-    
+    total_price = models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)
+   
     def __str__(self):
         return self.product.name
 

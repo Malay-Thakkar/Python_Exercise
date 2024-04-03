@@ -85,6 +85,15 @@ class Cart():
             carty = str(self.cart)
             carty = carty.replace("\'","\"")
             current_user.update(old_cart=carty)
+            
+    def delete_all(self):
+        self.cart.clear()
+        self.session.modified = True
+
+        # For logged-in users to update the database
+        if self.request.user.is_authenticated:
+            current_user = CustomUser.objects.filter(id=self.request.user.id)
+            current_user.update(old_cart="{}")  # Empty cart string representation
         
     def cart_total(self):
         cartitems = self.cart

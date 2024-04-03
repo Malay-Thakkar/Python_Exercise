@@ -19,12 +19,13 @@ def place_order(request):
     if request.method == 'POST':
         # Retrieve payment method from the request POST data
         # payment_method = request.POST.get('payment_method')
+        # order_note = request.POST.get('ordernote')
         payment_method = 'cash'
 
         # Validate payment method
         if not payment_method:
             messages.error(request, 'Please select a payment method.')
-            return redirect('checkout')  # Redirect back to the checkout page
+            return redirect('checkout')
 
          # Retrieve shipping address data from the form
         shipping_first_name = request.POST.get('shipping_first_name')
@@ -38,9 +39,11 @@ def place_order(request):
 
         # Retrieve user's cart items
         cart=Cart(request)
-        cart_items = request.user.cart_items.all()
-        order_total = cart.cart_gsttotal()
-
+        cart_products =cart.get_cart_product()
+        cart_quantity =cart.get_quantity()
+        order_total_gst = cart.cart_gsttotal()
+        order_total = cart.cart_total()
+        
         # Create a new Payment instance
         payment = Payment.objects.create(
             user=request.user,
@@ -67,24 +70,30 @@ def place_order(request):
             user=request.user,
             payment=payment,
             full_name=f"{shipping_first_name} {shipping_last_name}",
-            order_total=order_total
+            order_total = order_total,
+            order_total_gst = order_total_gst,
+            order_note = "this is order note"
+            # order_note = order_note
         )
 
         # Create OrderItems instances and link them to the order
-        for item in cart_items:
+        for product in cart_products:
             OrderItems.objects.create(
-                order=order,
-                product=item.product,
+                Order   =order,
+                product=product,
+                img =product.img,
+                name = product.name,
                 user=request.user,
-                quantity=item.quantity,
-                price=item.product.price
+                quantity=cart_quantity[str(product.product_id)], 
+                price=product.price,
+                total_price=  product.price * cart_quantity[str(product.product_id)]
             )
 
         # Clear the user's cart
-        request.user.cart_items.all().delete()
+        cart.delete_all()
 
         messages.success(request, 'Your order has been placed successfully!')
-        return redirect('/')  # Redirect to a success page
+        return redirect('/order')  # Redirect to a success page
     
     else:
         messages.error(request, 'Please correct the errors in the shipping address form.')

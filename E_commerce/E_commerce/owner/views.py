@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from api.models import ProductModel,CategoryModel
+from payment.models import Order,OrderItems,Payment
 from payment.models import Order,OrderItems
 from django.contrib.auth import get_user_model
 import requests
@@ -10,6 +11,8 @@ from django.http import JsonResponse
 # Create your views here.
 
 CustomUser = get_user_model()
+
+# ================================ dashboard ============================
 @login_required(login_url='/signin')
 def dashboard(request):
     if request.user.is_staff:
@@ -17,20 +20,102 @@ def dashboard(request):
     return redirect('/')
 
 
+# ================================ order ============================
 @login_required
 def adminorder(request):
     if request.user.is_staff:
-        if request.method == 'POST':
-            name = request.POST.get('name')
-            price = request.POST.get('price')
-            unit = request.POST.get('unit')
-            stock = request.POST.get('stock')
-            img = request.FILES.get('image')
-            desc = request.POST.get('desc')
-        
         orders = Order.objects.all()
-        return render(request,"adminorder.html",{'orders':orders})
+        products = ProductModel.objects.all()
+        return render(request,"adminorder.html",{'orders':orders,'products':products})
     return redirect('/')
+
+@login_required(login_url='/signin')
+def adminorderdetail(request,order_id):
+    if request.user.is_staff:
+        try:
+            order = Order.objects.get(id=order_id)
+            # payment = Payment.objects.get(id=orderid)
+            order_products = OrderItems.objects.filter(Order=order_id)
+            if order:
+                return render(request,"orderdetail.html",{'order':order,'order_products':order_products})
+            else:
+                return render(request,"404.html",{'error':"order not found"})
+        except Order.DoesNotExist:
+            return render(request, "404.html", {'error': "Order not found"})
+    return redirect('/')
+
+@login_required(login_url='/signin')
+def adminorderadd(request,order_id):
+    if request.user.is_staff:
+        # Extract data from the form
+            full_name = request.POST.get('full_name')
+            order_total = request.POST.get('order_total')
+            order_status = request.POST.get('order_status')
+            order_note = request.POST.get('order_note')
+
+            # Validate form data
+            if not (full_name and order_total and order_status):
+                messages.error(request, 'Please fill in all required fields.')
+                return redirect('adminorderadd')
+
+            # Create a new Payment instance
+            payment = Payment.objects.create(
+                user=request.user,
+                payment_method='cash',  # Assuming default payment method is cash
+                amount_paid=order_total,
+                status='Not_Completed'
+            )
+
+            # Create a new Order instance
+            order = Order.objects.create(
+                user=request.user,
+                payment=payment,
+                full_name=full_name,
+                order_total=order_total,
+                order_status=order_status,
+                order_note=order_note
+            )
+
+            # Add OrderItems
+            # Assuming you have a list of items in the request
+            items = request.POST.getlist('items')  # Assuming 'items' is a list of dictionaries containing product_id, quantity, etc.
+
+            for item in items:
+                product_id = item.get('product_id')
+                quantity = item.get('quantity')
+                # Get the product based on the ID
+                product = ProductModel.objects.get(id=product_id)
+                # Create OrderItems instance
+                OrderItems.objects.create(
+                    order=order,
+                    product=product,
+                    user=request.user,
+                    quantity=quantity,
+                    price=product.price,
+                    total_price=product.price * quantity
+                )
+
+            messages.success(request, 'Order has been added successfully!')
+            return redirect('adminorderadd')
+            
+    return redirect('/')
+
+@login_required(login_url='/signin')
+def adminorderdetailupdate(request, order_id):
+    if request.user.is_staff:
+        pass
+    return redirect('/')
+
+@login_required(login_url='/signin')
+def adminorderdetaildelete(request, order_id):
+    if request.user.is_staff:
+        order = Order.objects.get(id=order_id)
+        order.delete()
+        return redirect('/admin/order')
+    return redirect('/')
+
+
+# ================================ user ============================
 
 @login_required(login_url='/signin')
 def adminuser(request):
@@ -39,6 +124,96 @@ def adminuser(request):
         return render(request,"adminuser.html",{'users':users})
     return redirect('/')    
 
+@login_required(login_url='/signin')
+def adminuserdetail(request, user_id):
+    if request.user.is_staff:
+        pass
+    return redirect('/')
+
+@login_required(login_url='/signin')
+def adminuseradd(request):
+    if request.user.is_staff:
+        if request.method == 'POST':
+            first_name = request.POST.get('first_name')
+            last_name = request.POST.get('last_name')
+            username = request.POST.get('username')
+            email = request.POST.get('email')
+            password = request.POST.get('password')
+            phone = request.POST.get('phone')
+            Address = request.POST.get('Address')
+            tandc = request.POST.get('tandc')
+
+            if not first_name or not last_name or not username or not email or not password or not phone or not Address:
+                messages.error(request, "All fields are required!")
+                return redirect('/signup/')
+            
+            user = CustomUser.objects.filter(username=username)
+            if user.exists():
+                messages.info(request, "Username already taken!")
+                return redirect('/signup/')
+            user = CustomUser.objects.create_user(
+                first_name=first_name,
+                last_name=last_name,
+                username=username,
+                email=email,
+                phone=phone,
+                Address = Address,
+                tandc = tandc
+            )
+            user.set_password(password)
+            user.save()
+    
+            messages.info(request, "Account created Successfully!")
+            return redirect('/admin/users/')
+            
+    return redirect('/')
+
+@login_required(login_url='/signin')
+def adminuserdetailupdate(request, user_id):
+    if request.user.is_staff:
+        myuser = CustomUser.objects.get(id=user_id)
+        if request.method == 'POST':
+            first_name = request.POST.get('first_name')
+            last_name = request.POST.get('last_name')
+            username = request.POST.get('username')
+            email = request.POST.get('email')
+            phone = request.POST.get('phone')
+            Address = request.POST.get('Address')
+
+            if not first_name or not last_name or not username or not email or not phone or not Address:
+                messages.error(request, "All fields are required!")
+                return redirect('/admin/users/')
+            if username != myuser.username and CustomUser.objects.filter(username=username).exists():
+                messages.error(request, "Username already taken!")
+                return redirect('/updateuser/')
+            
+            # Update user object with new values
+            myuser.first_name = first_name
+            myuser.last_name = last_name
+            myuser.username = username
+            myuser.email = email
+            myuser.phone = phone
+            myuser.Address = Address
+            
+            myuser.save()
+
+            messages.info(request, "Profile Updated Successfully!")
+            return redirect('/admin/users/')  
+    return redirect('/')
+
+@login_required(login_url='/signin')
+def adminuserdetaildelete(request, user_id):
+    if request.user.is_staff:
+        if request.method == 'POST':
+            myuser = CustomUser.objects.get(id=user_id)
+            myuser.delete()
+            messages.error(request,"{user_id}-account is successfully deleted !!!")
+            return redirect('/admin/users/')
+    return redirect('/')
+
+
+
+# ================================ category ============================
 @login_required(login_url='/signin')
 def admincategory(request):
     if request.user.is_staff:
@@ -96,6 +271,8 @@ def admincategorydelete(request,category_id):
                 return render(request,"404.html",{'error':"category not found"})
     return redirect('/')
  
+
+# ================================ product ============================
 @login_required(login_url='/signin')   
 def adminproducts(request):
     if request.user.is_staff:

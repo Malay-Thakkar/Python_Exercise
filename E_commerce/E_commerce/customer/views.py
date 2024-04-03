@@ -220,6 +220,7 @@ def deleteuser(request):
     logged_in_user = request.user
     myuser = CustomUser.objects.get(username=logged_in_user)
     myuser.delete()
+    messages.error(request,"Your account is successfully deleted !!!")
     return redirect('/signup/')
 
 @login_required(login_url='/signin')
@@ -229,4 +230,12 @@ def order(request):
 
 @login_required(login_url='/signin')
 def orderdetail(request,orderid):
-    pass
+    order = Order.objects.get(id=orderid)
+    # payment = Payment.objects.get(id=orderid)
+    order_products = OrderItems.objects.filter(Order =orderid)
+    if order.user == request.user:
+        return render(request,"orderdetail.html",{'order':order,'order_products':order_products})
+    elif not order:    
+        return render(request,"orderdetail.html")
+    else:
+        return render(request,"404.html",{'error':"You are not authorized to access that!"})

@@ -22,7 +22,7 @@ class ProductModel(models.Model):
     SearchableFields=['name','category']
     
     def __str__(self):
-        return self.name
+        return str(self.product_id)
     
 
  
