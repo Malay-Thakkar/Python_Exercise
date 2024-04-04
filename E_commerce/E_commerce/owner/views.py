@@ -37,7 +37,7 @@ def adminorderdetail(request,order_id):
             # payment = Payment.objects.get(id=orderid)
             order_products = OrderItems.objects.filter(Order=order_id)
             if order:
-                return render(request,"orderdetail.html",{'order':order,'order_products':order_products})
+                return render(request,"adminorderdetails.html",{'order':order,'order_products':order_products})
             else:
                 return render(request,"404.html",{'error':"order not found"})
         except Order.DoesNotExist:
@@ -109,9 +109,10 @@ def adminorderdetailupdate(request, order_id):
 @login_required(login_url='/signin')
 def adminorderdetaildelete(request, order_id):
     if request.user.is_staff:
-        order = Order.objects.get(id=order_id)
-        order.delete()
-        return redirect('/admin/order')
+        if request.method == 'POST':
+            order = Order.objects.get(id=order_id)
+            order.delete()
+            return redirect('/admin/order')
     return redirect('/')
 
 
@@ -127,7 +128,8 @@ def adminuser(request):
 @login_required(login_url='/signin')
 def adminuserdetail(request, user_id):
     if request.user.is_staff:
-        pass
+        user = CustomUser.objects.get(id=user_id)
+        return render(request,"adminuserdetails.html",{'user':user})
     return redirect('/')
 
 @login_required(login_url='/signin')
@@ -172,6 +174,9 @@ def adminuseradd(request):
 def adminuserdetailupdate(request, user_id):
     if request.user.is_staff:
         myuser = CustomUser.objects.get(id=user_id)
+        context = {
+        'myuser': myuser
+        }
         if request.method == 'POST':
             first_name = request.POST.get('first_name')
             last_name = request.POST.get('last_name')
@@ -198,17 +203,20 @@ def adminuserdetailupdate(request, user_id):
             myuser.save()
 
             messages.info(request, "Profile Updated Successfully!")
-            return redirect('/admin/users/')  
+            return redirect('/admin/users/')
+        return render(request, 'updateuser.html', context)
     return redirect('/')
 
 @login_required(login_url='/signin')
-def adminuserdetaildelete(request, user_id):
+def adminuserdelete(request, user_id):
     if request.user.is_staff:
+        user = CustomUser.objects.get(id=user_id)
         if request.method == 'POST':
-            myuser = CustomUser.objects.get(id=user_id)
-            myuser.delete()
+            user.delete()
             messages.error(request,"{user_id}-account is successfully deleted !!!")
-            return redirect('/admin/users/')
+            return render(request,"adminuserdetails.html",{'user':user})
+        else:
+            return render(request,"adminuserdetails.html",{'user':user})
     return redirect('/')
 
 

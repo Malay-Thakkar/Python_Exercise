@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import dashboard,admincategory,adminorder,adminproducts,adminuser,adminproductsdelete,adminproductsupdate,adminproductadd,admincategoryadd,admincategorydelete,admincategoryupdate,searchproduct,searchcategory,adminorderdetail,adminorderadd,adminorderdetailupdate,adminorderdetaildelete,adminuserdetail,adminuserdetailupdate,adminuserdetaildelete
+from .views import dashboard,admincategory,adminorder,adminproducts,adminuser,adminproductsdelete,adminproductsupdate,adminproductadd,admincategoryadd,admincategorydelete,admincategoryupdate,searchproduct,searchcategory,adminorderdetail,adminorderadd,adminorderdetailupdate,adminorderdetaildelete,adminuserdetail,adminuserdetailupdate,adminuserdelete
 
 urlpatterns = [
     path('',dashboard,name="dashboard"),
@@ -23,7 +23,7 @@ urlpatterns = [
     path('categorydelete/<int:category_id>/', admincategorydelete, name="admincategorydelete"),
     
     path('users/',adminuser,name="adminuser"),
-    path('user/<int:userid>',adminuserdetail,name="adminuserdetail"),
-    path('userupdate/<int:userid>',adminuserdetailupdate,name="adminuserdetailupdate"),
-    path('userdelete/<int:userid>',adminuserdetaildelete,name="adminuserdetaildelete"),
+    path('user/<int:user_id>',adminuserdetail,name="adminuserdetail"),
+    path('userupdate/<int:user_id>',adminuserdetailupdate,name="adminuserdetailupdate"),
+    path('userdelete/<int:user_id>',adminuserdelete,name="adminuserdelete"),
 ]

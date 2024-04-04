@@ -11,23 +11,18 @@ def checkout(request):
     cart_quantity =cart.get_quantity()
     total = cart.cart_total()
     gsttotal = cart.cart_gsttotal()
-    return render(request,"checkout.html",{'cart_products':cart_products,'cart_quantity':cart_quantity,'total':total,'gsttotal':gsttotal})
+    address = ShippingAddressModel.objects.filter(user=request.user)
+    return render(request,"checkout.html",{'cart_products':cart_products,'cart_quantity':cart_quantity,'total':total,'gsttotal':gsttotal,'address':address})
 
-@login_required(login_url='/signin')
-
-def place_order(request):
+def shipping_address(request):
+    cart=Cart(request)
+    cart_products =cart.get_cart_product()
+    cart_quantity =cart.get_quantity()
+    total = cart.cart_total()
+    gsttotal = cart.cart_gsttotal()
+    address = ShippingAddressModel.objects.filter(user=request.user)
     if request.method == 'POST':
-        # Retrieve payment method from the request POST data
-        # payment_method = request.POST.get('payment_method')
-        # order_note = request.POST.get('ordernote')
-        payment_method = 'cash'
-
-        # Validate payment method
-        if not payment_method:
-            messages.error(request, 'Please select a payment method.')
-            return redirect('checkout')
-
-         # Retrieve shipping address data from the form
+        # Retrieve shipping address data from the form
         shipping_first_name = request.POST.get('shipping_first_name')
         shipping_last_name = request.POST.get('shipping_last_name')
         shipping_phone = request.POST.get('shipping_phone')
@@ -36,6 +31,35 @@ def place_order(request):
         shipping_city = request.POST.get('shipping_city')
         shipping_state = request.POST.get('shipping_state')
         shipping_note = request.POST.get('shipping_note')
+        
+        # Create a new ShippingAddressModel instance
+        shipping_address = ShippingAddressModel.objects.create(
+            user=request.user,
+            shipping_first_name=shipping_first_name,
+            shipping_last_name=shipping_last_name,
+            shipping_phone=shipping_phone,
+            shipping_email=shipping_email,
+            shipping_address=shipping_address,
+            shipping_city=shipping_city,
+            shipping_state=shipping_state,
+            shipping_note=shipping_note
+        )
+        return render(request,"checkout.html",{'cart_products':cart_products,'cart_quantity':cart_quantity,'total':total,'gsttotal':gsttotal,'address':address})
+
+
+@login_required(login_url='/signin')
+def place_order(request):
+    if request.method == 'POST':
+        # Retrieve payment method from the request POST data
+        payment_method = request.POST.get('payment_method')
+        order_note = request.POST.get('ordernote')
+        address_id = request.POST.get('shipping_address')
+        shipping_address = ShippingAddressModel.objects.get(id=address_id)
+
+        # Validate payment method
+        if not payment_method:
+            messages.error(request, 'Please select a payment method.')
+            return redirect('checkout')
 
         # Retrieve user's cart items
         cart=Cart(request)
@@ -52,28 +76,15 @@ def place_order(request):
             status='Not_Completed'
         )
 
-        # Create a new ShippingAddressModel instance
-        shipping_address = ShippingAddressModel.objects.create(
-            user=request.user,
-            shipping_first_name=shipping_first_name,
-            shipping_last_name=shipping_last_name,
-            shipping_phone=shipping_phone,
-            shipping_email=shipping_email,
-            shipping_address=shipping_address,
-            shipping_city=shipping_city,
-            shipping_state=shipping_state,
-            shipping_note=shipping_note
-        )
-
         # Create a new Order instance
         order = Order.objects.create(
             user=request.user,
             payment=payment,
-            full_name=f"{shipping_first_name} {shipping_last_name}",
+            full_name= "temp",
+            shipping_address = shipping_address,
             order_total = order_total,
             order_total_gst = order_total_gst,
-            order_note = "this is order note"
-            # order_note = order_note
+            order_note = order_note
         )
 
         # Create OrderItems instances and link them to the order
@@ -93,9 +104,8 @@ def place_order(request):
         cart.delete_all()
 
         messages.success(request, 'Your order has been placed successfully!')
-        return redirect('/order')  # Redirect to a success page
+        return redirect('/order')
     
     else:
         messages.error(request, 'Please correct the errors in the shipping address form.')
-        return redirect('checkout')  # Redirect back to the checkout page with errors
-   
+        return redirect('checkout')

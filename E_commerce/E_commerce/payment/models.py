@@ -31,6 +31,10 @@ class ShippingAddressModel(models.Model):
     shipping_state = models.CharField(max_length=50)
     shipping_note = models.CharField(max_length=200,null=True,blank=True)
     
+    
+    def __str__(self):
+        return f"{self.shipping_first_name} {self.shipping_last_name} {self.shipping_address} {self.shipping_city} {self.shipping_phone} {self.shipping_email} user:{self.user}"
+    
     class Meta:
         verbose_name = 'Shipping Address'
         verbose_name_plural = 'Shipping Address'
@@ -45,6 +49,7 @@ class Order(models.Model):
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
+    shipping_address = models.ForeignKey(ShippingAddressModel, on_delete=models.CASCADE, blank=True, null=True)
     full_name = models.CharField(max_length=250)
     order_status=models.CharField(choices=STATUS,default='Pending')
     order_note = models.CharField(max_length=50,blank=True, null=True)

@@ -33,13 +33,11 @@
               <th>Last name</th>
               <th>Contact no</th>
               <th>View</th>
-              <th>Update</th>
               <th>Delete</th>
             </tr>
           </thead>
           <tbody>
             {% for user in users %}
-           
             <tr>
               <td>
                 <span class="font-weight-bold cartprodname">{{ user.id }}</span>
@@ -54,14 +52,9 @@
                 <span class="font-weight-bold">{{ user.phone }}</span>
               </td>
               <td>
-                <span class="font-weight-bold btn btn-success"><i class="bi bi-eye-fill"></i></span>
+                <a href="{% url 'adminuserdetail' user_id=user.id %}"><span class="font-weight-bold btn btn-success"><i class="bi bi-eye-fill"></i></span></a>
               </td>
-              <td>
-                <span class="font-weight-bold btn btn-info">Update</span>
-              </td>
-              <td>
-                <span class="font-weight-bold btn btn-danger">Delete</span>
-              </td>
+              <td><button class="btn btn-danger delete-button" data-bs-toggle="modal" data-bs-target="#deleteModal-{{forloop.counter}}">Delete</button></td>
             {% endfor %}
           </tbody>
         </table>
@@ -75,5 +68,29 @@
     </div>
   </main>
 </container>
+
+{% for user in users %}
+<div class="modal" id="deleteModal-{{forloop.counter}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to permanently delete this product?
+            </div>
+            <div class="modal-footer">
+                <form method="post" action="{% url 'adminuserdelete' user_id=user.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock dashboard-content %}
 

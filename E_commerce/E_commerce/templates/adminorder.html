@@ -27,7 +27,7 @@
 <container class="productcontainer">
   <h1>Order</h1>
   <main class="main bd-grid" id="product-container">
-    <div class="container mt-5">
+    <div class="container">
       <div class="d-flex">
         <div class="mr-auto p-2">
           <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#add_order">
@@ -85,9 +85,7 @@
               <td>
                 <span class="font-weight-bold btn btn-info">Update</span>
               </td>
-              <td>
-                <a href="{% url 'adminorderdetaildelete' order_id=order.id %}"><span class="font-weight-bold btn btn-danger">Delete</span></a>
-              </td>
+              <td><button class="btn btn-danger delete-button" data-bs-toggle="modal" data-bs-target="#deleteModal-{{forloop.counter}}">Delete</button></td>
             {% endfor %}
           </tbody>
         </table>
@@ -102,48 +100,28 @@
   </main>
 </container>
 
-
-<!-- for add popup -->
-<!-- Modal -->
-<div class="modal fade" id="add_order" tabindex="-1" aria-labelledby="add_orderLabel" aria-hidden="true">
+{% for order in orders %}
+<div class="modal" id="deleteModal-{{forloop.counter}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="add_orderLabel">Add Order</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <form method="post" action="{% url 'adminorderadd'  %}">
-                  {% csrf_token %}
-                  <div class="form-group">
-                      <label for="full_name" class="form-label">Full Name:</label>
-                      <input type="text" class="form-control" id="full_name" name="full_name" required>
-                  </div>
-                  <div class="form-group">
-                      <label for="order_total" class="form-label">Order Total:</label>
-                      <input type="number" class="form-control" id="order_total" name="order_total" required>
-                  </div>
-                  <div class="form-group">
-                      <label for="order_status" class="form-label">Order Status:</label>
-                      <select class="form-control" id="order_status" name="order_status" required>
-                          <option value="Pending">Pending</option>
-                          <option value="Accepted">Accepted</option>
-                          <option value="Completed">Completed</option>
-                          <option value="Cancelled">Cancelled</option>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label for="order_note" class="form-label">Order Note:</label>
-                      <textarea class="form-control" id="order_note" name="order_note"></textarea>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="submit" class="btn btn-info">Add Order</button>
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  </div>
-              </form>
-          </div>
-      </div>
-  </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to permanently delete this product?
+            </div>
+            <div class="modal-footer">
+                <form method="post" action="{% url 'adminorderdetaildelete' order_id=order.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
+{% endfor %}
 {% endblock dashboard-content %}
 

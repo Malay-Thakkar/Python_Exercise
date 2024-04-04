@@ -1,7 +1,11 @@
-{% extends "base.html" %}
+{% extends "sidebar.html" %}
 {% load static %}
-{% block body %}
-<container class="productcontainer">
+{% block dashboard-content %}
+<style>
+  .modal-content {
+      background-color: ivory;
+  }
+</style>
 {% if messages %}
 <div class="alert alert-primary" role="alert" id="messages-container"  style="position: absolute;z-index: 1;width: 100%;">
   {% for message in messages %}
@@ -19,12 +23,11 @@
     }
   }, 3000); // 3000 milliseconds = 3 seconds
 </script>
-<div class="pdr1">
-  <a href="/admin/order"><button class="btn btn-info">Go back to home Page</button></a>
-</div>
+
+<container class="productcontainer">
 <h1>orderdetails</h1>
 <main class="main bd-grid" id="product-container">
-  <div class="container mt-5">
+  <div class="container">
     <div class="table-responsive">
       {% if order %}
       <h5><b>Your Order Id:</b>  {{order}}</h5>
@@ -34,7 +37,6 @@
       <h5> <b>Buyer Name:</b> {{order.user}} </h5>
       <h5> <b>Order Notes:</b> {{order.order_note}} </h5>
       <h5> <b>Shipping address:</b> {{order.shipping_address}} </h5>
-
       <table class="table">
         <thead>
           <tr>
@@ -49,7 +51,7 @@
           {% for product in order_products %}
           <tr>
             <td>
-              <img class="card-img" src="../media/{{ product.img }}" alt="Product Image" />
+              <img class="card-img" src="../../../media/{{ product.img }}" alt="Product Image" />
             </td>
             <td>
               <span class="font-weight-bold">{{ product.name }}</span>
@@ -92,5 +94,4 @@
   </div>
 </main>
 </container>
-
-{% endblock body %}
+{% endblock dashboard-content %}

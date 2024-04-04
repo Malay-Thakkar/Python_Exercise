@@ -14,7 +14,7 @@
     --h3-font-size: 1rem;
     --normal-font-size: 0.938rem;
     --smaller-font-size: 0.75rem;
-    --bs-body-bg: rgba(225, 248, 251, 0.61);
+    --bs-body-bg: rgb(204, 249, 255);
 }
 
 @media screen and (min-width: 768px) {
@@ -240,7 +240,8 @@ a {
 /*Move left*/
 
 .card:hover {
-    box-shadow: 0 .5rem 1rem #D1D9E6;
+    border: 2px #000000;
+    box-shadow: 1rem 1rem 2rem #80858b;
 }
 
 .card:hover .card__name {
