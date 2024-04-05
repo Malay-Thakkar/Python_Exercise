@@ -44,6 +44,10 @@ def adminorderdetail(request,order_id):
             return render(request, "404.html", {'error': "Order not found"})
     return redirect('/')
 
+def product_add_in_order(request):
+    products = ProductModel.objects.all()
+    return render(request,"product-add-form.html",{'products':products})
+    
 @login_required(login_url='/signin')
 def adminorderadd(request,order_id):
     if request.user.is_staff:
