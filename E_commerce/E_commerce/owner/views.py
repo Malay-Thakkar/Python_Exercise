@@ -2,12 +2,14 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from api.models import ProductModel,CategoryModel
-from payment.models import Order,OrderItems,Payment
+from payment.models import Order, OrderItems, Payment
 from payment.models import Order,OrderItems
 from django.contrib.auth import get_user_model
 import requests
 from django.db.models import Q
 from django.http import JsonResponse
+import json
+from customer.views import order
 # Create your views here.
 
 CustomUser = get_user_model()
@@ -25,8 +27,7 @@ def dashboard(request):
 def adminorder(request):
     if request.user.is_staff:
         orders = Order.objects.all()
-        products = ProductModel.objects.all()
-        return render(request,"adminorder.html",{'orders':orders,'products':products})
+        return render(request,"adminorder.html",{'orders':orders})
     return redirect('/')
 
 @login_required(login_url='/signin')
@@ -43,56 +44,66 @@ def adminorderdetail(request,order_id):
         except Order.DoesNotExist:
             return render(request, "404.html", {'error': "Order not found"})
     return redirect('/')
-
-def product_add_in_order(request):
-    products = ProductModel.objects.all()
-    return render(request,"product-add-form.html",{'products':products})
     
 @login_required(login_url='/signin')
-def adminorderadd(request,order_id):
+def adminorderadd(request):
     if request.user.is_staff:
-        # Extract data from the form
-            full_name = request.POST.get('full_name')
-            order_total = request.POST.get('order_total')
+        if request.method  == 'POST':
+
+            products_data = request.POST.get('productsObject')  # Corrected field name
+            products_dict = json.loads(products_data) # Convert the JSON string to a Python dictionary
+            
+            #calculate total price
+            total = 0
+            for key, value in products_dict.items():
+                key = int(key)
+                prod = ProductModel.objects.filter(product_id = key).values().first()
+                if prod is not None:
+                    total += (prod['price'] * value)
+                else:
+                    print(f"Product with ID {key} not found.")
+            
+            full_name = request.POST.get('fullname')
+            payment_method = request.POST.get('payment_method')
+            payment_status = request.POST.get('payment_status')
             order_status = request.POST.get('order_status')
+            order_total = total
+            order_total_gst = ((total * 18) /100) +total
             order_note = request.POST.get('order_note')
 
             # Validate form data
-            if not (full_name and order_total and order_status):
-                messages.error(request, 'Please fill in all required fields.')
+            if not (full_name and payment_method and payment_status and order_total and order_status ):
+                messages.error(request, 'Please fill required all fields.')
                 return redirect('adminorderadd')
 
             # Create a new Payment instance
             payment = Payment.objects.create(
                 user=request.user,
-                payment_method='cash',  # Assuming default payment method is cash
+                payment_method=payment_method,
                 amount_paid=order_total,
-                status='Not_Completed'
+                status=payment_status
             )
-
             # Create a new Order instance
             order = Order.objects.create(
                 user=request.user,
                 payment=payment,
                 full_name=full_name,
                 order_total=order_total,
+                order_total_gst = order_total_gst,
                 order_status=order_status,
                 order_note=order_note
             )
-
-            # Add OrderItems
-            # Assuming you have a list of items in the request
-            items = request.POST.getlist('items')  # Assuming 'items' is a list of dictionaries containing product_id, quantity, etc.
-
-            for item in items:
-                product_id = item.get('product_id')
-                quantity = item.get('quantity')
+            for id,quantity in products_dict.items():
+                product_id = id
+                quantity = quantity
                 # Get the product based on the ID
-                product = ProductModel.objects.get(id=product_id)
+                product = ProductModel.objects.get(product_id=product_id)
                 # Create OrderItems instance
                 OrderItems.objects.create(
-                    order=order,
+                    Order=order,
                     product=product,
+                    img =product.img,
+                    name =product.name,
                     user=request.user,
                     quantity=quantity,
                     price=product.price,
@@ -100,8 +111,9 @@ def adminorderadd(request,order_id):
                 )
 
             messages.success(request, 'Order has been added successfully!')
-            return redirect('adminorderadd')
-            
+            return redirect('adminorder')
+        products = ProductModel.objects.all()
+        return render(request,"adminaddorder.html",{'products':products})
     return redirect('/')
 
 @login_required(login_url='/signin')

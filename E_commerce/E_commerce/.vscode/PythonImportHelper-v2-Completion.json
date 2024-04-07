@@ -144,7 +144,231 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -209,6 +433,70 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
         "label": "admin",
         "importPath": "django.contrib",
         "description": "django.contrib",
@@ -249,38 +537,6 @@
         "documentation": {}
     },
     {
-        "label": "admin",
-        "importPath": "django.contrib",
-        "description": "django.contrib",
-        "isExtraImport": true,
-        "detail": "django.contrib",
-        "documentation": {}
-    },
-    {
-        "label": "admin",
-        "importPath": "django.contrib",
-        "description": "django.contrib",
-        "isExtraImport": true,
-        "detail": "django.contrib",
-        "documentation": {}
-    },
-    {
-        "label": "messages",
-        "importPath": "django.contrib",
-        "description": "django.contrib",
-        "isExtraImport": true,
-        "detail": "django.contrib",
-        "documentation": {}
-    },
-    {
-        "label": "admin",
-        "importPath": "django.contrib",
-        "description": "django.contrib",
-        "isExtraImport": true,
-        "detail": "django.contrib",
-        "documentation": {}
-    },
-    {
         "label": "ProductModel",
         "importPath": "api.models",
         "description": "api.models",
@@ -370,6 +626,14 @@
     },
     {
         "label": "CategoryModel",
+        "importPath": "api.models",
+        "description": "api.models",
+        "isExtraImport": true,
+        "detail": "api.models",
+        "documentation": {}
+    },
+    {
+        "label": "ProductModel",
         "importPath": "api.models",
         "description": "api.models",
         "isExtraImport": true,
@@ -537,6 +801,14 @@
         "documentation": {}
     },
     {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "ProductViewSet",
         "importPath": "api.views",
         "description": "api.views",
@@ -641,6 +913,22 @@
         "documentation": {}
     },
     {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "action",
         "importPath": "rest_framework.decorators",
         "description": "rest_framework.decorators",
@@ -694,6 +982,14 @@
         "description": "customer.models",
         "isExtraImport": true,
         "detail": "customer.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
+        "importPath": "cart.cart",
+        "description": "cart.cart",
+        "isExtraImport": true,
+        "detail": "cart.cart",
         "documentation": {}
     },
     {
@@ -826,14 +1122,6 @@
         "documentation": {}
     },
     {
-        "label": "User",
-        "importPath": "django.contrib.auth.models",
-        "description": "django.contrib.auth.models",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.models",
-        "documentation": {}
-    },
-    {
         "label": "django.contrib.auth.validators",
         "kind": 6,
         "isExtraImport": true,
@@ -849,6 +1137,110 @@
         "importPath": "django.utils.timezone",
         "description": "django.utils.timezone",
         "detail": "django.utils.timezone",
+        "documentation": {}
+    },
+    {
+        "label": "ShippingAddressModel",
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "isExtraImport": true,
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "isExtraImport": true,
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "OrderItems",
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "isExtraImport": true,
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "Payment",
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "isExtraImport": true,
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "isExtraImport": true,
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "OrderItems",
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "isExtraImport": true,
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "Payment",
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "isExtraImport": true,
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "isExtraImport": true,
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "OrderItems",
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "isExtraImport": true,
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "isExtraImport": true,
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "OrderItems",
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "isExtraImport": true,
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "Payment",
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "isExtraImport": true,
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "ShippingAddressModel",
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "isExtraImport": true,
+        "detail": "payment.models",
         "documentation": {}
     },
     {
@@ -881,6 +1273,22 @@
         "description": "django.contrib.auth",
         "isExtraImport": true,
         "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
         "documentation": {}
     },
     {
@@ -988,6 +1396,14 @@
         "description": "django.db.models",
         "isExtraImport": true,
         "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "order",
+        "importPath": "customer.views",
+        "description": "customer.views",
+        "isExtraImport": true,
+        "detail": "customer.views",
         "documentation": {}
     },
     {
@@ -1175,7 +1591,7 @@
         "kind": 2,
         "importPath": "cart.views",
         "description": "cart.views",
-        "peekOfCode": "def cart_summary(request):\n    cart=Cart(request)\n    cart_products =cart.get_cart_product()\n    cart_quantity =cart.get_quantity()\n    total = cart.cart_total()\n    return render(request,'cart.html',{'cart_products':cart_products,'cart_quantity':cart_quantity,'total':total})\ndef cart_add(request):\n    cart = Cart(request)\n    if request.POST.get('action')=='post':\n        product_id = int(request.POST.get('product_id'))",
+        "peekOfCode": "def cart_summary(request):\n    cart=Cart(request)\n    cart_products =cart.get_cart_product()\n    cart_quantity =cart.get_quantity()\n    total = cart.cart_total()\n    gsttotal = cart.cart_gsttotal()\n    return render(request,'cart.html',{'cart_products':cart_products,'cart_quantity':cart_quantity,'total':total,'gsttotal':gsttotal})\ndef cart_add(request):\n    cart = Cart(request)\n    if request.POST.get('action')=='post':",
         "detail": "cart.views",
         "documentation": {}
     },
@@ -1288,6 +1704,33 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "customer.migrations.0006_customuser_user",
+        "description": "customer.migrations.0006_customuser_user",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('payment', '0014_order_shipping_address'),\n        ('customer', '0005_customuser_old_wishlist'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customuser',\n            name='user',\n            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='payment.shippingaddressmodel'),",
+        "detail": "customer.migrations.0006_customuser_user",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "customer.migrations.0007_rename_user_customuser_shipping_address",
+        "description": "customer.migrations.0007_rename_user_customuser_shipping_address",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('customer', '0006_customuser_user'),\n    ]\n    operations = [\n        migrations.RenameField(\n            model_name='customuser',\n            old_name='user',\n            new_name='shipping_address',\n        ),",
+        "detail": "customer.migrations.0007_rename_user_customuser_shipping_address",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "customer.migrations.0008_rename_shipping_address_customuser_shipping_address_model",
+        "description": "customer.migrations.0008_rename_shipping_address_customuser_shipping_address_model",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('customer', '0007_rename_user_customuser_shipping_address'),\n    ]\n    operations = [\n        migrations.RenameField(\n            model_name='customuser',\n            old_name='shipping_address',\n            new_name='shipping_address_model',\n        ),",
+        "detail": "customer.migrations.0008_rename_shipping_address_customuser_shipping_address_model",
+        "documentation": {}
+    },
+    {
         "label": "CustomerConfig",
         "kind": 6,
         "importPath": "customer.apps",
@@ -1301,7 +1744,7 @@
         "kind": 6,
         "importPath": "customer.models",
         "description": "customer.models",
-        "peekOfCode": "class CustomUser(AbstractUser):\n    phone = models.CharField(max_length=12, blank=True)\n    Address = models.TextField(blank=True)\n    tandc = models.CharField(blank=True)\n    old_cart = models.CharField(max_length=250,blank=True)\n    old_wishlist = models.CharField(max_length=250,blank=True)\n    # Add any other custom fields you need\n    def __str__(self):\n        return self.username",
+        "peekOfCode": "class CustomUser(AbstractUser):\n    phone = models.CharField(max_length=12, blank=True)\n    Address = models.TextField(blank=True)\n    tandc = models.CharField(blank=True)\n    old_cart = models.CharField(max_length=250,blank=True)\n    old_wishlist = models.CharField(max_length=250,blank=True)\n    shipping_address_model = models.ForeignKey(ShippingAddressModel,on_delete=models.SET_NULL,null=True,blank=True)\n    # Add any other custom fields you need\n    def __str__(self):\n        return self.username",
         "detail": "customer.models",
         "documentation": {}
     },
@@ -1463,7 +1906,7 @@
         "kind": 2,
         "importPath": "customer.views",
         "description": "customer.views",
-        "peekOfCode": "def forgotpasswd(request):\n    pass\n@login_required(login_url='/signin')\ndef deleteuser(request):\n    logged_in_user = request.user\n    myuser = CustomUser.objects.get(username=logged_in_user)\n    myuser.delete()\n    return redirect('/signup/')",
+        "peekOfCode": "def forgotpasswd(request):\n    pass\n@login_required(login_url='/signin')\ndef deleteuser(request):\n    logged_in_user = request.user\n    myuser = CustomUser.objects.get(username=logged_in_user)\n    myuser.delete()\n    messages.error(request,\"Your account is successfully deleted !!!\")\n    return redirect('/signup/')\n@login_required(login_url='/signin')",
         "detail": "customer.views",
         "documentation": {}
     },
@@ -1472,7 +1915,25 @@
         "kind": 2,
         "importPath": "customer.views",
         "description": "customer.views",
-        "peekOfCode": "def deleteuser(request):\n    logged_in_user = request.user\n    myuser = CustomUser.objects.get(username=logged_in_user)\n    myuser.delete()\n    return redirect('/signup/')",
+        "peekOfCode": "def deleteuser(request):\n    logged_in_user = request.user\n    myuser = CustomUser.objects.get(username=logged_in_user)\n    myuser.delete()\n    messages.error(request,\"Your account is successfully deleted !!!\")\n    return redirect('/signup/')\n@login_required(login_url='/signin')\ndef order(request):\n    orders = Order.objects.filter(user=request.user)\n    return render(request,\"order.html\",{'orders':orders})",
+        "detail": "customer.views",
+        "documentation": {}
+    },
+    {
+        "label": "order",
+        "kind": 2,
+        "importPath": "customer.views",
+        "description": "customer.views",
+        "peekOfCode": "def order(request):\n    orders = Order.objects.filter(user=request.user)\n    return render(request,\"order.html\",{'orders':orders})\n@login_required(login_url='/signin')\ndef orderdetail(request,orderid):\n    order = Order.objects.get(id=orderid)\n    # payment = Payment.objects.get(id=orderid)\n    order_products = OrderItems.objects.filter(Order =orderid)\n    if order.user == request.user:\n        return render(request,\"orderdetail.html\",{'order':order,'order_products':order_products})",
+        "detail": "customer.views",
+        "documentation": {}
+    },
+    {
+        "label": "orderdetail",
+        "kind": 2,
+        "importPath": "customer.views",
+        "description": "customer.views",
+        "peekOfCode": "def orderdetail(request,orderid):\n    order = Order.objects.get(id=orderid)\n    # payment = Payment.objects.get(id=orderid)\n    order_products = OrderItems.objects.filter(Order =orderid)\n    if order.user == request.user:\n        return render(request,\"orderdetail.html\",{'order':order,'order_products':order_products})\n    elif not order:    \n        return render(request,\"orderdetail.html\")\n    else:\n        return render(request,\"404.html\",{'error':\"You are not authorized to access that!\"})",
         "detail": "customer.views",
         "documentation": {}
     },
@@ -1643,7 +2104,7 @@
         "kind": 5,
         "importPath": "E_commerce.settings",
         "description": "E_commerce.settings",
-        "peekOfCode": "STATICFILES_DIRS = [\n    BASE_DIR/'static',\n]\nMEDIA_ROOT = BASE_DIR/'media'\nMEDIA_URL = '/media/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'customer.CustomUser'\nREST_FRAMEWORK = {",
+        "peekOfCode": "STATICFILES_DIRS = [\n    BASE_DIR/'static',\n]\nMEDIA_ROOT = BASE_DIR/'media'\nMEDIA_URL = '/media/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'customer.CustomUser'\nTIME_ZONE =  'Asia/Kolkata'",
         "detail": "E_commerce.settings",
         "documentation": {}
     },
@@ -1652,7 +2113,7 @@
         "kind": 5,
         "importPath": "E_commerce.settings",
         "description": "E_commerce.settings",
-        "peekOfCode": "MEDIA_ROOT = BASE_DIR/'media'\nMEDIA_URL = '/media/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'customer.CustomUser'\nREST_FRAMEWORK = {\n    # Use Django's standard `django.contrib.auth` permissions,\n    # or allow read-only access for unauthenticated users.\n    'DEFAULT_PERMISSION_CLASSES': [",
+        "peekOfCode": "MEDIA_ROOT = BASE_DIR/'media'\nMEDIA_URL = '/media/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'customer.CustomUser'\nTIME_ZONE =  'Asia/Kolkata'\nREST_FRAMEWORK = {\n    # Use Django's standard `django.contrib.auth` permissions,\n    # or allow read-only access for unauthenticated users.",
         "detail": "E_commerce.settings",
         "documentation": {}
     },
@@ -1661,7 +2122,7 @@
         "kind": 5,
         "importPath": "E_commerce.settings",
         "description": "E_commerce.settings",
-        "peekOfCode": "MEDIA_URL = '/media/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'customer.CustomUser'\nREST_FRAMEWORK = {\n    # Use Django's standard `django.contrib.auth` permissions,\n    # or allow read-only access for unauthenticated users.\n    'DEFAULT_PERMISSION_CLASSES': [\n        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'",
+        "peekOfCode": "MEDIA_URL = '/media/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'customer.CustomUser'\nTIME_ZONE =  'Asia/Kolkata'\nREST_FRAMEWORK = {\n    # Use Django's standard `django.contrib.auth` permissions,\n    # or allow read-only access for unauthenticated users.\n    'DEFAULT_PERMISSION_CLASSES': [",
         "detail": "E_commerce.settings",
         "documentation": {}
     },
@@ -1670,7 +2131,7 @@
         "kind": 5,
         "importPath": "E_commerce.settings",
         "description": "E_commerce.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'customer.CustomUser'\nREST_FRAMEWORK = {\n    # Use Django's standard `django.contrib.auth` permissions,\n    # or allow read-only access for unauthenticated users.\n    'DEFAULT_PERMISSION_CLASSES': [\n        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'\n    ]\n}\n#mail",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = 'customer.CustomUser'\nTIME_ZONE =  'Asia/Kolkata'\nREST_FRAMEWORK = {\n    # Use Django's standard `django.contrib.auth` permissions,\n    # or allow read-only access for unauthenticated users.\n    'DEFAULT_PERMISSION_CLASSES': [\n        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'\n    ]\n}",
         "detail": "E_commerce.settings",
         "documentation": {}
     },
@@ -1679,7 +2140,16 @@
         "kind": 5,
         "importPath": "E_commerce.settings",
         "description": "E_commerce.settings",
-        "peekOfCode": "AUTH_USER_MODEL = 'customer.CustomUser'\nREST_FRAMEWORK = {\n    # Use Django's standard `django.contrib.auth` permissions,\n    # or allow read-only access for unauthenticated users.\n    'DEFAULT_PERMISSION_CLASSES': [\n        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'\n    ]\n}\n#mail\nload_dotenv()",
+        "peekOfCode": "AUTH_USER_MODEL = 'customer.CustomUser'\nTIME_ZONE =  'Asia/Kolkata'\nREST_FRAMEWORK = {\n    # Use Django's standard `django.contrib.auth` permissions,\n    # or allow read-only access for unauthenticated users.\n    'DEFAULT_PERMISSION_CLASSES': [\n        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'\n    ]\n}\n#mail",
+        "detail": "E_commerce.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIME_ZONE",
+        "kind": 5,
+        "importPath": "E_commerce.settings",
+        "description": "E_commerce.settings",
+        "peekOfCode": "TIME_ZONE =  'Asia/Kolkata'\nREST_FRAMEWORK = {\n    # Use Django's standard `django.contrib.auth` permissions,\n    # or allow read-only access for unauthenticated users.\n    'DEFAULT_PERMISSION_CLASSES': [\n        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'\n    ]\n}\n#mail\nload_dotenv()",
         "detail": "E_commerce.settings",
         "documentation": {}
     },
@@ -1760,7 +2230,7 @@
         "kind": 5,
         "importPath": "E_commerce.urls",
         "description": "E_commerce.urls",
-        "peekOfCode": "urlpatterns = [\n    path('dj-admin/', admin.site.urls),\n    path('',include('customer.urls')),\n    path('',include('cart.urls')),\n    path('api/',include('api.urls')),\n    path('admin/',include('owner.urls')),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('dj-admin/', admin.site.urls),\n    path('',include('customer.urls')),\n    path('',include('cart.urls')),\n    path('',include('payment.urls')),\n    path('api/',include('api.urls')),\n    path('admin/',include('owner.urls')),\n]",
         "detail": "E_commerce.urls",
         "documentation": {}
     },
@@ -1787,7 +2257,7 @@
         "kind": 5,
         "importPath": "owner.urls",
         "description": "owner.urls",
-        "peekOfCode": "urlpatterns = [\n    path('',dashboard,name=\"dashboard\"),\n    path('order/',adminorder,name=\"adminorder\"),\n    path('products/',adminproducts,name=\"adminproducts\"),\n    path('searchproduct/',searchproduct, name='searchproduct'),\n    path('adminproductadd/',adminproductadd,name=\"adminproductadd\"),\n    path('productsupdate/<int:product_id>/', adminproductsupdate, name=\"adminproductsupdate\"),\n    path('productsdelete/<int:product_id>/', adminproductsdelete, name=\"adminproductsdelete\"),\n    path('category/',admincategory,name=\"admincategory\"),\n    path('searchcategory/',searchcategory, name='searchcategory'),",
+        "peekOfCode": "urlpatterns = [\n    path('',dashboard,name=\"dashboard\"),\n    path('order/',adminorder,name=\"adminorder\"),\n    path('order/<int:order_id>/',adminorderdetail,name=\"adminorderdetail\"),\n    path('orderadd/',adminorderadd,name=\"adminorderadd\"),\n    path('orderupdate/<int:order_id>/',adminorderdetailupdate,name=\"adminorderdetailupdate\"),\n    path('orderdelete/<int:order_id>/',adminorderdetaildelete,name=\"adminorderdetaildelete\"),\n    path('products/',adminproducts,name=\"adminproducts\"),\n    path('searchproduct/',searchproduct, name='searchproduct'),\n    path('adminproductadd/',adminproductadd,name=\"adminproductadd\"),",
         "detail": "owner.urls",
         "documentation": {}
     },
@@ -1796,7 +2266,7 @@
         "kind": 2,
         "importPath": "owner.views",
         "description": "owner.views",
-        "peekOfCode": "def dashboard(request):\n    if request.user.is_staff:\n        return render(request,\"dashboard.html\")\n    return redirect('/')\n@login_required\ndef adminorder(request):\n    if request.user.is_staff:\n        if request.method == 'POST':\n            name = request.POST.get('name')\n            price = request.POST.get('price')",
+        "peekOfCode": "def dashboard(request):\n    if request.user.is_staff:\n        return render(request,\"dashboard.html\")\n    return redirect('/')\n# ================================ order ============================\n@login_required\ndef adminorder(request):\n    if request.user.is_staff:\n        orders = Order.objects.all()\n        return render(request,\"adminorder.html\",{'orders':orders})",
         "detail": "owner.views",
         "documentation": {}
     },
@@ -1805,7 +2275,43 @@
         "kind": 2,
         "importPath": "owner.views",
         "description": "owner.views",
-        "peekOfCode": "def adminorder(request):\n    if request.user.is_staff:\n        if request.method == 'POST':\n            name = request.POST.get('name')\n            price = request.POST.get('price')\n            unit = request.POST.get('unit')\n            stock = request.POST.get('stock')\n            img = request.FILES.get('image')\n            desc = request.POST.get('desc')\n            # Now, you can make a POST request to your API to add the product",
+        "peekOfCode": "def adminorder(request):\n    if request.user.is_staff:\n        orders = Order.objects.all()\n        return render(request,\"adminorder.html\",{'orders':orders})\n    return redirect('/')\n@login_required(login_url='/signin')\ndef adminorderdetail(request,order_id):\n    if request.user.is_staff:\n        try:\n            order = Order.objects.get(id=order_id)",
+        "detail": "owner.views",
+        "documentation": {}
+    },
+    {
+        "label": "adminorderdetail",
+        "kind": 2,
+        "importPath": "owner.views",
+        "description": "owner.views",
+        "peekOfCode": "def adminorderdetail(request,order_id):\n    if request.user.is_staff:\n        try:\n            order = Order.objects.get(id=order_id)\n            # payment = Payment.objects.get(id=orderid)\n            order_products = OrderItems.objects.filter(Order=order_id)\n            if order:\n                return render(request,\"adminorderdetails.html\",{'order':order,'order_products':order_products})\n            else:\n                return render(request,\"404.html\",{'error':\"order not found\"})",
+        "detail": "owner.views",
+        "documentation": {}
+    },
+    {
+        "label": "adminorderadd",
+        "kind": 2,
+        "importPath": "owner.views",
+        "description": "owner.views",
+        "peekOfCode": "def adminorderadd(request):\n    if request.user.is_staff:\n        if request.method  == 'POST':\n            products_data = request.POST.get('productsObject')  # Corrected field name\n            products_dict = json.loads(products_data) # Convert the JSON string to a Python dictionary\n            #calculate total price\n            total = 0\n            for key, value in products_dict.items():\n                key = int(key)\n                prod = ProductModel.objects.filter(product_id = key).values().first()",
+        "detail": "owner.views",
+        "documentation": {}
+    },
+    {
+        "label": "adminorderdetailupdate",
+        "kind": 2,
+        "importPath": "owner.views",
+        "description": "owner.views",
+        "peekOfCode": "def adminorderdetailupdate(request, order_id):\n    if request.user.is_staff:\n        pass\n    return redirect('/')\n@login_required(login_url='/signin')\ndef adminorderdetaildelete(request, order_id):\n    if request.user.is_staff:\n        if request.method == 'POST':\n            order = Order.objects.get(id=order_id)\n            order.delete()",
+        "detail": "owner.views",
+        "documentation": {}
+    },
+    {
+        "label": "adminorderdetaildelete",
+        "kind": 2,
+        "importPath": "owner.views",
+        "description": "owner.views",
+        "peekOfCode": "def adminorderdetaildelete(request, order_id):\n    if request.user.is_staff:\n        if request.method == 'POST':\n            order = Order.objects.get(id=order_id)\n            order.delete()\n            return redirect('/admin/order')\n    return redirect('/')\n# ================================ user ============================\n@login_required(login_url='/signin')\ndef adminuser(request):",
         "detail": "owner.views",
         "documentation": {}
     },
@@ -1814,7 +2320,43 @@
         "kind": 2,
         "importPath": "owner.views",
         "description": "owner.views",
-        "peekOfCode": "def adminuser(request):\n    if request.user.is_staff:\n        return render(request,\"adminuser.html\")\n    return redirect('/')    \ndef admincategory(request):\n    if request.user.is_staff:\n        categorys = CategoryModel.objects.all()\n        return render(request,\"admincategory.html\",{'Categorys':categorys})\n    return redirect('/')\ndef admincategoryadd(request):",
+        "peekOfCode": "def adminuser(request):\n    if request.user.is_staff:\n        users = CustomUser.objects.all()\n        return render(request,\"adminuser.html\",{'users':users})\n    return redirect('/')    \n@login_required(login_url='/signin')\ndef adminuserdetail(request, user_id):\n    if request.user.is_staff:\n        user = CustomUser.objects.get(id=user_id)\n        return render(request,\"adminuserdetails.html\",{'user':user})",
+        "detail": "owner.views",
+        "documentation": {}
+    },
+    {
+        "label": "adminuserdetail",
+        "kind": 2,
+        "importPath": "owner.views",
+        "description": "owner.views",
+        "peekOfCode": "def adminuserdetail(request, user_id):\n    if request.user.is_staff:\n        user = CustomUser.objects.get(id=user_id)\n        return render(request,\"adminuserdetails.html\",{'user':user})\n    return redirect('/')\n@login_required(login_url='/signin')\ndef adminuseradd(request):\n    if request.user.is_staff:\n        if request.method == 'POST':\n            first_name = request.POST.get('first_name')",
+        "detail": "owner.views",
+        "documentation": {}
+    },
+    {
+        "label": "adminuseradd",
+        "kind": 2,
+        "importPath": "owner.views",
+        "description": "owner.views",
+        "peekOfCode": "def adminuseradd(request):\n    if request.user.is_staff:\n        if request.method == 'POST':\n            first_name = request.POST.get('first_name')\n            last_name = request.POST.get('last_name')\n            username = request.POST.get('username')\n            email = request.POST.get('email')\n            password = request.POST.get('password')\n            phone = request.POST.get('phone')\n            Address = request.POST.get('Address')",
+        "detail": "owner.views",
+        "documentation": {}
+    },
+    {
+        "label": "adminuserdetailupdate",
+        "kind": 2,
+        "importPath": "owner.views",
+        "description": "owner.views",
+        "peekOfCode": "def adminuserdetailupdate(request, user_id):\n    if request.user.is_staff:\n        myuser = CustomUser.objects.get(id=user_id)\n        context = {\n        'myuser': myuser\n        }\n        if request.method == 'POST':\n            first_name = request.POST.get('first_name')\n            last_name = request.POST.get('last_name')\n            username = request.POST.get('username')",
+        "detail": "owner.views",
+        "documentation": {}
+    },
+    {
+        "label": "adminuserdelete",
+        "kind": 2,
+        "importPath": "owner.views",
+        "description": "owner.views",
+        "peekOfCode": "def adminuserdelete(request, user_id):\n    if request.user.is_staff:\n        user = CustomUser.objects.get(id=user_id)\n        if request.method == 'POST':\n            user.delete()\n            messages.error(request,\"{user_id}-account is successfully deleted !!!\")\n            return render(request,\"adminuserdetails.html\",{'user':user})\n        else:\n            return render(request,\"adminuserdetails.html\",{'user':user})\n    return redirect('/')",
         "detail": "owner.views",
         "documentation": {}
     },
@@ -1823,7 +2365,7 @@
         "kind": 2,
         "importPath": "owner.views",
         "description": "owner.views",
-        "peekOfCode": "def admincategory(request):\n    if request.user.is_staff:\n        categorys = CategoryModel.objects.all()\n        return render(request,\"admincategory.html\",{'Categorys':categorys})\n    return redirect('/')\ndef admincategoryadd(request):\n    if request.user.is_staff:\n        if request.method == 'POST':\n            category = request.POST.get('category')\n            if CategoryModel.objects.filter(category=category).exists():",
+        "peekOfCode": "def admincategory(request):\n    if request.user.is_staff:\n        categorys = CategoryModel.objects.all()\n        return render(request,\"admincategory.html\",{'Categorys':categorys})\n    return redirect('/')\n@login_required(login_url='/signin')\ndef admincategoryadd(request):\n    if request.user.is_staff:\n        if request.method == 'POST':\n            category = request.POST.get('category')",
         "detail": "owner.views",
         "documentation": {}
     },
@@ -1859,7 +2401,7 @@
         "kind": 2,
         "importPath": "owner.views",
         "description": "owner.views",
-        "peekOfCode": "def adminproducts(request):\n    if request.user.is_staff:\n        domain = request.get_host()\n        products = ProductModel.objects.all()\n        categorys = CategoryModel.objects.all()\n        return render(request,\"adminproduts.html\",{'products':products,'categorys':categorys,'domain':domain})\n    return redirect('/')\ndef adminproductadd(request):\n    if request.user.is_staff:\n        if request.method == 'POST':",
+        "peekOfCode": "def adminproducts(request):\n    if request.user.is_staff:\n        domain = request.get_host()\n        products = ProductModel.objects.all()\n        categorys = CategoryModel.objects.all()\n        return render(request,\"adminproduts.html\",{'products':products,'categorys':categorys,'domain':domain})\n    return redirect('/')\n@login_required(login_url='/signin')\ndef adminproductadd(request):\n    if request.user.is_staff:",
         "detail": "owner.views",
         "documentation": {}
     },
@@ -1895,7 +2437,7 @@
         "kind": 2,
         "importPath": "owner.views",
         "description": "owner.views",
-        "peekOfCode": "def searchproduct(request):\n    if request.method == 'GET':\n        query = request.GET.get('search')\n        if query:\n            results = ProductModel.objects.filter(Q(name__icontains=query) | Q(category__category__icontains=query))\n            context = {'products': results}\n            return JsonResponse({'html': render(request, 'search_products.html', context).content.decode('utf-8')})\n    return JsonResponse({'html': ''})\ndef searchcategory(request):\n    if request.method == 'GET':",
+        "peekOfCode": "def searchproduct(request):\n    if request.method == 'GET':\n        query = request.GET.get('search')\n        if query:\n            results = ProductModel.objects.filter(Q(name__icontains=query) | Q(category__category__icontains=query))\n            context = {'products': results}\n            return JsonResponse({'html': render(request, 'search_products.html', context).content.decode('utf-8')})\n    return JsonResponse({'html': ''})\n@login_required(login_url='/signin')\ndef searchcategory(request):",
         "detail": "owner.views",
         "documentation": {}
     },
@@ -1909,12 +2451,219 @@
         "documentation": {}
     },
     {
+        "label": "CustomUser",
+        "kind": 5,
+        "importPath": "owner.views",
+        "description": "owner.views",
+        "peekOfCode": "CustomUser = get_user_model()\n# ================================ dashboard ============================\n@login_required(login_url='/signin')\ndef dashboard(request):\n    if request.user.is_staff:\n        return render(request,\"dashboard.html\")\n    return redirect('/')\n# ================================ order ============================\n@login_required\ndef adminorder(request):",
+        "detail": "owner.views",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "payment.migrations.0001_initial",
+        "description": "payment.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n        ('api', '0004_rename_disc_productmodel_desc'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Order',\n            fields=[",
+        "detail": "payment.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "payment.migrations.0002_order_order_status_alter_payment_status",
+        "description": "payment.migrations.0002_order_order_status_alter_payment_status",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('payment', '0001_initial'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='order',\n            name='order_status',\n            field=models.CharField(choices=[('Pending', 'Pending'), ('Accepted', 'Accepted'), ('Completed', 'Completed'), ('Cancelled', 'Cancelled')], default='Pending'),\n        ),",
+        "detail": "payment.migrations.0002_order_order_status_alter_payment_status",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "payment.migrations.0003_rename_shipping_address_line_1_shippingaddressmodel_shipping_address",
+        "description": "payment.migrations.0003_rename_shipping_address_line_1_shippingaddressmodel_shipping_address",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('payment', '0002_order_order_status_alter_payment_status'),\n    ]\n    operations = [\n        migrations.RenameField(\n            model_name='shippingaddressmodel',\n            old_name='shipping_address_line_1',\n            new_name='shipping_address',\n        ),",
+        "detail": "payment.migrations.0003_rename_shipping_address_line_1_shippingaddressmodel_shipping_address",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "payment.migrations.0004_orderitems_user_cart_alter_payment_payment_method",
+        "description": "payment.migrations.0004_orderitems_user_cart_alter_payment_payment_method",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n        ('payment', '0003_rename_shipping_address_line_1_shippingaddressmodel_shipping_address'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='orderitems',\n            name='user_cart',\n            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='cart_items', to=settings.AUTH_USER_MODEL),",
+        "detail": "payment.migrations.0004_orderitems_user_cart_alter_payment_payment_method",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "payment.migrations.0005_remove_orderitems_user_cart",
+        "description": "payment.migrations.0005_remove_orderitems_user_cart",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('payment', '0004_orderitems_user_cart_alter_payment_payment_method'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='orderitems',\n            name='user_cart',\n        ),\n    ]",
+        "detail": "payment.migrations.0005_remove_orderitems_user_cart",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "payment.migrations.0006_remove_order_order_number_remove_payment_payment_id",
+        "description": "payment.migrations.0006_remove_order_order_number_remove_payment_payment_id",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('payment', '0005_remove_orderitems_user_cart'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='order',\n            name='order_number',\n        ),\n        migrations.RemoveField(",
+        "detail": "payment.migrations.0006_remove_order_order_number_remove_payment_payment_id",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "payment.migrations.0007_orderitems_total_price",
+        "description": "payment.migrations.0007_orderitems_total_price",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('payment', '0006_remove_order_order_number_remove_payment_payment_id'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='orderitems',\n            name='total_price',\n            field=models.DecimalField(decimal_places=2, default=0, max_digits=10),\n            preserve_default=False,",
+        "detail": "payment.migrations.0007_orderitems_total_price",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "payment.migrations.0008_alter_orderitems_total_price",
+        "description": "payment.migrations.0008_alter_orderitems_total_price",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('payment', '0007_orderitems_total_price'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='orderitems',\n            name='total_price',\n            field=models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True),\n        ),",
+        "detail": "payment.migrations.0008_alter_orderitems_total_price",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "payment.migrations.0009_remove_orderitems_total_price",
+        "description": "payment.migrations.0009_remove_orderitems_total_price",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('payment', '0008_alter_orderitems_total_price'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='orderitems',\n            name='total_price',\n        ),\n    ]",
+        "detail": "payment.migrations.0009_remove_orderitems_total_price",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "payment.migrations.0010_orderitems_total_price",
+        "description": "payment.migrations.0010_orderitems_total_price",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('payment', '0009_remove_orderitems_total_price'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='orderitems',\n            name='total_price',\n            field=models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True),\n        ),",
+        "detail": "payment.migrations.0010_orderitems_total_price",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "payment.migrations.0011_orderitems_img_orderitems_name",
+        "description": "payment.migrations.0011_orderitems_img_orderitems_name",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('payment', '0010_orderitems_total_price'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='orderitems',\n            name='img',\n            field=models.FileField(blank=True, null=True, upload_to=''),\n        ),",
+        "detail": "payment.migrations.0011_orderitems_img_orderitems_name",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "payment.migrations.0012_order_order_total_gst",
+        "description": "payment.migrations.0012_order_order_total_gst",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('payment', '0011_orderitems_img_orderitems_name'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='order',\n            name='order_total_gst',\n            field=models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True),\n        ),",
+        "detail": "payment.migrations.0012_order_order_total_gst",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "payment.migrations.0013_alter_orderitems_order",
+        "description": "payment.migrations.0013_alter_orderitems_order",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('payment', '0012_order_order_total_gst'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='orderitems',\n            name='Order',\n            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='payment.order'),\n        ),",
+        "detail": "payment.migrations.0013_alter_orderitems_order",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "payment.migrations.0014_order_shipping_address",
+        "description": "payment.migrations.0014_order_shipping_address",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('payment', '0013_alter_orderitems_order'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='order',\n            name='shipping_address',\n            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='payment.shippingaddressmodel'),\n        ),",
+        "detail": "payment.migrations.0014_order_shipping_address",
+        "documentation": {}
+    },
+    {
         "label": "PaymentConfig",
         "kind": 6,
         "importPath": "payment.apps",
         "description": "payment.apps",
         "peekOfCode": "class PaymentConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'payment'",
         "detail": "payment.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Payment",
+        "kind": 6,
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "peekOfCode": "class Payment(models.Model):\n    STATUS = (\n        ('Completed', 'Completed'),\n        ('Not_Completed', 'Not_Completed'),\n    )\n    method = (('cash','cash'),('online','online'))\n    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)\n    payment_method = models.CharField(choices=method)\n    amount_paid = models.CharField(max_length=100) # this is the total amount paid\n    status = models.CharField(choices=STATUS,default='Not_Completed')",
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "ShippingAddressModel",
+        "kind": 6,
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "peekOfCode": "class ShippingAddressModel(models.Model):\n    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=True,blank=True)\n    shipping_first_name = models.CharField(max_length=50)\n    shipping_last_name = models.CharField(max_length=50)\n    shipping_phone = models.CharField(max_length=12)\n    shipping_email = models.EmailField(max_length=50)\n    shipping_address = models.TextField()\n    shipping_city = models.CharField(max_length=50)\n    shipping_state = models.CharField(max_length=50)\n    shipping_note = models.CharField(max_length=200,null=True,blank=True)",
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
+        "kind": 6,
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "peekOfCode": "class Order(models.Model):\n    STATUS = (\n        ('Pending', 'Pending'),\n        ('Accepted', 'Accepted'),\n        ('Completed', 'Completed'),\n        ('Cancelled', 'Cancelled'),\n    )\n    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)\n    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)\n    shipping_address = models.ForeignKey(ShippingAddressModel, on_delete=models.CASCADE, blank=True, null=True)",
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "OrderItems",
+        "kind": 6,
+        "importPath": "payment.models",
+        "description": "payment.models",
+        "peekOfCode": "class OrderItems(models.Model):\n    Order=models.ForeignKey(Order,on_delete=models.CASCADE, null=True)\n    product = models.ForeignKey(ProductModel,on_delete=models.SET_NULL, null=True)\n    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)\n    img = models.FileField(blank=True,null=True)\n    name = models.CharField(max_length = 50,blank=True)\n    quantity = models.PositiveIntegerField(default=1)\n    price = models.DecimalField(max_digits=10,decimal_places=2)\n    total_price = models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)\n    def __str__(self):",
+        "detail": "payment.models",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "payment.urls",
+        "description": "payment.urls",
+        "peekOfCode": "urlpatterns = [\n    path('cart/checkout/',checkout,name=\"checkout\"),\n    path('cart/shipping_address',shipping_address,name=\"shipping_address\"),\n    path('cart/checkout/placeorder',place_order,name=\"placeorder\"),\n]",
+        "detail": "payment.urls",
+        "documentation": {}
+    },
+    {
+        "label": "checkout",
+        "kind": 2,
+        "importPath": "payment.views",
+        "description": "payment.views",
+        "peekOfCode": "def checkout(request):\n    cart=Cart(request)\n    cart_products =cart.get_cart_product()\n    cart_quantity =cart.get_quantity()\n    total = cart.cart_total()\n    gsttotal = cart.cart_gsttotal()\n    address = ShippingAddressModel.objects.filter(user=request.user)\n    return render(request,\"checkout.html\",{'cart_products':cart_products,'cart_quantity':cart_quantity,'total':total,'gsttotal':gsttotal,'address':address})\ndef shipping_address(request):\n    cart=Cart(request)",
+        "detail": "payment.views",
+        "documentation": {}
+    },
+    {
+        "label": "shipping_address",
+        "kind": 2,
+        "importPath": "payment.views",
+        "description": "payment.views",
+        "peekOfCode": "def shipping_address(request):\n    cart=Cart(request)\n    cart_products =cart.get_cart_product()\n    cart_quantity =cart.get_quantity()\n    total = cart.cart_total()\n    gsttotal = cart.cart_gsttotal()\n    address = ShippingAddressModel.objects.filter(user=request.user)\n    if request.method == 'POST':\n        # Retrieve shipping address data from the form\n        shipping_first_name = request.POST.get('shipping_first_name')",
+        "detail": "payment.views",
+        "documentation": {}
+    },
+    {
+        "label": "place_order",
+        "kind": 2,
+        "importPath": "payment.views",
+        "description": "payment.views",
+        "peekOfCode": "def place_order(request):\n    if request.method == 'POST':\n        # Retrieve payment method from the request POST data\n        payment_method = request.POST.get('payment_method')\n        order_note = request.POST.get('ordernote')\n        address_id = request.POST.get('shipping_address')\n        #validate shipping address\n        if not address_id:\n            messages.error(request, 'Please add shipping address.')\n            return redirect('checkout')",
+        "detail": "payment.views",
         "documentation": {}
     },
     {

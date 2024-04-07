@@ -1,210 +1,142 @@
-{% extends "sidebar.html" %}
-{% load static %}
-{% block dashboard-content %}
+{% extends "sidebar.html" %} {% load static %} {% block dashboard-content %}
 <style>
-  .modal-content {
-    background-color: ivory;
-  }
+    .modal-content {
+        background-color: ivory;
+    }
 </style>
 {% if messages %}
-<div class="alert alert-primary" role="alert" id="messages-container"
-  style="position: absolute;z-index: 1;width: 100%;">
-  {% for message in messages %}
-  {{ message }}
-  {% endfor %}
+<div class="alert alert-primary" role="alert" id="messages-container" style="position: absolute;z-index: 1;width: 100%;">
+    {% for message in messages %} {{ message }} {% endfor %}
 </div>
 {% endif %}
 
 <script>
-  // Function to hide the messages container after 3 seconds
-  setTimeout(function () {
-    var messagesContainer = document.getElementById('messages-container');
-    if (messagesContainer) {
-      messagesContainer.style.display = 'none';
-    }
-  }, 3000); // 3000 milliseconds = 3 seconds
+    // Function to hide the messages container after 3 seconds
+    setTimeout(function() {
+        var messagesContainer = document.getElementById('messages-container');
+        if (messagesContainer) {
+            messagesContainer.style.display = 'none';
+        }
+    }, 3000); // 3000 milliseconds = 3 seconds
 </script>
 
 <container class="productcontainer">
-  <h1>Order</h1>
-  <main class="main bd-grid" id="product-container">
-    <div class="container">
-      <div class="d-flex">
-        <div class="mr-auto p-2">
-          <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#add_order">
-            Add Order
-          </button>
-        </div>
-        <div class="p-2" style="margin-left: 33rem;">
-          <form class="d-flex pl-5">
-            <div class="input-group">
-              <input class="form-control bg-light" type="search" placeholder="Search product" id="searchbar"
-                aria-label="Search">
-              <button class="btn btn-outline-success" type="button">Search</button>
+    <h1>Order</h1>
+    <main class="main bd-grid" id="product-container">
+        <div class="container">
+            <div class="d-flex">
+                <div class="mr-auto p-2">
+                    <a href="{% url 'adminorderadd' %}" class="btn btn-primary">Add order</a>
+                </div>
+                <div class="p-2" style="margin-left: 33rem;">
+                    <form class="d-flex pl-5">
+                        <div class="input-group">
+                            <input class="form-control bg-light" type="search" placeholder="Search product" id="searchbar" aria-label="Search">
+                            <button class="btn btn-outline-success" type="button">Search</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </form>
-        </div>
-      </div>
-      <div class="table-responsive">
-        {% if orders %}
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Order Name</th>
-              <th>Order Status</th>
-              <th>Order Amount</th>
-              <th>Order date</th>
-              <th>View Order</th>
-              <th>Update Order</th>
-              <th>Delete Order</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for order in orders %}
+            <div class="table-responsive">
+                {% if orders %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Order Name</th>
+                            <th>Order Status</th>
+                            <th>Order Amount</th>
+                            <th>Order date</th>
+                            <th>View Order</th>
+                            <th>Update Order</th>
+                            <th>Delete Order</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
 
-            <tr>
-              <td>
-                <!-- <span class="font-weight-bold cartprodname">num:{{ order.order_number }}</span> -->
-                <span class="font-weight-bold cartprodname">{{ order.id }}</span>
-              </td>
-              <td>
-                <span class="font-weight-bold cartprodname">{{ order.user }}</span>
-              </td>
-              <td>
-                <span class="font-weight-bold cartprodname">{{ order.order_status }}</span>
-              </td>
-              <td>
-                <span class="font-weight-bold">{{ order.order_total }}</span>
-              </td>
-              <td>
-                <span class="font-weight-bold">{{ order.created_at }}</span>
-              </td>
-              <td>
-                <a href="{% url 'adminorderdetail' order_id=order.id %}"><span
+                        <tr>
+                            <td>
+                                <span class="font-weight-bold cartprodname">{{ order.id }}</span>
+                            </td>
+                            <td>
+                                <span class="font-weight-bold cartprodname">{{ order.user }}</span>
+                            </td>
+                            <td>
+                                <span class="font-weight-bold cartprodname">{{ order.order_status }}</span>
+                            </td>
+                            <td>
+                                <span class="font-weight-bold">{{ order.order_total }}</span>
+                            </td>
+                            <td>
+                                <span class="font-weight-bold">{{ order.created_at }}</span>
+                            </td>
+                            <td>
+                                <a href="{% url 'adminorderdetail' order_id=order.id %}"><span
                     class="font-weight-bold btn btn-success"><i class="bi bi-eye-fill"></i></span></a>
-              </td>
-              <td>
-                <span class="font-weight-bold btn btn-info">Update</span>
-              </td>
-              <td><button class="btn btn-danger delete-button" data-bs-toggle="modal"
-                  data-bs-target="#deleteModal-{{forloop.counter}}">Delete</button></td>
-              {% endfor %}
-          </tbody>
-        </table>
-        {% else %}
-        <div colspan="6" class="align-self-center">
-          <h3>you don't have any order</h3>
-          <img src="{% static 'img/empty-box.jpeg' %}" alt="Empty Cart" style="width: 100%;" />
+                            </td>
+                            <td>
+                                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#updateModal-{{forloop.counter}}">Update</button>
+                            </td>
+                            <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{forloop.counter}}">Delete</button></td>
+                            {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <div colspan="6" class="align-self-center">
+                    <h3>you don't have any order</h3>
+                    <img src="{% static 'img/empty-box.jpeg' %}" alt="Empty Cart" style="width: 100%;" />
+                </div>
+                {% endif %}
+            </div>
         </div>
-        {% endif %}
-      </div>
-    </div>
-  </main>
+    </main>
 </container>
 
-
+{% for order in orders %}
 <!-- for delete popup -->
 <!-- Modal -->
-{% for order in orders %}
-<div class="modal" id="deleteModal-{{forloop.counter}}" tabindex="-1" aria-labelledby="deleteModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete Product</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to permanently delete this product?
-      </div>
-      <div class="modal-footer">
-        <form method="post" action="{% url 'adminorderdetaildelete' order_id=order.id %}">
-          {% csrf_token %}
-          <input type="hidden" name="_method" value="DELETE">
-          <button class="btn btn-danger" type="submit">Delete</button>
-        </form>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
+<div class="modal" id="updateModal-{{forloop.counter}}" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">Update Order</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <form method="post" action="{% url 'adminorderdetailupdate' order_id=order.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
-<!-- for add popup -->
-<!-- Modal -->
-<div class="modal" id="add_order" tabindex="-1" aria-labelledby="add_orderLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="add_orderLabel">Add Category</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form method="post" action="{% url 'admincategoryadd' %}">
-          {% csrf_token %}
-          <div class="modal-body">
-            <div class="col-12 my-2">
-              <label for="inputquestio" class="form-label fs-4 fw-bold">Full Name </label>
-              <input type="text" class="form-control border border-secondary" id="inputquery" name="fullname">
+<div class="modal" id="deleteModal-{{forloop.counter}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="col-12 my-2">
-              <label for="inputquestio" class="form-label fs-4 fw-bold">Payment Method </label>
-              <input type="text" class="form-control border border-secondary" id="inputquery" name="fullname">
+            <div class="modal-body">
+                Are you sure you want to permanently delete this product?
             </div>
-            <div class="col-12 my-2">
-              <label for="inputquestio" class="form-label fs-4 fw-bold">Amount Paid </label>
-              <input type="text" class="form-control border border-secondary" id="inputquery" name="fullname">
+            <div class="modal-footer">
+                <form method="post" action="{% url 'adminorderdetaildelete' order_id=order.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
-            <div class="col-12 my-2">
-              <label for="inputquestio" class="form-label fs-4 fw-bold">Order Status </label>
-              <input type="text" class="form-control border border-secondary" id="inputquery" name="fullname">
-            </div>
-            <div class="col-12 my-2">
-              <label for="inputquestio" class="form-label fs-4 fw-bold">Shipping Address</label>
-              <input type="text" class="form-control border border-secondary" id="inputquery" name="fullname">
-            </div>
-            <div class="col-12 my-2">
-              <label for="inputquestio" class="form-label fs-4 fw-bold">Order Note - Order Total, GST</label>
-              <input type="text" class="form-control border border-secondary" id="inputquery" name="fullname">
-            </div>
-            <!-- Button to trigger product add form -->
-            <button type="button" class="btn btn-primary" id="add-product-btn">Add Product</button>
-            <!-- Container to dynamically load product add form -->
-            <div id="product-add-form-container"></div>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-info" type="submit">ADD</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </div>
-<!-- JavaScript to handle product add form -->
-
-<!-- JavaScript to handle product add form -->
-<script>
-  // Function to load product add form
-  function loadProductAddForm() {
-    // Fetch the product add form using Django's templating system
-    fetch('{% url "product_add_in_order" %}')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.text();
-      })
-      .then(data => {
-        // Update the modal body with the fetched HTML content
-        document.getElementById('product-add-form-container').innerHTML = data;
-        // Show the modal if it's hidden
-        $('#add_order').modal('show'); // Assuming you're using Bootstrap modal
-      })
-      .catch(error => console.error('Error loading product add form:', error));
-  }
-  // Attach event listener to the "Add Product" button to load product add form
-  document.getElementById('add-product-btn').addEventListener('click', loadProductAddForm);
-</script>
-{% endfor %}
-{% endblock dashboard-content %}
+{% endfor %} {% endblock dashboard-content %}

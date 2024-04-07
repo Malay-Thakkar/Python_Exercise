@@ -3,6 +3,7 @@ from cart.cart import Cart
 from payment.models import Order,OrderItems,Payment,ShippingAddressModel
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
 # Create your views here.
 @login_required(login_url='/signin')
 def checkout(request):
@@ -54,8 +55,19 @@ def place_order(request):
         payment_method = request.POST.get('payment_method')
         order_note = request.POST.get('ordernote')
         address_id = request.POST.get('shipping_address')
-        shipping_address = ShippingAddressModel.objects.get(id=address_id)
+        
+        #validate shipping address
+        if not address_id:
+            messages.error(request, 'Please add shipping address.')
+            return redirect('checkout')
+        else:
+            try:
+                shipping_address = ShippingAddressModel.objects.get(id=address_id)
+            except ShippingAddressModel.DoesNotExist:
+                messages.error(request, 'The selected shipping address does not exist.')
+                return redirect('checkout')
 
+    
         # Validate payment method
         if not payment_method:
             messages.error(request, 'Please select a payment method.')
