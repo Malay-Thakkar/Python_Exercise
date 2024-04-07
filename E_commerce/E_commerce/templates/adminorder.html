@@ -76,7 +76,8 @@
                     class="font-weight-bold btn btn-success"><i class="bi bi-eye-fill"></i></span></a>
                             </td>
                             <td>
-                                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#updateModal-{{forloop.counter}}">Update</button>
+                                <a href="{% url 'adminorderdetailupdate' order_id=order.id %}"><span
+                                    class="font-weight-bold btn btn-info">Update</span></a>
                             </td>
                             <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{forloop.counter}}">Delete</button></td>
                             {% endfor %}
@@ -117,26 +118,5 @@
         </div>
     </div>
 </div>
-
-<div class="modal" id="deleteModal-{{forloop.counter}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete Product</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to permanently delete this product?
-            </div>
-            <div class="modal-footer">
-                <form method="post" action="{% url 'adminorderdetaildelete' order_id=order.id %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-{% endfor %} {% endblock dashboard-content %}
+{% endfor %} 
+{% endblock dashboard-content %}

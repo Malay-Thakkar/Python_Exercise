@@ -119,7 +119,19 @@ def adminorderadd(request):
 @login_required(login_url='/signin')
 def adminorderdetailupdate(request, order_id):
     if request.user.is_staff:
-        pass
+        if request.method  == 'POST':
+            pass
+        try:
+            order = Order.objects.get(id=order_id)
+            payment = order.payment  # Assuming order.payment returns a Payment object
+            order_products = OrderItems.objects.filter(Order=order_id)
+            if order:
+                return render(request, "adminupdateorder.html", {'order': order, 'order_products': order_products, 'payment': payment})
+            else:
+                return render(request, "404.html", {'error': "Order not found"})
+        except Order.DoesNotExist:
+            return render(request, "404.html", {'error': "Order not found"})
+
     return redirect('/')
 
 @login_required(login_url='/signin')

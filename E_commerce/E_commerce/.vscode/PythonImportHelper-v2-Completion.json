@@ -2302,7 +2302,7 @@
         "kind": 2,
         "importPath": "owner.views",
         "description": "owner.views",
-        "peekOfCode": "def adminorderdetailupdate(request, order_id):\n    if request.user.is_staff:\n        pass\n    return redirect('/')\n@login_required(login_url='/signin')\ndef adminorderdetaildelete(request, order_id):\n    if request.user.is_staff:\n        if request.method == 'POST':\n            order = Order.objects.get(id=order_id)\n            order.delete()",
+        "peekOfCode": "def adminorderdetailupdate(request, order_id):\n    if request.user.is_staff:\n        if request.method  == 'POST':\n            pass\n        try:\n            order = Order.objects.get(id=order_id)\n            payment = order.payment  # Assuming order.payment returns a Payment object\n            order_products = OrderItems.objects.filter(Order=order_id)\n            if order:\n                return render(request, \"adminupdateorder.html\", {'order': order, 'order_products': order_products, 'payment': payment})",
         "detail": "owner.views",
         "documentation": {}
     },
@@ -2662,7 +2662,7 @@
         "kind": 2,
         "importPath": "payment.views",
         "description": "payment.views",
-        "peekOfCode": "def place_order(request):\n    if request.method == 'POST':\n        # Retrieve payment method from the request POST data\n        payment_method = request.POST.get('payment_method')\n        order_note = request.POST.get('ordernote')\n        address_id = request.POST.get('shipping_address')\n        #validate shipping address\n        if not address_id:\n            messages.error(request, 'Please add shipping address.')\n            return redirect('checkout')",
+        "peekOfCode": "def place_order(request):\n    if request.method == 'POST':\n        # Retrieve payment method from the request POST data\n        payment_method = request.POST.get('payment_method')\n        order_note = request.POST.get('ordernote')\n        Full_name = request.POST.get('Full_name')\n        address_id = request.POST.get('shipping_address')\n        #validate shipping address\n        if not address_id:\n            messages.error(request, 'Please add shipping address.')",
         "detail": "payment.views",
         "documentation": {}
     },

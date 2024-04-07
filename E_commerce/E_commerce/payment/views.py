@@ -54,6 +54,7 @@ def place_order(request):
         # Retrieve payment method from the request POST data
         payment_method = request.POST.get('payment_method')
         order_note = request.POST.get('ordernote')
+        Full_name = request.POST.get('Full_name')
         address_id = request.POST.get('shipping_address')
         
         #validate shipping address
@@ -90,9 +91,9 @@ def place_order(request):
 
         # Create a new Order instance
         order = Order.objects.create(
-            user=request.user,
-            payment=payment,
-            full_name= "temp",
+            user = request.user,
+            payment = payment,
+            full_name = Full_name,
             shipping_address = shipping_address,
             order_total = order_total,
             order_total_gst = order_total_gst,

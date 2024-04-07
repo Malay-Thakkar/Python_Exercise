@@ -36,6 +36,9 @@
                 <h3>Select existing Shipping Address</h3>
                 <form method="post" action="{% url 'placeorder' %}">
                     {% csrf_token %}
+                    <label for="inputquestio" class="form-label fs-4 fw-bold">Buyer Full Name </label>
+                    <input type="text" class="form-control border border-secondary" name="Full_name" value="{{user}}">
+
                     {% for address_detail in address %}
                     <div class="form-check">
                         <input class="form-check-input border border-dark mr-2" type="radio" name="shipping_address"
