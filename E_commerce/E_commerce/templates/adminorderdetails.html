@@ -79,7 +79,7 @@
           </tr>
           <tr>
             <th colspan="2"></th>
-            <th colspan="2" class="d-flex justify-content-center"><a href="{% url 'checkout' %}" class="btn btn-info">Download invoice</a></th>
+            <th colspan="2" class="d-flex justify-content-center"><button id="cmd" class="btn btn-info">Download invoice</button></th>
             
           </tr>
         </tbody>
@@ -94,4 +94,9 @@
   </div>
 </main>
 </container>
+<script>
+$('#cmd').click(function () {
+   print()
+});
+</script>
 {% endblock dashboard-content %}

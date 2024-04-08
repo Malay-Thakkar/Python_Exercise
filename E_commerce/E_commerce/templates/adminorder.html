@@ -76,7 +76,7 @@
                     class="font-weight-bold btn btn-success"><i class="bi bi-eye-fill"></i></span></a>
                             </td>
                             <td>
-                                <a href="{% url 'adminorderdetailupdate' order_id=order.id %}"><span
+                                <a href="{% url 'adminorderupdate' order_id=order.id %}"><span
                                     class="font-weight-bold btn btn-info">Update</span></a>
                             </td>
                             <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{forloop.counter}}">Delete</button></td>
@@ -97,24 +97,23 @@
 {% for order in orders %}
 <!-- for delete popup -->
 <!-- Modal -->
-<div class="modal" id="updateModal-{{forloop.counter}}" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+<div class="modal" id="deleteModal-{{forloop.counter}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="updateModalLabel">Update Order</h5>
+                <h5 class="modal-title" id="deleteModalLabel">Delete Category</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-                <form method="post" action="{% url 'adminorderdetailupdate' order_id=order.id %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
+            <form method="post" action="{% url 'adminorderdetaildelete' order_id=order.id %}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    Are you sure you want to permanently delete this category?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" type="submit">delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

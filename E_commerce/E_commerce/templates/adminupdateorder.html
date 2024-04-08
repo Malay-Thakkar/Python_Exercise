@@ -42,10 +42,10 @@
 
 <!-- HTML code -->
 <container class="productcontainer">
-    <h1>Add order</h1>
+    <h1>Update order</h1>
     <main class="main bd-grid" id="product-container">
         <div class="container">
-            <form method="post" action="{% url 'adminorderadd' %}">
+            <form method="post" action="{% url 'adminorderdetailupdate' order_id=order.id payment_id=order.payment.id %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="modal-body d-flex flex-column">
                     <!-- Hidden input field to store the serialized productsObject -->
@@ -55,28 +55,29 @@
                     <input type="text" class="form-control border border-secondary" name="fullname" value="{{order.full_name}}">
 
                     <div class="mb-3">
-                        <label for="shipping_first_name" class="form-label fs-4 fw-bold">Payment Method:</label>
-                        <select class="form-select border border-secondary" name="payment_method" value={{payment.payment_method}}>
-                            <option value="online">Online</option>
-                            <option value="cash">Cash</option>
+                        <label for="shipping_first_name" class="form-label fs-4 fw-bold">Payment Method: </label>
+                        <select class="form-select border border-secondary" name="payment_method">
+                            <option value="online" {% if payment.payment_method == 'online' %}selected{% endif %}>Online</option>
+                            <option value="cash" {% if payment.payment_method == 'cash' %}selected{% endif %}>Cash</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="shipping_first_name" class="form-label fs-4 fw-bold">Payment Status:</label>
-                        <select class="form-select border border-secondary" name="payment_status" value="{{payment.payment_status}}">
-                            <option value="Not_Completed">Not_Completed</option>
-                            <option value="Completed">Completed</option>
+                        <select class="form-select border border-secondary" name="payment_status">
+                            <option value="Not_Completed" {% if payment.status == 'Not_Completed' %}selected{% endif %}>Not Completed</option>
+                            <option value="Completed" {% if payment.status == 'Completed' %}selected{% endif %}>Completed</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="shipping_first_name" class="form-label fs-4 fw-bold">Order Status:</label>
-                        <select class="form-select border border-secondary" name="order_status" value="{{order.order_status}}">
-                            <option value="Pending">Pending</option>
-                            <option value="Accepted">Accepted</option>
-                            <option value="Completed">Completed</option>
-                            <option value="Cancelled">Cancelled</option>
+                        <select class="form-select border border-secondary" name="order_status">
+                            <option value="Pending" {% if order.order_status == 'Pending' %}selected{% endif %}>Pending</option>
+                            <option value="Accepted" {% if order.order_status == 'Accepted' %}selected{% endif %}>Accepted</option>
+                            <option value="Completed" {% if order.order_status == 'Completed' %}selected{% endif %}>Completed</option>
+                            <option value="Cancelled" {% if order.order_status == 'Cancelled' %}selected{% endif %}>Cancelled</option>
                         </select>
                     </div>
+                    
                     <label for="inputquestio" class="form-label fs-4 fw-bold">Order Note</label>
                     <input type="text" class="form-control border border-secondary" id="inputquery" name="order_note" value="{{order.order_note}}">
                     <!-- Container to dynamically load product add form -->
@@ -99,7 +100,7 @@
                             </tr>
                         </thead>
                         <tbody id="productList">
-                            {% for product in order_products %}
+                            {% for product in products %}
                             <tr>
                                 <td>{{ product.product_id }}</td>
                                 <td><img class="card-img" src="../../../media/{{ product.img }}" alt="Product Image"></td>
@@ -122,20 +123,23 @@
         </div>
     </main>
 </container>
-
-<!-- JavaScript code -->
+<!-- Updated JavaScript code -->
 <script>
     var productsObject = {};
 
-    function addItemToOrder(button, productId, productName, productPrice) {
+    function addItemToOrder(button, productId, productName, productPrice,productquantity) {
+        var quantity = 0
+        if (productquantity){ var quantity = productquantity}
+        else{
         var quantityInput = $(button).siblings(".quantityInput");
         var quantity = parseInt(quantityInput.val());
-
+    }
+        //alert("fasf")
+   
         if (quantity <= 0) {
             alert("Quantity must be greater than zero.");
             return;
         }
-
         // Check if the item already exists in the productsObject
         if (productsObject.hasOwnProperty(productId)) {
             // Update the quantity if the item already exists
@@ -147,14 +151,14 @@
         } else {
             // Add the item if it doesn't exist
             productsObject[productId] = quantity;
-            //console.log("Product added:", productId);
+            console.log("Product added:", productId);
             // Display added items
             var addedItemsDiv = $('#addedItems');
             var addedItemHtml = '<tr id="' + productId + '_row"><td class="added-item" style="padding-left: 1rem;">' + productName + '</td><td style="padding-left: 1rem;"><span id="' + productId + '_quantity">Quantity: ' + quantity + '</span></td><td style="padding-left: 1rem;">Price: ' + productPrice +
                 '</td><td style="padding-left: 1rem;"><button class="btn btn-danger delete-button" onclick="deleteItemFromOrder(\'' + productId + '\')">Delete</button></td></tr>';
             addedItemsDiv.append(addedItemHtml);
         }
-        //console.log("Products in order:", productsObject);
+        console.log("Products in order:", productsObject);
     } 
 
 
@@ -176,4 +180,21 @@
         });
     });
 </script>
+
+<script>
+    function onWindowLoad() {
+        {% for item in order_products %}
+            addItemToOrder(null,
+                "{{ item.product }}",
+                "{{ item.name }}",
+                "{{ item.price }}",
+                "{{ item.quantity }}"
+            );
+        {% endfor %}
+    }
+
+    // Attach the function to the window.onload event
+    window.onload = onWindowLoad;
+</script>
+
 {% endblock dashboard-content %}

@@ -8,7 +8,22 @@
   {% endfor %}
 </div>
 {% endif %}
-
+<style>
+  /* Add custom styles here if needed */
+  .dashboard-item {
+    min-height: 200px; /* Adjust height as needed */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .dashboard-item h2, .dashboard-item h3 {
+    margin: 0; /* Remove default margin for better centering */
+  }
+</style>
 <script>
   // Function to hide the messages container after 3 seconds
   setTimeout(function() {
@@ -20,13 +35,46 @@
 </script>
 
 
-<h1>Dashboard</h1>  
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="bg-primary text-white dashboard-item">
+        <h2>Total Orders</h2>
+        <h3>{{order_total}}</h3>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="text-white dashboard-item" style="background-color: rgb(342, 163, 0);">
+        <h2>Total Products</h2>
+        <h3>{{product_total}}</h3>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="bg-danger text-white dashboard-item">
+        <h2>Total Categories</h2>
+        <h3>{{category_total}}</h3>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="bg-success text-white dashboard-item">
+        <h2>Total Users</h2>
+        <h3>{{user_total}}</h3>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="bg-dark text-white dashboard-item">
+        <h2>Total Sale</h2>
+        <h3>₹{{sale_total}}</h3>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="text-white dashboard-item" style="background-color: rgb(238, 33, 245);">
+        <h2>Total Stock</h2>
+        <h3>₹{{stock_total}}</h3>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h2>Total sale: order total</h2>
-<h2>Total Stock: stock total price</h2>
-<h2>Total User: stock total price</h2>
-<h2>Total order: stock total price</h2>
-<h2>Total product: stock total price</h2>
-<h2>Total Category: stock total price</h2>
 {% endblock dashboard-content %}
 

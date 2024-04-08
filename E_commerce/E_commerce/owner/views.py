@@ -2,12 +2,12 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from api.models import ProductModel,CategoryModel
-from payment.models import Order, OrderItems, Payment
+from payment.models import Order, OrderItems, Payment,ShippingAddressModel
 from payment.models import Order,OrderItems
 from django.contrib.auth import get_user_model
 import requests
-from django.db.models import Q
 from django.http import JsonResponse
+from django.db.models import Sum,F, ExpressionWrapper, FloatField ,Q
 import json
 from customer.views import order
 # Create your views here.
@@ -18,7 +18,25 @@ CustomUser = get_user_model()
 @login_required(login_url='/signin')
 def dashboard(request):
     if request.user.is_staff:
-        return render(request,"dashboard.html")
+        product_total = ProductModel.objects.count()
+        category_total = CategoryModel.objects.count()
+        order_total = Order.objects.count()
+        user_total = CustomUser.objects.count()
+        stock_total = ProductModel.objects.annotate(
+            total_price=ExpressionWrapper(F('price') * F('stock'), output_field=FloatField())
+        ).aggregate(total_stock_price=Sum('total_price'))['total_stock_price']
+        sale_total = Order.objects.aggregate(total_sale=Sum('order_total'))['total_sale']
+        
+        context = {
+            'product_total':product_total,
+            'category_total':category_total,
+            'order_total':order_total,
+            'user_total':user_total,
+            'stock_total':stock_total,
+            'sale_total':sale_total
+            
+        }
+        return render(request,"dashboard.html",context)
     return redirect('/')
 
 
@@ -117,10 +135,106 @@ def adminorderadd(request):
     return redirect('/')
 
 @login_required(login_url='/signin')
-def adminorderdetailupdate(request, order_id):
+def adminorderupdate(request, order_id):
     if request.user.is_staff:
-        if request.method  == 'POST':
-            pass
+        try:
+            order = Order.objects.get(id=order_id)
+            payment = order.payment  # Assuming order.payment returns a Payment object
+            order_products = OrderItems.objects.filter(Order=order_id)
+            products = ProductModel.objects.all()
+            if order:
+                return render(request, "adminupdateorder.html", {'order': order, 'order_products': order_products, 'payment': payment,'products':products})
+            else:
+                return render(request, "404.html", {'error': "Order not found"})
+        except Order.DoesNotExist:
+            return render(request, "404.html", {'error': "Order not found"})
+
+    return redirect('/')
+
+@login_required(login_url='/signin')
+def adminorderdetailupdate(request, order_id,payment_id):
+    if request.user.is_staff:
+        if request.method == 'POST':
+            products_data = request.POST.get('productsObject')
+            products_dict = json.loads(products_data)
+            
+            # Calculate total price
+            total = 0.0
+            for key, value in products_dict.items():
+                key = int(key)
+                prod = ProductModel.objects.filter(product_id=key).first()
+                if prod is not None:
+                    total += (float(prod.price) * float(value))
+                else:
+                    print(f"Product with ID {key} not found.")
+
+            full_name = request.POST.get('fullname')
+            payment_method = request.POST.get('payment_method')
+            payment_status = request.POST.get('payment_status')
+            order_status = request.POST.get('order_status')
+            order_note = request.POST.get('order_note')
+            
+            # Validate form data
+            if not (full_name and payment_method and payment_status and order_status):
+                messages.error(request, 'Please fill all required fields.')
+                return redirect('adminorderadd')
+            
+            # Payment updates
+            payment_obj = get_object_or_404(Payment, id=payment_id)
+            payment_obj.payment_method = payment_method
+            payment_obj.amount_paid = total
+            payment_obj.status = payment_status
+            payment_obj.save()
+
+            # Order Update
+            order_obj = get_object_or_404(Order, id=order_id)
+            order_obj.full_name = full_name
+            order_obj.order_total = total
+            order_obj.order_total_gst = ((total * 18) / 100) + total
+            order_obj.order_status = order_status
+            order_obj.order_note = order_note
+            order_obj.save()
+            
+            #shipping address update
+            # shipping_add_obj = get_object_or_404(ShippingAddressModel, id=shipping_add_id)
+            # print(shipping_add_obj)
+            
+            #orderitem Update
+            # OrderItem Update
+            for order_item in order_obj.orderitems_set.all():
+                product_id = order_item.product.product_id
+                quantity_str = products_dict.get(str(product_id), '0')  # Get quantity from updated products data
+                quantity = int(quantity_str)  # Convert quantity to integer
+                if quantity > 0:
+                    # Update existing order item
+                    order_item.quantity = quantity
+                    order_item.total_price = order_item.price * quantity
+                    order_item.save()
+                else:
+                    # Delete order item if not present in updated products
+                    order_item.delete()
+
+            
+            # Add new order items for products not present in existing order
+            existing_product_ids = set(order_obj.orderitems_set.values_list('product__product_id', flat=True))
+            for product_id, quantity in products_dict.items():
+                product_id = int(product_id)
+                if product_id not in existing_product_ids and quantity > 0:
+                    product = ProductModel.objects.filter(product_id=product_id).first()
+                    if product:
+                        OrderItems.objects.create(
+                            Order=order_obj,
+                            product=product,
+                            img=product.img,
+                            name=product.name,
+                            user=request.user,
+                            quantity=int(quantity),
+                            price=product.price,
+                            total_price=product.price * int(quantity)
+                        )
+            
+            messages.success(request, "Order updated successfully.")
+            return redirect('/admin/order/')
         try:
             order = Order.objects.get(id=order_id)
             payment = order.payment  # Assuming order.payment returns a Payment object
