@@ -45,7 +45,8 @@ def dashboard(request):
 def adminorder(request):
     if request.user.is_staff:
         orders = Order.objects.all()
-        return render(request,"adminorder.html",{'orders':orders})
+        payment = Payment.objects.all()
+        return render(request,"adminorder.html",{'orders':orders,'payment':payment})
     return redirect('/')
 
 @login_required(login_url='/signin')
