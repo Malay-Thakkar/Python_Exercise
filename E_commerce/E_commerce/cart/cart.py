@@ -12,13 +12,15 @@ class Cart():
         # Assign cart to self.cart
         self.cart = cart
 
+    #on login add product in cart from database
     def db_add(self, product,quantity):
         product_id = str(product)
         product_qty = str(quantity)
+        
+        #if product id exits in cart then do nothing else add product and quantity
         if product_id in self.cart:
             pass
         else:
-            # self.cart[product_id] = {'price': str(product.price)}
             self.cart[product_id] = int(product_qty)
         self.session.modified = True 
         
@@ -26,7 +28,7 @@ class Cart():
         if self.request.user.is_authenticated:
             current_user = CustomUser.objects.filter(id = self.request.user.id)
             carty = str(self.cart)
-            carty = carty.replace("\'","\"")
+            carty = carty.replace("\'","\"")     
             current_user.update(old_cart=carty)
             
     def add(self, product,quantity):

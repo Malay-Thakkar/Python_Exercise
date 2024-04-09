@@ -1,5 +1,5 @@
 from django.urls import path,include
-from api.views import ProductViewSet,CategoryViewSet
+from api.views import ProductViewSet,CategoryViewSet, uploadproductfile
 from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
@@ -10,7 +10,8 @@ router.register(r'category',CategoryViewSet)
 
 
 urlpatterns = [
-    path('',include(router.urls))
+    path('',include(router.urls)),
+    path('uploadproduct',uploadproductfile,name="uploadproductfile")
 ]
 
 if settings.DEBUG:

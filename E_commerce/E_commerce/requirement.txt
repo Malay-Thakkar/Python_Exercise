@@ -4,3 +4,4 @@ djangorestframework
 django-jazzmin
 python-dotenv
 requests
+pandas

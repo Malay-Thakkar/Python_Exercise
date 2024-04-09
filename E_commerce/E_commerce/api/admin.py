@@ -6,7 +6,7 @@ admin.site.register(CategoryModel)
 
 @admin.register(ProductModel)
 class ProductModelAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in ProductModel._meta.fields if field.name != 'category']  # Exclude category from list_display
+    list_display = [field.name for field in ProductModel._meta.fields if field.name != 'category']  
     search_fields = ['name', 'category__category']  # Search by name and category
     list_filter = ['category']  # Filter by category
 

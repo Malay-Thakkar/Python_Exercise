@@ -25,5 +25,8 @@ class ProductModel(models.Model):
         return str(self.product_id)
     
 
+#model for upload product using csv
+class UploadProduct(models.Model):
+    file = models.FileField(upload_to="files")
  
 #model bills/order
