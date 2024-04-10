@@ -239,3 +239,20 @@ def orderdetail(request,orderid):
         return render(request,"orderdetail.html")
     else:
         return render(request,"404.html",{'error':"You are not authorized to access that!"})
+    
+@login_required(login_url='/signin')
+def cancelorder(request,orderid):
+    cancel_order_obj = Order.objects.get(id=orderid)
+    orders = Order.objects.filter(user=request.user)
+    if cancel_order_obj.user == request.user:
+        if cancel_order_obj.order_status == "Pending":
+            cancel_order_obj.delete()
+            messages.success(request,"You order is canceled")
+            return redirect("/order/")  
+        else:
+            messages.error(request,"You can not cancelorder!!! order is placed")
+            return redirect("/order/")
+    else:
+        messages.error(request,"You are not authorized!!!")
+        return redirect("/order/")
+        

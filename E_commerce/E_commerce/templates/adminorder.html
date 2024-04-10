@@ -31,7 +31,7 @@
                 <div class="p-2" style="margin-left: 33rem;">
                     <form class="d-flex pl-5">
                         <div class="input-group">
-                            <input class="form-control bg-light" type="search" placeholder="Search product" id="searchbar" aria-label="Search">
+                            <input class="form-control bg-light" type="search" placeholder="Search order by user" id="searchbar" aria-label="Search">
                             <button class="btn btn-outline-success" type="button">Search</button>
                         </div>
                     </form>
@@ -53,9 +53,8 @@
                             <th>Delete Order</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="Orderlist">
                         {% for order in orders %}
-
                         <tr>
                             <td>
                                 <span class="font-weight-bold">{{ order.id }}</span>
@@ -84,6 +83,7 @@
                                     class="font-weight-bold btn btn-info">Update</span></a>
                             </td>
                             <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{forloop.counter}}">Delete</button></td>
+                            </tr>
                             {% endfor %}
                     </tbody>
                 </table>
@@ -121,4 +121,24 @@
         </div>
     </div>
 </div>
-{% endfor %} {% endblock dashboard-content %}
+{% endfor %} 
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Intercept input in the search box
+        $('#searchbar').on('input', function () {
+            var query = $(this).val();  // Get the value typed in the search box
+            $.ajax({
+                type: "GET",
+                url: "{% url 'searchorder' %}",  // URL to your search endpoint
+                data: {
+                    'search': query,  // Pass the query as data to the server
+                },
+                success: function (response) {
+                    $('#Orderlist').html(response.html);
+                }
+            });
+        });
+    });
+</script>
+{% endblock dashboard-content %}

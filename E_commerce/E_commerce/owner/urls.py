@@ -1,11 +1,12 @@
 from django.urls import path
-from .views import dashboard,admincategory,adminorder,adminproducts,adminuser,adminproductsdelete,adminproductsupdate,adminproductadd,admincategoryadd,admincategorydelete,admincategoryupdate,searchproduct,searchcategory,adminorderdetail,adminorderupdate,adminorderadd,adminorderdetailupdate,adminorderdetaildelete,adminuserdetail,adminuserdetailupdate,adminuserdelete
+from .views import dashboard,admincategory,adminorder,adminproducts,adminuser,adminproductsdelete,adminproductsupdate,adminproductadd,admincategoryadd,admincategorydelete,admincategoryupdate,searchproduct,searchcategory,adminorderdetail,adminorderupdate,adminorderadd,adminorderdetailupdate,adminorderdetaildelete,adminuserdetail,adminuserdetailupdate,adminuserdelete,truncate_table,settings,searchorder
 
 urlpatterns = [
     path('',dashboard,name="dashboard"),
     
     path('order/',adminorder,name="adminorder"),
     path('order/<int:order_id>/',adminorderdetail,name="adminorderdetail"),
+    path('searchorder/',searchorder, name='searchorder'),
     path('orderadd/',adminorderadd,name="adminorderadd"),
     path('orderupdate/<int:order_id>/',adminorderupdate,name="adminorderupdate"),
     path('orderupdate/<int:order_id>/<int:payment_id>/', adminorderdetailupdate, name="adminorderdetailupdate"),
@@ -27,4 +28,7 @@ urlpatterns = [
     path('user/<int:user_id>',adminuserdetail,name="adminuserdetail"),
     path('userupdate/<int:user_id>',adminuserdetailupdate,name="adminuserdetailupdate"),
     path('userdelete/<int:user_id>',adminuserdelete,name="adminuserdelete"),
+    
+    path('settings/',settings,name="settings"),
+    path('truncate/', truncate_table, name='truncate_table'),
 ]

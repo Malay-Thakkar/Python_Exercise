@@ -34,7 +34,7 @@
             <div class="p-2" style="margin-left: 28rem;">
                 <form class="d-flex pl-5">
                     <div class="input-group">
-                        <input class="form-control bg-light" type="search" placeholder="Search product" id="searchbar"
+                        <input class="form-control bg-light" type="search" placeholder="Search category" id="searchbar"
                             aria-label="Search">
                         <button class="btn btn-outline-success" type="button">Search</button>
                     </div>
@@ -54,7 +54,7 @@
                             <th>Delete Item</th>
                         </tr>
                     </thead>
-                    <tbody id="productList">
+                    <tbody id="categoryList">
                         {% for Category in Categorys %}
                         <tr>
                             <td>{{Category.category_id}}</td>
@@ -170,7 +170,7 @@
                     'search': query,  // Pass the query as data to the server
                 },
                 success: function (response) {
-                    $('#productList').html(response.html);  // Update the product container with the search results HTML snippet
+                    $('#categoryList').html(response.html);  // Update the product container with the search results HTML snippet
                 }
             });
         });

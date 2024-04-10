@@ -57,7 +57,8 @@
                 <a href="{% url 'orderdetail' order.id %}"><span class="font-weight-bold btn btn-success"><i class="bi bi-eye-fill"></i></span></a>
               </td>
               <td>
-                <span class="font-weight-bold btn btn-danger">cancel order</span>
+                <a href="{% url 'cancelorder' order.id %}"><span class="font-weight-bold btn btn-danger">cancel order</span></a>
+                
               </td>
             {% endfor %}
           </tbody>

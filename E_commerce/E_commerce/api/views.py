@@ -48,21 +48,24 @@ def uploadproductfile(request):
     
     
 def create_db(file_path):
-    df = pd.read_csv(file_path, delimiter=",")
-    list_of_csv = [list(row) for row in df.values]
-    print(list_of_csv)
-    for i, l in enumerate(list_of_csv):
-        print(f"Processing row {i + 1}: {l}")
+    expected_headers = ['Product_Name', 'Product_Stock', 'Product_Desc', 'Product_Img', 'Product_Price', 'Product_Unit','category_id']
     try:
-        ProductModel.objects.create(
-            name=l[0],
-            price=l[1],
-            unit=l[2],
-            stock=l[3],
-            desc=l[4],
-            img=l[5],
-            category=get_object_or_404(CategoryModel, pk=l[6])
-        )
-    except IndexError:
-        print(f"Error processing row {i + 1}: {l}")
+        df = pd.read_csv(file_path)
+        if not all(header in df.columns for header in expected_headers):
+            raise ValueError("CSV headers are not properly formatted")
 
+        for index, row in df.iterrows():
+            try:
+                ProductModel.objects.create(
+                    name=row['Product_Name'],
+                    price=row['Product_Price'],
+                    unit=row['Product_Unit'],
+                    stock=row['Product_Stock'],
+                    desc=row['Product_Desc'],
+                    img=row['Product_Img'],
+                    category=get_object_or_404(CategoryModel, pk=row['category_id'])
+                )
+            except Exception as e:
+                print(f"Error processing row {index + 1}: {str(e)}")
+    except Exception as e:
+        print(f"Error reading CSV file: {str(e)}")

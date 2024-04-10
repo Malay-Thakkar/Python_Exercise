@@ -2,12 +2,12 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from api.models import ProductModel,CategoryModel
-from payment.models import Order, OrderItems, Payment,ShippingAddressModel
+from payment.models import Order, OrderItems, Payment
 from payment.models import Order,OrderItems
 from django.contrib.auth import get_user_model
-import requests
 from django.http import JsonResponse
 from django.db.models import Sum,F, ExpressionWrapper, FloatField ,Q
+from django.db import connection
 import json
 from customer.views import order
 # Create your views here.
@@ -259,6 +259,16 @@ def adminorderdetaildelete(request, order_id):
     return redirect('/')
 
 
+@login_required(login_url='/signin')
+def searchorder(request):
+    if request.method == 'GET':
+        query = request.GET.get('search')
+        if query:
+            results = Order.objects.filter(Q(user__username__icontains=query))
+            context = {'orders': results}
+            html_content = render(request, 'search_order.html', context).content.decode('utf-8')
+            return JsonResponse({'html': html_content})
+    return JsonResponse({'html': ''})
 # ================================ user ============================
 
 @login_required(login_url='/signin')
@@ -533,3 +543,20 @@ def searchcategory(request):
             context = {'Categorys': results}
             return JsonResponse({'html': render(request, 'search_category.html', context).content.decode('utf-8')})
     return JsonResponse({'html': ''})
+
+
+
+
+# =====================================trunket===========================
+def truncate_table(request):
+    if request.method == 'POST':
+        table_name = request.POST.get('table_name')
+        with connection.cursor() as cursor:
+            cursor.execute(f"TRUNCATE TABLE {table_name} RESTART IDENTITY CASCADE;")
+        messages.success(request,f"{table_name} reset successfully!!!")
+        return redirect('/admin/settings/')
+
+def settings(request):
+    tables = ['api_productmodel','api_categorymodel','payment_order', 'payment_orderitems', 'payment_payment','payment_shippingaddressmodel']
+    context ={'table_names':tables}
+    return render(request, 'admin_settings.html',context)
