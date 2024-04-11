@@ -54,6 +54,7 @@ def shipping_address(request):
 @login_required(login_url='/signin')
 def place_order(request):
     if request.method == 'POST':
+        
         # Retrieve payment method from the request POST data
         payment_method = request.POST.get('payment_method')
         order_note = request.POST.get('ordernote')
