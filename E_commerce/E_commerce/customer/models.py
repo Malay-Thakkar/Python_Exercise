@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from payment.models import ShippingAddressModel
 
+#customuser model
 class CustomUser(AbstractUser):
     phone = models.CharField(max_length=12, blank=True)
     Address = models.TextField(blank=True)

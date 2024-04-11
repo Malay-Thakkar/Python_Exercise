@@ -6,6 +6,8 @@ from .wishlist import Wishlist
 from django.contrib import messages
 
 # Create your views here.
+
+#cart page view 
 def cart_summary(request):
     cart=Cart(request)
     cart_products =cart.get_cart_product()
@@ -14,6 +16,8 @@ def cart_summary(request):
     gsttotal = cart.cart_gsttotal()
     return render(request,'cart.html',{'cart_products':cart_products,'cart_quantity':cart_quantity,'total':total,'gsttotal':gsttotal})
 
+
+#for add products in carts 
 def cart_add(request):
     cart = Cart(request)
     if request.POST.get('action')=='post':
@@ -27,7 +31,8 @@ def cart_add(request):
         response =JsonResponse({'cart_quantity':cart_quantity})
         messages.success(request,'successfully added Items')
         return response
-
+    
+#for delete products in cart
 def cart_delete(request):
     cart = Cart(request)
     if request.POST.get('action')=='post':
@@ -37,6 +42,7 @@ def cart_delete(request):
         messages.success(request,'successfully deleted Items')
         return response
 
+#for update products(quantity) in cart
 def cart_update(request):
     cart = Cart(request)
     if request.POST.get('action')=='post':
@@ -45,14 +51,14 @@ def cart_update(request):
         cart.update(product=product_id,quantity=product_qty)
         response = JsonResponse({'qty':product_qty})
         return response
-    
-#wishlist views:
 
+#wishlist views:
 def wishlist_summary(request):
     wishlist = Wishlist(request)
     wishlist_products = wishlist.get_wishlist_product()
     return render(request, 'wishlist.html', {'wishlist_products': wishlist_products})
 
+#for add product in wishlist
 def wishlist_add(request):
     wishlist = Wishlist(request)
     if request.POST.get('action') == 'post':
@@ -62,6 +68,7 @@ def wishlist_add(request):
         messages.success(request, 'Successfully added to wishlist')
         return JsonResponse({'success': True})
 
+#for delete product in wishlist
 def wishlist_delete(request):
     wishlist = Wishlist(request)
     if request.POST.get('action') == 'post':

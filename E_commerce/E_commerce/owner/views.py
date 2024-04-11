@@ -15,6 +15,7 @@ from customer.views import order
 CustomUser = get_user_model()
 
 # ================================ dashboard ============================
+#custom admin dashboard
 @login_required(login_url='/signin')
 def dashboard(request):
     if request.user.is_staff:
@@ -22,10 +23,10 @@ def dashboard(request):
         category_total = CategoryModel.objects.count()
         order_total = Order.objects.count()
         user_total = CustomUser.objects.count()
+        sale_total = Order.objects.aggregate(total_sale=Sum('order_total'))['total_sale']
         stock_total = ProductModel.objects.annotate(
             total_price=ExpressionWrapper(F('price') * F('stock'), output_field=FloatField())
         ).aggregate(total_stock_price=Sum('total_price'))['total_stock_price']
-        sale_total = Order.objects.aggregate(total_sale=Sum('order_total'))['total_sale']
         
         context = {
             'product_total':product_total,
@@ -41,7 +42,8 @@ def dashboard(request):
 
 
 # ================================ order ============================
-@login_required
+#custom admin order page 
+@login_required(login_url='/signin')
 def adminorder(request):
     if request.user.is_staff:
         orders = Order.objects.all()
@@ -49,6 +51,7 @@ def adminorder(request):
         return render(request,"adminorder.html",{'orders':orders,'payment':payment})
     return redirect('/')
 
+#custom admin order-detail page 
 @login_required(login_url='/signin')
 def adminorderdetail(request,order_id):
     if request.user.is_staff:
@@ -64,12 +67,13 @@ def adminorderdetail(request,order_id):
             return render(request, "404.html", {'error': "Order not found"})
     return redirect('/')
     
+#custom admin order add page
 @login_required(login_url='/signin')
 def adminorderadd(request):
     if request.user.is_staff:
         if request.method  == 'POST':
 
-            products_data = request.POST.get('productsObject')  # Corrected field name
+            products_data = request.POST.get('productsObject') 
             products_dict = json.loads(products_data) # Convert the JSON string to a Python dictionary
             
             #calculate total price
@@ -135,12 +139,13 @@ def adminorderadd(request):
         return render(request,"adminaddorder.html",{'products':products})
     return redirect('/')
 
+#for custom admin order update page render
 @login_required(login_url='/signin')
 def adminorderupdate(request, order_id):
     if request.user.is_staff:
         try:
             order = Order.objects.get(id=order_id)
-            payment = order.payment  # Assuming order.payment returns a Payment object
+            payment = order.payment 
             order_products = OrderItems.objects.filter(Order=order_id)
             products = ProductModel.objects.all()
             if order:
@@ -152,6 +157,7 @@ def adminorderupdate(request, order_id):
 
     return redirect('/')
 
+#custom admin orderupdate post request
 @login_required(login_url='/signin')
 def adminorderdetailupdate(request, order_id,payment_id):
     if request.user.is_staff:
@@ -249,6 +255,7 @@ def adminorderdetailupdate(request, order_id,payment_id):
 
     return redirect('/')
 
+#custom admin order delete post request
 @login_required(login_url='/signin')
 def adminorderdetaildelete(request, order_id):
     if request.user.is_staff:
@@ -259,6 +266,7 @@ def adminorderdetaildelete(request, order_id):
     return redirect('/')
 
 
+#custom admin search order live(ajex)
 @login_required(login_url='/signin')
 def searchorder(request):
     if request.method == 'GET':
@@ -269,8 +277,11 @@ def searchorder(request):
             html_content = render(request, 'search_order.html', context).content.decode('utf-8')
             return JsonResponse({'html': html_content})
     return JsonResponse({'html': ''})
-# ================================ user ============================
 
+
+
+# ================================ user ============================
+#custom admin user page 
 @login_required(login_url='/signin')
 def adminuser(request):
     if request.user.is_staff:
@@ -278,6 +289,7 @@ def adminuser(request):
         return render(request,"adminuser.html",{'users':users})
     return redirect('/')    
 
+#custom admin user-detail page
 @login_required(login_url='/signin')
 def adminuserdetail(request, user_id):
     if request.user.is_staff:
@@ -285,6 +297,7 @@ def adminuserdetail(request, user_id):
         return render(request,"adminuserdetails.html",{'user':user})
     return redirect('/')
 
+#custom admin user-add page
 @login_required(login_url='/signin')
 def adminuseradd(request):
     if request.user.is_staff:
@@ -323,6 +336,7 @@ def adminuseradd(request):
             
     return redirect('/')
 
+#custom admin user-update page
 @login_required(login_url='/signin')
 def adminuserdetailupdate(request, user_id):
     if request.user.is_staff:
@@ -360,6 +374,7 @@ def adminuserdetailupdate(request, user_id):
         return render(request, 'updateuser.html', context)
     return redirect('/')
 
+#custom admin user-delete page
 @login_required(login_url='/signin')
 def adminuserdelete(request, user_id):
     if request.user.is_staff:
@@ -375,6 +390,7 @@ def adminuserdelete(request, user_id):
 
 
 # ================================ category ============================
+#custom admin category page
 @login_required(login_url='/signin')
 def admincategory(request):
     if request.user.is_staff:
@@ -382,6 +398,7 @@ def admincategory(request):
         return render(request,"admincategory.html",{'Categorys':categorys})
     return redirect('/')
 
+#custom admin category-add 
 @login_required(login_url='/signin')
 def admincategoryadd(request):
     if request.user.is_staff:
@@ -400,6 +417,7 @@ def admincategoryadd(request):
             return redirect('/admin/category/')
     return redirect('/')
 
+#custom admin category-update
 @login_required(login_url='/signin')
 def admincategoryupdate(request, category_id):
     if request.user.is_staff:
@@ -419,6 +437,7 @@ def admincategoryupdate(request, category_id):
                 return render(request, "404.html", {'error': "Category not found"})
     return redirect('/')
 
+#custom admin category-delete
 @login_required(login_url='/signin')
 def admincategorydelete(request,category_id):
     if request.user.is_staff:
@@ -434,6 +453,7 @@ def admincategorydelete(request,category_id):
  
 
 # ================================ product ============================
+#custom admin Product page
 @login_required(login_url='/signin')   
 def adminproducts(request):
     if request.user.is_staff:
@@ -443,6 +463,7 @@ def adminproducts(request):
         return render(request,"adminproduts.html",{'products':products,'categorys':categorys,'domain':domain})
     return redirect('/')
 
+#custom admin Product-add
 @login_required(login_url='/signin')
 def adminproductadd(request):
     if request.user.is_staff:
@@ -475,6 +496,7 @@ def adminproductadd(request):
             return redirect('/admin/products/')
         return redirect('/')
 
+#custom admin Product-update
 @login_required(login_url='/signin')
 def adminproductsupdate(request, product_id):
     if request.user.is_staff:
@@ -511,6 +533,7 @@ def adminproductsupdate(request, product_id):
                 return render(request, "404.html", {'error': "Product ID not found"})
     return redirect('/')
 
+#custom admin Product-delete
 @login_required(login_url='/signin')
 def adminproductsdelete(request, product_id):
     if request.user.is_staff:
@@ -524,6 +547,7 @@ def adminproductsdelete(request, product_id):
                 return render(request,"404.html",{'error':"product id not found"})
     return redirect('/')
 
+#custom admin Product-live search(ajex request)
 @login_required(login_url='/signin')  
 def searchproduct(request):
     if request.method == 'GET':
@@ -534,6 +558,7 @@ def searchproduct(request):
             return JsonResponse({'html': render(request, 'search_products.html', context).content.decode('utf-8')})
     return JsonResponse({'html': ''})
 
+#custom admin Category-live search(ajex request)
 @login_required(login_url='/signin')
 def searchcategory(request):
     if request.method == 'GET':
@@ -545,9 +570,7 @@ def searchcategory(request):
     return JsonResponse({'html': ''})
 
 
-
-
-# =====================================trunket===========================
+# =====================================truncate ===========================
 def truncate_table(request):
     if request.method == 'POST':
         table_name = request.POST.get('table_name')
@@ -556,6 +579,7 @@ def truncate_table(request):
         messages.success(request,f"{table_name} reset successfully!!!")
         return redirect('/admin/settings/')
 
+#setting page
 def settings(request):
     tables = ['api_productmodel','api_categorymodel','payment_order', 'payment_orderitems', 'payment_payment','payment_shippingaddressmodel']
     context ={'table_names':tables}

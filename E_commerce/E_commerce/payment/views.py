@@ -6,6 +6,7 @@ from django.contrib import messages
 
 # Create your views here.
 @login_required(login_url='/signin')
+#customer chackout page 
 def checkout(request):
     cart=Cart(request)
     cart_products =cart.get_cart_product()
@@ -15,6 +16,7 @@ def checkout(request):
     address = ShippingAddressModel.objects.filter(user=request.user)
     return render(request,"checkout.html",{'cart_products':cart_products,'cart_quantity':cart_quantity,'total':total,'gsttotal':gsttotal,'address':address})
 
+#customer add shipping address
 def shipping_address(request):
     cart=Cart(request)
     cart_products =cart.get_cart_product()
@@ -22,6 +24,7 @@ def shipping_address(request):
     total = cart.cart_total()
     gsttotal = cart.cart_gsttotal()
     address = ShippingAddressModel.objects.filter(user=request.user)
+    
     if request.method == 'POST':
         # Retrieve shipping address data from the form
         shipping_first_name = request.POST.get('shipping_first_name')
@@ -47,7 +50,7 @@ def shipping_address(request):
         )
         return render(request,"checkout.html",{'cart_products':cart_products,'cart_quantity':cart_quantity,'total':total,'gsttotal':gsttotal,'address':address})
 
-
+#customer place order request
 @login_required(login_url='/signin')
 def place_order(request):
     if request.method == 'POST':

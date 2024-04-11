@@ -28,5 +28,3 @@ class ProductModel(models.Model):
 #model for upload product using csv
 class UploadProduct(models.Model):
     file = models.FileField(upload_to="files")
- 
-#model bills/order

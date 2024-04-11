@@ -16,6 +16,7 @@ import json
 # Create your views here.
 User = get_user_model()
 
+#register user 
 def signup(request):
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
@@ -35,6 +36,7 @@ def signup(request):
         if user.exists():
             messages.info(request, "Username already taken!")
             return redirect('/signup/')
+        
         user = User.objects.create_user(
 			first_name=first_name,
 			last_name=last_name,
@@ -51,10 +53,12 @@ def signup(request):
         return redirect('/signin/')
     return render(request, 'signup.html')
 
+#for login 
 def signin(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
+        
         if not User.objects.filter(username=username).exists():
             messages.error(request, 'Invalid Username')
             return redirect('/signin/')
@@ -111,6 +115,7 @@ def thankyou(request):
 def aboutus(request):
     return render(request,"aboutus.html")
 
+# contactus page and send mail 
 def contactus(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -128,6 +133,7 @@ def contactus(request):
         return render(request,'thankyou.html')
     return render(request,"contactus.html")
 
+# search products
 def search(request):
     if request.method == "POST":
         searched = request.POST.get('search')
@@ -140,6 +146,7 @@ def search(request):
             return render(request,"search.html",{'search':searched})
     return render(request,"search.html")
 
+#profile page
 @login_required(login_url='/signin')
 def profile(request):
     logged_in_user = request.user
@@ -149,6 +156,7 @@ def profile(request):
     }
     return render(request, 'profile.html', context)
 
+#update users data
 @login_required(login_url='/signin')
 def updateuser(request):
     logged_in_user = request.user
@@ -188,6 +196,7 @@ def updateuser(request):
 
     return render(request, 'updateuser.html', context)
 
+#for change passwoard 
 @login_required(login_url='/signin')
 def changepasswd(request):
     logged_in_user = request.user
@@ -212,9 +221,11 @@ def changepasswd(request):
             messages.error(request,"conformpasswd and newpasswd are not same!!!")
     return render(request,"updatepasswd.html")
 
+#for forgate passwoard
 def forgotpasswd(request):
     pass
 
+#for permenent delete account/user
 @login_required(login_url='/signin')
 def deleteuser(request):
     logged_in_user = request.user
@@ -223,11 +234,13 @@ def deleteuser(request):
     messages.error(request,"Your account is successfully deleted !!!")
     return redirect('/signup/')
 
+#display users order
 @login_required(login_url='/signin')
 def order(request):
     orders = Order.objects.filter(user=request.user)
     return render(request,"order.html",{'orders':orders})
 
+#display user order details
 @login_required(login_url='/signin')
 def orderdetail(request,orderid):
     order = Order.objects.get(id=orderid)
@@ -239,7 +252,8 @@ def orderdetail(request,orderid):
         return render(request,"orderdetail.html")
     else:
         return render(request,"404.html",{'error':"You are not authorized to access that!"})
-    
+  
+#for cancel order if order is not placed   
 @login_required(login_url='/signin')
 def cancelorder(request,orderid):
     cancel_order_obj = Order.objects.get(id=orderid)

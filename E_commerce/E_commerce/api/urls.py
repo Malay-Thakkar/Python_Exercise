@@ -4,7 +4,11 @@ from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
 
+
+# Create a router
 router = routers.DefaultRouter()
+
+# Register ViewSets with the router
 router.register(r'product',ProductViewSet)
 router.register(r'category',CategoryViewSet)
 
