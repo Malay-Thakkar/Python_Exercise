@@ -1,17 +1,20 @@
 from rest_framework import serializers
-from api.models import ProductModel,CategoryModel
+from api.models import ProductModel, CategoryModel
 
-#category hyperlink serializer(help with url redirect)
+
+# category hyperlink serializer(help with url redirect)
 class CategorySerializers(serializers.HyperlinkedModelSerializer):
-    category_id=serializers.ReadOnlyField()
+    category_id = serializers.ReadOnlyField()
+
     class Meta:
         model = CategoryModel
-        fields="__all__"
-        
-#Product hyperlink serializer(help with url redirect)
+        fields = "__all__"
+
+
+# Product hyperlink serializer(help with url redirect)
 class ProductSerializers(serializers.HyperlinkedModelSerializer):
-    product_id=serializers.ReadOnlyField()
+    product_id = serializers.ReadOnlyField()
+
     class Meta:
         model = ProductModel
-        fields="__all__"
-        
+        fields = "__all__"
